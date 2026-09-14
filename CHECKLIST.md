@@ -53,11 +53,14 @@ vector from spec/query-language §6.
   root so future sessions can read them from GitHub (`raw.githubusercontent.com/cpardue/simplelogsearch/main/...`).
   **Verify:** files exist locally at those exact paths; sizes match source.
 - [x] 0.4 Push all Phase 0 files (MCP or Contents-API script).
-- [ ] 0.5 Enable GitHub Pages: `PUT /repos/cpardue/simplelogsearch/pages` with
+- [x] 0.5 Enable GitHub Pages: `PUT /repos/cpardue/simplelogsearch/pages` with
   body `{"source":{"branch":"main","path":"/"}}` via token script
   (Invoke-RestMethod is fine). On 4xx/403 → `[MANUAL user]`: Settings → Pages
   → "Deploy from a branch" → main / (root) → Save.
   **Verify:** GET the same endpoint returns `html_url == https://cpardue.github.io/simplelogsearch/`.
+   *(2026-09-14 amended, protocol 8: user pre-enabled Pages in Settings and set custom domain
+   `chris-pardue.com` ahead of Phase 7.4 — do NOT strip the cname to force the old string;
+   functional gate = source {branch: main, path: /} + status built + live probe.)*
 - [ ] 0.6 Live probe: fetch
   `https://cpardue.github.io/simplelogsearch/` until HTTP 200 (retry up to
   5×, 30 s apart). **Verify:** body contains "SimpleLogSearch". Record deploy
@@ -262,6 +265,7 @@ vector from spec/query-language §6.
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
 
+[2026-09-14 13:04] item 0.5 done — Pages enabled by user in Settings (main/ root); authenticated GET /pages via token script: source {branch: main, path: /}, status built, html_url reports user's custom domain http://chris-pardue.com/simplelogsearch/ (written verify amended per protocol 8 — cname kept; Phase 7.4 domain decision still open); live probe https://cpardue.github.io/simplelogsearch/ → 301 → chris-pardue.com → HTTP 200, body contains "SimpleLogSearch" (attempt 1); chris-pardue.com resolves via Cloudflare (DNS/origin user-side) — no app files changed; checkoff commit sha in history file
 [2026-09-14 12:35] item 0.4 done — pushed via Contents-API node script (no git CLI): bootstrap .nojekyll @ 2e90818c, 16-file batch commit @ 57fcdafe on main; remote recursive tree = exactly the 17 expected blobs, sizes match local (CHECKLIST 17542 / PLAN 15473 / README 2938 / SESSION_PROMPT 3166 / spec/ 5 files), MCP root listing + raw index.html probe (751 B, placeholder intact, relative css URL) PASS — commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; checkoff commit sha in history file)
 [2026-09-14 12:14] item 0.3 done — local Verify PASS: all 5 doc groups at repo root (local folder = repo root 1:1), sizes complete/non-truncated: README.md 2938 B, CHECKLIST.md 17156 B, PLAN.md 15473 B, SESSION_PROMPT.md 3166 B, spec/ exactly 5 files (i18n 4463 / query-language 7260 / seo-adsense 9086 / ui-spec 6601 / webmcp 5999 B) — no commit (local only; push happens at 0.4)
 [2026-09-14 11:57] item 0.2 done — tree listed per PLAN §3: .nojekyll (0 B), index.html placeholder (wordmark + "launching soon"), css/styles.css with all ui-spec §1 tokens, js/ app|query-parser|log-view|i18n|webmcp stubs, README.md present — no commit (local only; push happens at 0.4)
