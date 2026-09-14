@@ -1,0 +1,51 @@
+/* SimpleLogSearch — css/styles.css
+   Phase-0 stub: design tokens (spec/ui-spec §1) + minimal placeholder page.
+   Full component styles land in Phase 1+. Logical properties only (RTL-safe). */
+
+:root {
+  --bg:       #202124;  /* page + header */
+  --surface:  #303134;  /* search bar, buttons; row bg #1d1f22 */
+  --border:   #5f6368;
+  --text:     #e8eaed;  /* primary */
+  --text-dim: #9aa0a6;  /* icons, secondary */
+  --error:    #f28b82;
+  --accent:   #8ab4f8;  /* focus ring, flash glow */
+  --gutter:   #7d8590;  /* line numbers */
+  --row-h:    16px;     /* fixed log row height; 13px/16px ui-monospace */
+}
+
+html, body { margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* --- Phase-0 placeholder (replaced by real header/layout in Phase 1) --- */
+
+.placeholder {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.wordmark {
+  font-size: 26px;
+  font-weight: 500;
+  text-decoration: none;
+}
+/* Letters cycle Google colors per spec/ui-spec §2, one span per char. */
+.wordmark span:nth-child(4n+1) { color: #4285F4; }
+.wordmark span:nth-child(4n+2) { color: #EA4335; }
+.wordmark span:nth-child(4n+3) { color: #FBBC04; }
+.wordmark span:nth-child(4n)   { color: #34A853; }
+
+.tagline {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-dim);
+}
