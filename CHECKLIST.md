@@ -61,7 +61,7 @@ vector from spec/query-language §6.
    *(2026-09-14 amended, protocol 8: user pre-enabled Pages in Settings and set custom domain
    `chris-pardue.com` ahead of Phase 7.4 — do NOT strip the cname to force the old string;
    functional gate = source {branch: main, path: /} + status built + live probe.)*
-- [ ] 0.6 Live probe: fetch
+- [x] 0.6 Live probe: fetch
   `https://cpardue.github.io/simplelogsearch/` until HTTP 200 (retry up to
   5×, 30 s apart). **Verify:** body contains "SimpleLogSearch". Record deploy
   commit sha in Session Log.
@@ -265,6 +265,7 @@ vector from spec/query-language §6.
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
 
+[2026-09-14 15:25] item 0.6 done — live probe attempt 1 (no retries needed): GET https://cpardue.github.io/simplelogsearch/ → HTTP 200 (301 → final URL https://chris-pardue.com/simplelogsearch/ via custom domain, Cloudflare front), body contains "SimpleLogSearch"; served page is the repo placeholder — raw main index.html (751 B) byte-identical to local, live extra ~940 B is Cloudflare challenge-script injection only — deploy commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; what Pages serves)
 [2026-09-14 13:04] item 0.5 done — Pages enabled by user in Settings (main/ root); authenticated GET /pages via token script: source {branch: main, path: /}, status built, html_url reports user's custom domain http://chris-pardue.com/simplelogsearch/ (written verify amended per protocol 8 — cname kept; Phase 7.4 domain decision still open); live probe https://cpardue.github.io/simplelogsearch/ → 301 → chris-pardue.com → HTTP 200, body contains "SimpleLogSearch" (attempt 1); chris-pardue.com resolves via Cloudflare (DNS/origin user-side) — no app files changed; checkoff commit sha in history file
 [2026-09-14 12:35] item 0.4 done — pushed via Contents-API node script (no git CLI): bootstrap .nojekyll @ 2e90818c, 16-file batch commit @ 57fcdafe on main; remote recursive tree = exactly the 17 expected blobs, sizes match local (CHECKLIST 17542 / PLAN 15473 / README 2938 / SESSION_PROMPT 3166 / spec/ 5 files), MCP root listing + raw index.html probe (751 B, placeholder intact, relative css URL) PASS — commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; checkoff commit sha in history file)
 [2026-09-14 12:14] item 0.3 done — local Verify PASS: all 5 doc groups at repo root (local folder = repo root 1:1), sizes complete/non-truncated: README.md 2938 B, CHECKLIST.md 17156 B, PLAN.md 15473 B, SESSION_PROMPT.md 3166 B, spec/ exactly 5 files (i18n 4463 / query-language 7260 / seo-adsense 9086 / ui-spec 6601 / webmcp 5999 B) — no commit (local only; push happens at 0.4)
