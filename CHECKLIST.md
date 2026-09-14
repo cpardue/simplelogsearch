@@ -52,7 +52,7 @@ vector from spec/query-language §6.
   `CHECKLIST.md`, `PLAN.md`, `SESSION_PROMPT.md`, and `spec/` as-is to repo
   root so future sessions can read them from GitHub (`raw.githubusercontent.com/cpardue/simplelogsearch/main/...`).
   **Verify:** files exist locally at those exact paths; sizes match source.
-- [ ] 0.4 Push all Phase 0 files (MCP or Contents-API script).
+- [x] 0.4 Push all Phase 0 files (MCP or Contents-API script).
 - [ ] 0.5 Enable GitHub Pages: `PUT /repos/cpardue/simplelogsearch/pages` with
   body `{"source":{"branch":"main","path":"/"}}` via token script
   (Invoke-RestMethod is fine). On 4xx/403 → `[MANUAL user]`: Settings → Pages
@@ -262,6 +262,7 @@ vector from spec/query-language §6.
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
 
+[2026-09-14 12:35] item 0.4 done — pushed via Contents-API node script (no git CLI): bootstrap .nojekyll @ 2e90818c, 16-file batch commit @ 57fcdafe on main; remote recursive tree = exactly the 17 expected blobs, sizes match local (CHECKLIST 17542 / PLAN 15473 / README 2938 / SESSION_PROMPT 3166 / spec/ 5 files), MCP root listing + raw index.html probe (751 B, placeholder intact, relative css URL) PASS — commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; checkoff commit sha in history file)
 [2026-09-14 12:14] item 0.3 done — local Verify PASS: all 5 doc groups at repo root (local folder = repo root 1:1), sizes complete/non-truncated: README.md 2938 B, CHECKLIST.md 17156 B, PLAN.md 15473 B, SESSION_PROMPT.md 3166 B, spec/ exactly 5 files (i18n 4463 / query-language 7260 / seo-adsense 9086 / ui-spec 6601 / webmcp 5999 B) — no commit (local only; push happens at 0.4)
 [2026-09-14 11:57] item 0.2 done — tree listed per PLAN §3: .nojekyll (0 B), index.html placeholder (wordmark + "launching soon"), css/styles.css with all ui-spec §1 tokens, js/ app|query-parser|log-view|i18n|webmcp stubs, README.md present — no commit (local only; push happens at 0.4)
 [2026-09-14 11:46] item 0.1 done — github__get_repo returns repo (public, id 1370246873), clone_url https://github.com/cpardue/simplelogsearch.git visible — no commit (empty repo, nothing pushed)
