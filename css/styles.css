@@ -36,6 +36,7 @@ body {
 /* ===== ui-spec §2 — layout: single column centered max-width 720px, EXCEPT
    the result window (#results stays full width; §4 detail lands in Phase 2) ===== */
 header, #errorSlot, main, footer {
+  box-sizing: border-box;   /* §2/§7: padding stays inside the 720px column; no <720px overflow */
   width: 100%;
   max-width: 720px;
   margin-inline: auto;

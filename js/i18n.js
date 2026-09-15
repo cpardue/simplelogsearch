@@ -120,7 +120,7 @@
     if (typeof document !== "undefined" && document.documentElement) {
       document.documentElement.setAttribute("lang", current);
       document.documentElement.setAttribute("dir", dirFor(current));
-      const nodes = document.querySelectorAll("[data-i18n*]");
+      const nodes = document.querySelectorAll("[data-i18n],[data-i18n-aria],[data-i18n-placeholder]"); // "[data-i18n*]" is not a valid CSS selector (CHECKLIST 1.6, protocol 8)
       for (const el of nodes) {
         const key = el.getAttribute("data-i18n");
         if (key !== null) el.textContent = lookup(current, key);
