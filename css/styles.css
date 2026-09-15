@@ -1,6 +1,17 @@
 /* SimpleLogSearch — css/styles.css
-   Phase-0 stub: design tokens (spec/ui-spec §1) + minimal placeholder page.
-   Full component styles land in Phase 1+. Logical properties only (RTL-safe). */
+   Item 1.1: app-shell styles per spec/ui-spec §1–§3 + §6 + §7.
+   Logical properties only (RTL-safe for ar/ur). Dark theme is the only theme.
+   Markup for these selectors lands in item 1.2; result-window detail (§4)
+   lands in Phase 2 (item 2.1).
+
+   Component map (index.html, item 1.2):
+     header          app-header row: .wordmark + .lang-field (#langSelect)
+     main            <form class="search-bar"> (.search-icon, .search-input,
+                    .search-submit) + .btn-row (.btn × Reset/Upload)
+     #errorSlot      role=alert; hidden except when active (JS toggles)
+     footer          nav (6 links) + .footer-note
+     .skip-link      a11y.skipToResults (ui-spec §6)
+*/
 
 :root {
   --bg:       #202124;  /* page + header */
@@ -22,17 +33,28 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* --- Phase-0 placeholder (replaced by real header/layout in Phase 1) --- */
-
-.placeholder {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+/* ===== ui-spec §2 — layout: single column centered max-width 720px, EXCEPT
+   the result window (#results stays full width; §4 detail lands in Phase 2) ===== */
+header, #errorSlot, main, footer {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
 }
 
+#results {
+  width: 100%;
+  max-width: none;   /* §2 exception — full browser width */
+}
+
+/* ===== header: [logo wordmark] …spacer… [Language: <select>] ===== */
+header {
+  display: flex;
+  align-items: center;      /* logo vertically centered */
+  padding-inline: 16px;     /* §2: header padding 16px inline */
+}
+
+/* Logo wordmark — 26px/500 system font, one span per letter; Google colors
+   cycle [#4285F4, #EA4335, #FBBC04, #34A853]. Never i18n'd (ui-spec §2). */
 .wordmark {
   font-size: 26px;
   font-weight: 500;
@@ -44,8 +66,177 @@ body {
 .wordmark span:nth-child(4n+3) { color: #FBBC04; }
 .wordmark span:nth-child(4n)   { color: #34A853; }
 
-.tagline {
-  margin: 0;
-  font-size: 16px;
+/* Language field: visible "Language" label (i18n lang.label) + native select */
+.lang-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;   /* …spacer… pushes the select to the end */
+}
+.lang-field label {
+  font-size: 14px;
   color: var(--text-dim);
+}
+#langSelect {
+  font-size: 14px;
+  font-family: inherit;
+  background: #202124;         /* = --bg */
+  color: #e8eaed;              /* = --text */
+  border: 1px solid #5f6368;   /* = --border */
+  border-radius: 8px;
+  padding: 6px 8px;            /* spec/ui-spec §2 literal (symmetric) */
+}
+
+/* ===== search bar: [magnifier icon | input | magnifier submit] (§2) ===== */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 46px;
+  border-radius: 24px;
+  background: var(--surface);          /* #303134 */
+  border: 1px solid transparent;       /* stable geometry when the focus border lands */
+}
+.search-bar:focus-within {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, .6);
+  border-color: var(--accent);         /* #8ab4f8 */
+}
+.search-bar:hover:not(:focus-within) {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, .6);   /* hover without focus: same shadow */
+}
+.search-bar svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-dim);               /* #9aa0a6 */
+  flex: none;
+}
+.search-icon { margin-inline-start: 12px; }
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;                       /* focus is signaled by .search-bar:focus-within */
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  padding-inline: 8px;                 /* icon/submit spacing (not spec'd) */
+}
+.search-input::placeholder { color: #9aa0a6; }
+
+.search-submit {
+  flex: none;
+  width: 40px;                         /* 40×40 hit area */
+  height: 40px;
+  margin-inline-end: 3px;              /* centers the hit area in the 46px bar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ===== buttons row: [ Reset ] [ Upload ] — 12px gap, centered (§2) ===== */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-block-start: 12px;
+}
+.btn {
+  height: 36px;
+  padding: 0 16px;            /* spec/ui-spec §2 literal (symmetric) */
+  border-radius: 4px;
+  background: #303134;        /* = --surface */
+  color: #e8eaed;             /* = --text */
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #303134;
+  cursor: pointer;
+}
+.btn:hover { background: #3c4043; }
+.btn:active { transform: translateY(1px); }
+
+/* ===== error slot — between header and search bar. No `display` here so the
+   [hidden] attribute (JS) keeps working; auto-dismiss is JS (item 1.4). ===== */
+#errorSlot {
+  color: var(--error);        /* #f28b82 */
+  font-size: 14px;
+  margin-block-end: 8px;      /* §2: margin-bottom 8px, logical form */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;    /* one line max (truncates) */
+}
+
+/* ===== ui-spec §3 — upload flash ("momentary light-up"), verbatim =====
+   Trigger: add class + error message together; remove class on animationend. */
+@keyframes uploadFlash {
+  0%,100% { box-shadow:none; border-color:#303134 }
+  50%     { box-shadow:0 0 0 4px rgba(138,180,248,.55); border-color:#8ab4f8 }
+}
+.uploading-flash { animation: uploadFlash .5s ease-in-out 3; }   /* ~1.5 s total */
+
+/* ===== footer: nav links (6 pages) + footer note (§2) ===== */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-block: 24px 32px;       /* spec does not fix footer metrics */
+}
+footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+footer a {
+  color: var(--text-dim);
+  font-size: 13px;
+  text-decoration: none;
+}
+footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.footer-note {
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+/* ===== ui-spec §6 — keyboard & a11y (visual parts) ===== */
+.skip-link {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-start: -9999px;    /* off-canvas until focused */
+  z-index: 10;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.skip-link:focus { inset-inline-start: 8px; }
+
+/* Visible focus ring for icon-only / small controls (contrast per §6) */
+.btn:focus-visible,
+#langSelect:focus-visible,
+.search-submit:focus-visible,
+footer a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== ui-spec §7 — responsive (< 720px) ===== */
+@media (max-width: 719.98px) {
+  header { flex-wrap: wrap; gap: 8px; }
+  main { padding-inline: 16px; }         /* keep chrome in view on small screens */
+  #errorSlot { padding-inline: 16px; }   /* align with padded chrome */
+  .btn-row { flex-wrap: wrap; }          /* buttons stay centered under the bar */
+  /* #results keeps full width (outside the 720px column);
+     gutter auto-fit lands with §4 in Phase 2. */
 }

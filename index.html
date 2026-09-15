@@ -3,14 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SimpleLogSearch — launching soon</title>
+  <title>SimpleLogSearch — Free Log File Search with AND/OR/NOT (In-Browser)</title>
+  <!-- Pre-paint i18n boot (spec/i18n §4): reads localStorage["sls-lang"], validates it
+       against the known 21 codes, sets <html lang|dir> before first paint (ar/ur → rtl).
+       Full string application happens in js/app.js init. -->
+  <script>
+    (function () {
+      var codes = ["en","zh-CN","es-ES","hi-IN","ar","bn","pt-BR","ru","ja","de","fr","ko","tr","vi","id","th","pl","ur","nl","it","uk"];
+      var locale = null;
+      try { locale = window.localStorage.getItem("sls-lang"); } catch (e) {}
+      if (codes.indexOf(locale) === -1) locale = "en";
+      document.documentElement.setAttribute("lang", locale);
+      document.documentElement.setAttribute("dir", locale === "ar" || locale === "ur" ? "rtl" : "ltr");
+    })();
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Phase-0 placeholder; full app UI (spec/ui-spec §2) lands in Phase 1. -->
-  <main class="placeholder">
+  <a class="skip-link" href="#logViewport" data-i18n="a11y.skipToResults">Skip to results</a>
+
+  <header>
     <a class="wordmark" href="index.html" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
-    <p class="tagline">SimpleLogSearch — launching soon</p>
+    <div class="lang-field">
+      <label for="langSelect" data-i18n="lang.label">Language</label>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="es-ES">Español</option>
+        <option value="hi-IN">हिन्दी</option>
+        <option value="ar">العربية</option>
+        <option value="bn">বাংলা</option>
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="ru">Русский</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="ko">한국어</option>
+        <option value="tr">Türkçe</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="th">ไทย</option>
+        <option value="pl">Polski</option>
+        <option value="ur">اردو</option>
+        <option value="nl">Nederlands</option>
+        <option value="it">Italiano</option>
+        <option value="uk">Українська</option>
+      </select>
+    </div>
+  </header>
+
+  <div id="errorSlot" role="alert" aria-live="polite" hidden></div>
+
+  <main>
+    <form class="search-bar">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+      <input class="search-input" type="text" name="q" placeholder="Search your log file…" data-i18n-placeholder="search.placeholder">
+      <button class="search-submit" type="submit" aria-label="Run search" data-i18n-aria="search.buttonAria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></button>
+    </form>
+    <div class="btn-row">
+      <button id="resetBtn" class="btn" type="button" data-i18n="btn.reset">Reset</button>
+      <button id="uploadBtn" class="btn" type="button" data-i18n="btn.upload">Upload</button>
+      <input id="fileInput" type="file" hidden>
+    </div>
   </main>
+
+  <section id="results" hidden>
+    <div id="statusRow" aria-live="polite" data-i18n="status.noFile">No log loaded. Use Upload to open a log file.</div>
+    <div id="logViewport" aria-label="Log content" data-i18n-aria="a11y.logView"></div>
+  </section>
+
+  <footer>
+    <nav>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="query-syntax/" data-i18n="nav.syntax">Query Syntax</a>
+      <a href="how-to-search-logs/" data-i18n="nav.howto">How-To Guide</a>
+      <a href="faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="about/" data-i18n="nav.about">About</a>
+      <a href="privacy-policy/" data-i18n="nav.privacy">Privacy Policy</a>
+    </nav>
+    <p class="footer-note" data-i18n="footer.note">SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.</p>
+  </footer>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>

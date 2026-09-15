@@ -68,12 +68,12 @@ vector from spec/query-language §6.
 
 ## Phase 1 — App shell (gate: ui-spec §2–§3 manual pass)
 
-- [ ] 1.1 `css/styles.css`: implement all components from spec/ui-spec
+- [x] 1.1 `css/styles.css`: implement all components from spec/ui-spec
   §1–§3 + §6 + §7 using the exact tokens/sizes: header, logo wordmark (4-color
   letter spans), language select, search bar (inline SVG magnifier icons),
   Reset/Upload buttons, error slot, `uploadFlash` keyframes, footer nav,
   responsive breakpoint 720px. Logical properties only.
-- [ ] 1.2 `index.html`: full semantic structure per spec/ui-spec §2 diagram —
+- [x] 1.2 `index.html`: full semantic structure per spec/ui-spec §2 diagram —
   skip-link; header (logo + `#langSelect` with all 21 endonym options per
   spec/i18n §1); `#errorSlot` (`role=alert`); search `<form>` (input `name=q`
   + submit icon button); buttons row (`#resetBtn`, `#uploadBtn`, hidden
@@ -81,11 +81,11 @@ vector from spec/query-language §6.
   footer (6 nav links to Phase-6 pages — 404s until then are OK); pre-paint
   i18n inline head script (spec/i18n §4); deferred `js/i18n.js`, `js/app.js`.
   Relative asset URLs only.
-- [ ] 1.3 `js/i18n.js`: full EN catalog (all 23 keys, exact values from
+- [x] 1.3 `js/i18n.js`: full EN catalog (all 23 keys, exact values from
   spec/i18n §2) + stub dictionaries for the other 20 locales (EN fallback ok
   for now); `apply(locale)` covering text/aria/placeholder, `<html lang|dir>`,
   persistence; boot-time application.
-- [ ] 1.4 `js/app.js` shell behaviors: language change → apply + persist;
+- [x] 1.4 `js/app.js` shell behaviors: language change → apply + persist;
   Reset with no file loaded = strict no-op (B2); Upload click → open picker,
   cancel = nothing (B4; store the selected File in state — handling lands in
   Phase 2); search submit with no file → flash Upload + `err.noFile` (B1);
@@ -265,6 +265,10 @@ vector from spec/query-language §6.
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
 
+[2026-09-14 19:22] item 1.4 done — node behavior gate (verify-app-1.4.mjs, workspace root) 33/33 PASS: real i18n.js+app.js run in node vm over a DOM stub — lang change → I18N.apply + sls-lang persist (ar→rtl), boot syncs #langSelect, reload(ar) → pre-paint rtl + select=ar; B1 submit no-file: preventDefault + .uploading-flash + slot visible with exact '✕ Upload Log File before searching' (=I18N.EN err.noFile) + input kept + #results hidden; §3 flash class removed on animationend; §2 6 s auto-dismiss; B2 Reset no-file strict no-op (input/slot/results/storage/dir untouched); Upload click → fileInput.click; B4 cancelled picker = nothing, selected File stored in state (post-select submit skips B1) + input value reset for re-select (B9); B12 Esc clears slot only, input kept; §6 '/' focuses search from non-editable focus (preventDefault) and is ignored inside <select>; no spec/code divergence (protocol 8 not triggered) — no commit (local only; push happens at 1.5)
+[2026-09-14 18:17] item 1.3 done — node verify gate (verify-i18n-1.3.mjs, workspace root) 59/59 PASS: EN catalog all 23 keys exact per i18n §2 (Unicode ✕/…/—/•/“” verified, no extra keys); LOCALES = spec §1 dropdown order (21 codes); CATALOGS has all 21, 20 non-EN stubs resolve to EN via lookup() for all 23 keys; apply(): all 15 [data-i18n*] elements in index.html set (12 text + 2 aria-label + 1 placeholder), <html lang|dir> correct (ar/ur rtl, other 19 ltr), sls-lang persisted; boot-time application: no storage → en default persisted, stored "ar" → lang=ar dir=rtl with strings applied, stale "xx-BOGUS" → en + storage rewritten; t() interpolation per §2 (toLocaleString numbers, {query} 60-char truncation+… with exactly-60 not truncated, {file}/{detail} as-is); <select> endonyms untouched (no data-i18n inside) — no commit (local only; push happens at 1.5)
+[2026-09-14 17:03] item 1.2 done — node verify gate (verify-index-1.2.mjs, workspace root) 36/36 PASS: §2 diagram order skip-link→header(wordmark 15 spans + #langSelect 21 endonyms exact per i18n §1)→#errorSlot(role=alert/aria-live/hidden+empty)→main(<form class=search-bar> input[name=q] + submit icon button; .btn-row Reset→Upload + hidden #fileInput)→#results[hidden](#statusRow aria-live + #logViewport a11y.logView)→footer(nav 6 Phase-6 relative links + footer-note exact); pre-paint boot script (21-code validation, ar/ur→rtl) before CSS; exactly 2 deferred scripts i18n.js+app.js; all href/src relative; no dup ids — spec fixed first per protocol 8 (i18n §2 +nav.home="Home" → table=23 keys=stated count); title set to seo-adsense §1.1 exact value — no commit (local only; push happens at 1.5)
+[2026-09-14 16:27] item 1.1 done — node verify gate (verify-styles-1.1.mjs, workspace root) 59/59 PASS: §1 all 9 tokens exact; §2 header/wordmark(4-color spans)/language select/search bar(focus-within + hover shadow)/Reset-Upload buttons/error slot(truncating); §3 uploadFlash verbatim + .uploading-flash 3×.5s; §6 skip-link + focus-visible rings on btn/select/submit; §7 <720px media query (buttons centered under bar, results full width); logical-properties-only scan clean (zero physical props); brace balance 44/44 — no commit (local only; push happens at 1.5)
 [2026-09-14 15:25] item 0.6 done — live probe attempt 1 (no retries needed): GET https://cpardue.github.io/simplelogsearch/ → HTTP 200 (301 → final URL https://chris-pardue.com/simplelogsearch/ via custom domain, Cloudflare front), body contains "SimpleLogSearch"; served page is the repo placeholder — raw main index.html (751 B) byte-identical to local, live extra ~940 B is Cloudflare challenge-script injection only — deploy commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; what Pages serves)
 [2026-09-14 13:04] item 0.5 done — Pages enabled by user in Settings (main/ root); authenticated GET /pages via token script: source {branch: main, path: /}, status built, html_url reports user's custom domain http://chris-pardue.com/simplelogsearch/ (written verify amended per protocol 8 — cname kept; Phase 7.4 domain decision still open); live probe https://cpardue.github.io/simplelogsearch/ → 301 → chris-pardue.com → HTTP 200, body contains "SimpleLogSearch" (attempt 1); chris-pardue.com resolves via Cloudflare (DNS/origin user-side) — no app files changed; checkoff commit sha in history file
 [2026-09-14 12:35] item 0.4 done — pushed via Contents-API node script (no git CLI): bootstrap .nojekyll @ 2e90818c, 16-file batch commit @ 57fcdafe on main; remote recursive tree = exactly the 17 expected blobs, sizes match local (CHECKLIST 17542 / PLAN 15473 / README 2938 / SESSION_PROMPT 3166 / spec/ 5 files), MCP root listing + raw index.html probe (751 B, placeholder intact, relative css URL) PASS — commit 57fcdafe44ee79ee21caf78927205e6133e3fc6d (phase-0 files; checkoff commit sha in history file)
