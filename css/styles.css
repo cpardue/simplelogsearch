@@ -1,8 +1,8 @@
 /* SimpleLogSearch — css/styles.css
    Item 1.1: app-shell styles per spec/ui-spec §1–§3 + §6 + §7.
    Logical properties only (RTL-safe for ar/ur). Dark theme is the only theme.
-   Markup for these selectors lands in item 1.2; result-window detail (§4)
-   lands in Phase 2 (item 2.1).
+   Markup for these selectors landed in item 1.2; result-window detail (§4)
+   landed in item 2.1 (see the §4 section below the #results base rule).
 
    Component map (index.html, item 1.2):
      header          app-header row: .wordmark + .lang-field (#langSelect)
@@ -44,7 +44,94 @@ header, #errorSlot, main, footer {
 
 #results {
   width: 100%;
-  max-width: none;   /* §2 exception — full browser width */
+  max-width: none;              /* §2 exception — full browser width */
+  margin-block-start: 24px;     /* §4: container margin-top 24px */
+}
+
+/* ===== ui-spec §4 — result window (CHECKLIST 2.1) =====
+   Viewport: overflow auto + native vertical resize; initial height =
+   20 rows ≈ 344px (20 × 16px + 2 × 12px padding — border-box keeps the
+   math exact); min 80px (5 rows) / max 90vh. Rows are fixed 16px and
+   virtualized by js/log-view.js: a .log-spacer carries the total height
+   (rows × 16px) and only the visible slice + 10-row overscan exists in
+   the DOM. Gutter .ln is sticky so original line numbers stay visible
+   during horizontal scroll of long lines; its width = max-digits × 1ch
+   + 12px inline padding, set per file by log-view.js on setLines. */
+#statusRow {
+  font-size: 13px;
+  color: var(--text-dim);       /* #9aa0a6 — content per i18n status keys */
+  padding-block: 8px;
+  padding-inline: 4px;
+}
+
+#logViewport {
+  box-sizing: border-box;
+  position: relative;           /* anchor for the ::after corner grip */
+  overflow: auto;
+  resize: vertical;             /* native drag-resize (grip below is decorative) */
+  height: 344px;                /* initial = 20 rows (320px) + 2 × 12px padding */
+  min-height: 80px;             /* 5 rows */
+  max-height: 90vh;
+  padding-block: 12px;
+  background: #1d1f22;          /* row bg (ui-spec §1 token note) */
+}
+
+/* Decorative corner grip — CSS gradient triangle at the resize corner.
+   Logical placement + mirrored gradient keep it on the live corner in rtl (§7). */
+#logViewport::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 50%, var(--gutter) 50%);
+}
+[dir="rtl"] #logViewport::after {
+  background: linear-gradient(225deg, transparent 50%, var(--gutter) 50%);
+}
+
+/* Spacer — js/log-view.js sets height = rows × 16px; the absolutely
+   positioned rows inside it live at their true (virtualized) offsets. */
+.log-spacer {
+  position: relative;
+}
+
+/* Row — fixed 16px, display:flex → .ln + .lc (§4). Width follows its own
+   content (min = full viewport width) so a long row's sticky gutter stays
+   pinned across that row's entire horizontal scroll range. */
+.log-row {
+  position: absolute;
+  inset-inline-start: 0;
+  width: max-content;
+  min-width: 100%;
+  height: 16px;                 /* = --row-h */
+  display: flex;
+  font: 13px/16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Gutter .ln — original line number, right-aligned, sticky. log-view.js sets
+   width = max-digits × 1ch per file (default below until first setLines); the
+   inline padding completes the §4 "max-digits × 1ch + 12px" formula. */
+.log-row .ln {
+  flex: none;
+  width: 3ch;                   /* pre-setLines default; overridden per file */
+  padding-inline: 6px;          /* +12px inline (ui-spec §4) */
+  text-align: end;              /* right-aligned; mirrors to the left in rtl */
+  color: var(--gutter);         /* #7d8590 */
+  user-select: none;
+  position: sticky;
+  inset-inline-start: 0;
+  background: #1d1f22;          /* opaque — covers content scrolling under it */
+}
+
+/* Content .lc — long lines scroll horizontally, no wrap (§4). Empty lines
+   render a zero-width space (set by log-view.js) to keep the row's line box. */
+.log-row .lc {
+  white-space: pre;
+  color: var(--text);           /* #e8eaed */
+  font: 13px/16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* ===== header: [logo wordmark] …spacer… [Language: <select>] ===== */
@@ -239,5 +326,5 @@ footer a:focus-visible {
   #errorSlot { padding-inline: 16px; }   /* align with padded chrome */
   .btn-row { flex-wrap: wrap; }          /* buttons stay centered under the bar */
   /* #results keeps full width (outside the 720px column);
-     gutter auto-fit lands with §4 in Phase 2. */
+     gutter width is set per file by js/log-view.js (§4). */
 }
