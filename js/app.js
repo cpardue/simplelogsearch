@@ -11,8 +11,9 @@
 // submit with no file → flash Upload + err.noFile (B1); Esc clears the error
 // slot only (B12); `/` focuses the search input.
 //
-// Classic deferred script (no framework, no build): loaded after js/i18n.js and
-// js/log-view.js in index.html, so window.I18N and window.LogView exist and the
+// Classic deferred script (no framework, no build): loaded after js/i18n.js,
+// js/query-parser.js and js/log-view.js in index.html, so window.I18N,
+// window.QueryParser and window.LogView exist and the
 // DOM is already parsed. Error-slot rules per spec/ui-spec §2 (auto-dismiss
 // after 6 s; Esc clears; the next successful action clears — loadFile() calls
 // clearError() on success); flash per §3; status row + viewport per §4;
@@ -21,13 +22,18 @@
 // shows the new file from line 1. Reset-with-file (B8 — CHECKLIST 2.4)
 // clears input + error, re-shows the entire log from line 1 with status `loaded`;
 // an empty/whitespace submit with a file loaded shows the whole log again, no
-// error (B10 — CHECKLIST 2.5); query execution (B6/B7/B11) lands in Phase 3 at
-// the marked spot.
+// error (B10 — CHECKLIST 2.5); search submit with a file loaded runs the
+// query through window.QueryParser (CHECKLIST 3.4): parse → compile once →
+// single pass over linesLower → showMatches(0-based) + status
+// matched/noMatches (B6/B7); a parse error shows err.invalidQuery {detail}
+// with the previous view untouched (B11); a ?q= URL param prefills the input
+// on load only — never auto-runs (SearchAction support).
 
 (function () {
   "use strict";
 
   const I18N = window.I18N;
+  const QueryParser = window.QueryParser; // js/query-parser.js (CHECKLIST 3.4)
 
   // --- DOM handles ----------------------------------------------------------
   const langSelect = document.getElementById("langSelect");
@@ -46,8 +52,9 @@
   // --- State ------------------------------------------------------------------
   // file/lines/linesLower: the currently loaded log (CHECKLIST 2.2) — the
   // arrays are replaced wholesale by reassignment on each successful load.
-  // status: the last rendered status row, so a language change can re-render it.
-  // Match state lands in Phase 3 (CHECKLIST 3.4).
+  // status: the last rendered status row, so a language change can re-render it;
+  // search results live there too — status.matched/noMatches params carry
+  // file/total/matches/query, so nothing else is stored between searches.
   const state = {
     file: null,       // File of the loaded log (null until first successful load)
     lines: null,      // string[] — original text lines
@@ -186,6 +193,15 @@
     searchInput.focus();
   });
 
+  // --- ?q= URL param (CHECKLIST 3.4 — SearchAction support) -------------------------------
+  // On load only: prefill the search input and do nothing else — never
+  // auto-run (no file is present at load time; a run would just be B1). The
+  // Phase-5 WebMCP SearchAction hands the user this same URL shape.
+  {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q !== null) searchInput.value = q;
+  }
+
   // --- Search submit ------------------------------------------------------------------------
   searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -206,8 +222,31 @@
       clearError();
       return;
     }
-    // CHECKLIST 3.4 (B6/B7/B11): run the query over state.linesLower once
-    // the parser lands.
+    // CHECKLIST 3.4 (B6/B7/B11 — spec/query-language §2/§3): parse → compile
+    // ONCE per search → single pass over the pre-lowercased lines → 0-based
+    // indexes. LogView shows the matches with ORIGINAL line numbers and
+    // scrolls to top (ui-spec §4); status matched/noMatches (B6); a later
+    // submit updates this same window in place (B7).
+    try {
+      const ast = QueryParser.parseQuery(query); // throws QueryParseError on any §3 error
+      const predicate = QueryParser.compile(ast);
+      const indexes = QueryParser.run(predicate, state.linesLower);
+      logView.showMatches(indexes);
+      if (indexes.length > 0) {
+        setStatus("status.matched", { file: state.file.name, total: state.lines.length, matches: indexes.length, query: query });
+      } else {
+        setStatus("status.noMatches", { file: state.file.name, total: state.lines.length, query: query });
+      }
+      clearError(); // next successful action clears the error slot (ui-spec §2)
+    } catch (e) {
+      if (e && e.name === "QueryParseError") {
+        // B11 — the search did not run; the previous view stays untouched.
+        // {detail} = the parser's exact English string, never translated (i18n §2).
+        showError("err.invalidQuery", { detail: e.detail });
+      } else {
+        throw e; // non-parser failure — never swallow it silently
+      }
+    }
   });
 
   // --- Keyboard (ui-spec §6) --------------------------------------------------------------------
