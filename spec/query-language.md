@@ -100,7 +100,7 @@ Query: `"MID 123456" and "MID 123654" not "192.168.1.1"`
 | V08 | `MID 123456 not auth` | 4,7,20,23 |
 | V09 | `mid 123456` (lowercase query) | 2,4,7,8,16,20,23 |
 | V10 | `"Status=200"` | 6,15 |
-| V11 | `"svc=api" OR "svc=db" AND error` (AND binds tighter) | 4,5,7,11,15,19,20,22,23 |
+| V11 | `"svc=api" OR "svc=db" AND error` (AND binds tighter) | 4,5,6,7,11,12,15,19,20,22,23 |
 | V12 | `("svc=api" OR "svc=db") AND error` | 5,12,20,23 |
 | V13 | `"svc=auth" or "svc=db" not error` (= A OR (B AND NOT C)) | 1,2,3,8,9,13,14,16,18,21 |
 | V14 | `"MID 123456" not "auth" not "brute"` | 4,7,20,23 |
