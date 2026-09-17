@@ -1,0 +1,400 @@
+2026-03-14T07:00:05.890Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6328 items.
+2026-03-14T07:00:09.545Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:00:14.247Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on web-01.
+2026-03-14T07:00:19.347Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:00:22.841Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:00:29.987Z  Security  Information  4624  A user was successfully authenticated: admin from 198.51.100.23.
+2026-03-14T07:00:34.606Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module ntdll.dll, offset 0x72c1.
+2026-03-14T07:00:39.677Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on db-01.
+2026-03-14T07:00:45.339Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node web-01.
+2026-03-14T07:00:53.841Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:01:02.793Z  Security  Information  4624  A user was successfully authenticated: admin from 172.16.4.9.
+2026-03-14T07:01:08.633Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:01:12.042Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0x825a.
+2026-03-14T07:01:20.877Z  System  Information  7036  The TermService service entered the stopped state.
+2026-03-14T07:01:24.600Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6882 items.
+2026-03-14T07:01:30.192Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:01:38.731Z  System  Information  7040  The SQLAgent service was started in manual mode.
+2026-03-14T07:01:44.177Z  Application  Information  8304  Job batch MID 123456 chained to follow-up job MID 123654 completed on node web-01.
+2026-03-14T07:01:53.071Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:01:57.687Z  System  Information  7040  The TermService service was started in manual mode.
+2026-03-14T07:02:04.241Z  System  Information  7040  The SQLAgent service was started in manual mode.
+2026-03-14T07:02:12.493Z  Security  Warning  4625  Failed logon attempt for mchen from 198.51.100.23 (reason: bad password).
+2026-03-14T07:02:16.085Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:02:23.051Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:02:26.234Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on app-03.
+2026-03-14T07:02:34.562Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on app-03.
+2026-03-14T07:02:41.879Z  Security  Information  4624  A user was successfully authenticated: gferguson from 198.51.100.23.
+2026-03-14T07:02:48.329Z  Security  Warning  4625  Failed logon attempt for admin from 172.16.4.9 (reason: bad password).
+2026-03-14T07:02:53.301Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0x32d6.
+2026-03-14T07:02:59.955Z  System  Information  7036  The Spooler service entered the stopped state.
+2026-03-14T07:03:07.223Z  Security  Information  4624  A user was successfully authenticated: admin from 172.16.4.9.
+2026-03-14T07:03:14.656Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:03:17.779Z  Security  Information  4634  Audit policy was changed by deploy.
+2026-03-14T07:03:23.621Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:03:29.052Z  Application  Information  1102  Feature audit-trail was enabled for tenant branch-north by admin policy.
+2026-03-14T07:03:37.352Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0x3074.
+2026-03-14T07:03:44.706Z  Security  Information  4624  A user was successfully authenticated: gferguson from 203.0.113.7.
+2026-03-14T07:03:51.420Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 8960 items.
+2026-03-14T07:03:55.855Z  Security  Information  4624  A user was successfully authenticated: jdoe from 172.16.4.9.
+2026-03-14T07:03:59.197Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:04:06.120Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module ntdll.dll, offset 0x9444.
+2026-03-14T07:04:11.351Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:04:20.182Z  Application  Warning  8305  Job MID 123456 exceeded its 120 second time limit and was rescheduled.
+2026-03-14T07:04:24.385Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:04:29.483Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:04:34.119Z  Security  Information  4624  A user was successfully authenticated: deploy from 172.16.4.9.
+2026-03-14T07:04:42.102Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on app-03.
+2026-03-14T07:04:49.292Z  Application  Information  8304  Scheduled task 'NightlyReport' finished with exit code 0 on node web-02.
+2026-03-14T07:04:54.890Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module clr.dll, offset 0x8414.
+2026-03-14T07:05:02.425Z  System  Information  7036  The SQLAgent service entered the stopped state.
+2026-03-14T07:05:11.157Z  Security  Warning  4625  Failed logon attempt for deploy from 172.16.4.9 (reason: bad password).
+2026-03-14T07:05:15.426Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5194 items.
+2026-03-14T07:05:24.000Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node web-02.
+2026-03-14T07:05:32.045Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module clr.dll, offset 0x2499.
+2026-03-14T07:05:40.806Z  Security  Warning  4625  Failed logon attempt for gferguson from 172.16.4.9 (reason: bad password).
+2026-03-14T07:05:46.304Z  System  Error  1001  Replication of jobs MID 123456 and MID 123654 from source host 192.168.1.1 failed after 3 retries.
+2026-03-14T07:05:51.999Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:05:59.806Z  Security  Warning  4625  Failed logon attempt for gferguson from 198.51.100.23 (reason: bad password).
+2026-03-14T07:06:07.872Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:06:13.213Z  Security  Information  4634  Audit policy was changed by jdoe.
+2026-03-14T07:06:20.212Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on db-01.
+2026-03-14T07:06:27.134Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:06:32.251Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node web-01.
+2026-03-14T07:06:35.367Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-02.
+2026-03-14T07:06:39.959Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module ntdll.dll, offset 0x6c98.
+2026-03-14T07:06:45.777Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0xd98c.
+2026-03-14T07:06:50.867Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module ntdll.dll, offset 0x65ea.
+2026-03-14T07:06:59.688Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:07:04.892Z  System  Information  7036  The MSDTC service entered the stopped state.
+2026-03-14T07:07:12.306Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module ntdll.dll, offset 0xa10d.
+2026-03-14T07:07:18.597Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node app-03.
+2026-03-14T07:07:26.688Z  Application  Information  8304  Scheduled task 'LogRotate' finished with exit code 0 on node app-03.
+2026-03-14T07:07:31.102Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 7238 items.
+2026-03-14T07:07:38.606Z  System  Information  7040  The W3SVC service was started in manual mode.
+2026-03-14T07:07:43.609Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node db-01.
+2026-03-14T07:07:47.818Z  Service Control Manager  Information  7036  The MSDTC service stopped after receiving a stop request.
+2026-03-14T07:07:56.363Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on app-03.
+2026-03-14T07:08:02.773Z  Security  Warning  4625  Failed logon attempt for svc-backup from 203.0.113.7 (reason: bad password).
+2026-03-14T07:08:07.550Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:08:16.241Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:08:21.545Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:08:26.704Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5293 items.
+2026-03-14T07:08:30.961Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:08:35.933Z  Security  Warning  4625  Failed logon attempt for deploy from 203.0.113.7 (reason: bad password).
+2026-03-14T07:08:44.434Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:08:51.228Z  Security  Warning  4625  Failed logon attempt for mchen from 10.0.2.44 (reason: bad password).
+2026-03-14T07:08:55.242Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:09:01.771Z  System  Information  7036  The Spooler service entered the stopped state.
+2026-03-14T07:09:05.098Z  Application  Information  7036  Scheduled tasks MID 123456 and MID 123654 finished inside the maintenance window on db-01.
+2026-03-14T07:09:09.892Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:09:16.058Z  System  Information  7040  The W3SVC service was started in manual mode.
+2026-03-14T07:09:22.169Z  Application  Information  1102  Feature token-rotation was enabled for tenant branch-north by admin policy.
+2026-03-14T07:09:27.982Z  Security  Information  4624  A user was successfully authenticated: admin from 198.51.100.23.
+2026-03-14T07:09:34.939Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6763 items.
+2026-03-14T07:09:42.203Z  Security  Information  4634  Audit policy was changed by deploy.
+2026-03-14T07:09:46.724Z  System  Critical  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0x595d.
+2026-03-14T07:09:49.981Z  Application  Warning  8305  Scheduled task 'NightlyReport' ran longer than its allotted window on node web-02.
+2026-03-14T07:09:55.059Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:10:00.452Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0x129f.
+2026-03-14T07:10:03.737Z  Security  Information  4634  Audit policy was changed by mchen.
+2026-03-14T07:10:10.719Z  Security  Warning  4625  Failed logon attempt for gferguson from 203.0.113.7 (reason: bad password).
+2026-03-14T07:10:15.614Z  Security  Information  4624  A user was successfully authenticated: deploy from 198.51.100.23.
+2026-03-14T07:10:20.134Z  Security  Information  4624  A user was successfully authenticated: mchen from 198.51.100.23.
+2026-03-14T07:10:23.849Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 198.51.100.23.
+2026-03-14T07:10:26.884Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node web-01.
+2026-03-14T07:10:34.936Z  System  Information  7036  The TermService service entered the stopped state.
+2026-03-14T07:10:40.382Z  Security  Information  4634  Audit policy was changed by jdoe.
+2026-03-14T07:10:47.372Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on app-03.
+2026-03-14T07:10:50.422Z  Application  Information  1102  Feature token-rotation was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:10:57.351Z  Application  Information  1102  Feature token-rotation was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:11:05.873Z  Application  Information  8304  Scheduled task 'NightlyReport' finished with exit code 0 on node db-01.
+2026-03-14T07:11:09.391Z  System  Information  7040  The W3SVC service was started in manual mode.
+2026-03-14T07:11:16.460Z  Security  Information  4634  Audit policy was changed by svc-backup.
+2026-03-14T07:11:21.335Z  Application  Information  1102  Feature token-rotation was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:11:24.513Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:11:33.154Z  Security  Information  4624  A user was successfully authenticated: gferguson from 203.0.113.7.
+2026-03-14T07:11:41.138Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:11:45.695Z  Security  Warning  4625  Failed logon attempt for admin from 203.0.113.7 (reason: bad password).
+2026-03-14T07:11:52.850Z  Application  Information  1102  Feature sso was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:11:57.773Z  System  Information  7036  The Netlogon service entered the stopped state.
+2026-03-14T07:12:05.699Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:12:13.094Z  System  Information  7036  The SQLAgent service entered the stopped state.
+2026-03-14T07:12:16.967Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module ntdll.dll, offset 0xa315.
+2026-03-14T07:12:22.829Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-01.
+2026-03-14T07:12:29.431Z  Application  Information  8304  Scheduled task 'LogRotate' finished with exit code 0 on node web-01.
+2026-03-14T07:12:37.523Z  System  Information  7036  The W3SVC service entered the stopped state.
+2026-03-14T07:12:43.921Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:12:49.297Z  System  Information  7040  The Spooler service was started in manual mode.
+2026-03-14T07:12:57.281Z  System  Information  7040  The SQLAgent service was started in manual mode.
+2026-03-14T07:13:05.565Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:13:10.096Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:13:18.290Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node web-01.
+2026-03-14T07:13:22.348Z  System  Information  7040  The W3SVC service was started in manual mode.
+2026-03-14T07:13:27.284Z  Application  Warning  8306  Job MID 123654 has been waiting on its upstream dependency for 45 minutes.
+2026-03-14T07:13:31.759Z  Application  Warning  8305  Scheduled task 'NightlyReport' ran longer than its allotted window on node db-01.
+2026-03-14T07:13:38.104Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0x1fbc.
+2026-03-14T07:13:43.250Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:13:50.822Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node app-03.
+2026-03-14T07:13:57.400Z  Security  Information  4624  A user was successfully authenticated: admin from 203.0.113.7.
+2026-03-14T07:14:02.320Z  Application  Information  1102  Feature token-rotation was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:14:07.966Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-02.
+2026-03-14T07:14:14.089Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module clr.dll, offset 0x6f6f.
+2026-03-14T07:14:17.780Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:14:20.833Z  Application  Information  1102  Feature sso was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:14:25.227Z  Security  Information  4634  Audit policy was changed by jdoe.
+2026-03-14T07:14:28.872Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 7039 items.
+2026-03-14T07:14:33.547Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:14:39.042Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5056 items.
+2026-03-14T07:14:43.155Z  System  Information  7036  The TermService service entered the stopped state.
+2026-03-14T07:14:52.099Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on web-02.
+2026-03-14T07:15:00.175Z  Application  Information  1102  Feature audit-trail was enabled for tenant branch-north by admin policy.
+2026-03-14T07:15:03.460Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 4825 items.
+2026-03-14T07:15:12.006Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0xe877.
+2026-03-14T07:15:19.908Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:15:27.621Z  Application  Information  1102  Feature sso was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:15:34.146Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:15:38.471Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node db-01.
+2026-03-14T07:15:46.979Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-02.
+2026-03-14T07:15:52.116Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:15:59.196Z  Application  Warning  8305  Scheduled task 'NightlyReport' ran longer than its allotted window on node app-03.
+2026-03-14T07:16:04.180Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:16:10.593Z  Application  Information  1102  Feature token-rotation was enabled for tenant branch-north by admin policy.
+2026-03-14T07:16:15.576Z  Application  Information  1102  Feature audit-trail was enabled for tenant branch-north by admin policy.
+2026-03-14T07:16:22.883Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-02.
+2026-03-14T07:16:29.132Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 203.0.113.7.
+2026-03-14T07:16:32.341Z  Security  Information  4634  Audit policy was changed by deploy.
+2026-03-14T07:16:36.872Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:16:40.937Z  Security  Warning  4625  Failed logon attempt for svc-backup from 172.16.4.9 (reason: bad password).
+2026-03-14T07:16:45.082Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:16:50.712Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0x4d0f.
+2026-03-14T07:16:56.279Z  Security  Information  4624  A user was successfully authenticated: deploy from 172.16.4.9.
+2026-03-14T07:16:59.344Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on web-02.
+2026-03-14T07:17:07.225Z  System  Information  7040  The TermService service was started in manual mode.
+2026-03-14T07:17:12.858Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on web-02.
+2026-03-14T07:17:18.125Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:17:23.092Z  System  Critical  1001  Application 'sync-engine.exe' crashed; faulting module kernelbase.dll, offset 0x364d.
+2026-03-14T07:17:28.086Z  System  Information  7036  The W3SVC service entered the stopped state.
+2026-03-14T07:17:33.603Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:17:42.076Z  Application  Information  1102  Feature audit-trail was enabled for tenant branch-north by admin policy.
+2026-03-14T07:17:45.534Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:17:50.908Z  Security  Information  4624  A user was successfully authenticated: deploy from 198.51.100.23.
+2026-03-14T07:17:59.466Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:18:08.225Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node web-02.
+2026-03-14T07:18:14.330Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node app-03.
+2026-03-14T07:18:21.224Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:18:26.588Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module kernelbase.dll, offset 0xc508.
+2026-03-14T07:18:31.148Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5949 items.
+2026-03-14T07:18:35.075Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node web-01.
+2026-03-14T07:18:39.403Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node app-03.
+2026-03-14T07:18:47.617Z  System  Information  7036  The Netlogon service entered the stopped state.
+2026-03-14T07:18:54.179Z  Security  Warning  4625  Failed logon attempt for gferguson from 203.0.113.7 (reason: bad password).
+2026-03-14T07:19:00.309Z  Security  Information  4624  A user was successfully authenticated: jdoe from 172.16.4.9.
+2026-03-14T07:19:07.845Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:19:16.293Z  Security  Warning  4625  Failed logon attempt for mchen from 203.0.113.7 (reason: bad password).
+2026-03-14T07:19:20.743Z  Application  Information  1102  Feature token-rotation was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:19:29.063Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:19:33.137Z  Security  Information  4624  A user was successfully authenticated: jdoe from 198.51.100.23.
+2026-03-14T07:19:37.793Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:19:41.457Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:19:49.660Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:19:55.173Z  Security  Information  4624  A user was successfully authenticated: gferguson from 198.51.100.23.
+2026-03-14T07:20:03.152Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module ntdll.dll, offset 0xfea6.
+2026-03-14T07:20:09.939Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:20:15.001Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node db-01.
+2026-03-14T07:20:21.244Z  Security  Warning  4625  Failed logon attempt for jdoe from 198.51.100.23 (reason: bad password).
+2026-03-14T07:20:28.239Z  Service Control Manager  Information  7036  The MSDTC service stopped after receiving a stop request.
+2026-03-14T07:20:36.480Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:20:40.424Z  System  Information  7040  The W3SVC service was started in manual mode.
+2026-03-14T07:20:45.037Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:20:52.134Z  Security  Information  4624  A user was successfully authenticated: mchen from 172.16.4.9.
+2026-03-14T07:20:56.767Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:21:02.903Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on app-03.
+2026-03-14T07:21:10.812Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:21:19.492Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:21:25.922Z  System  Information  8304  Correlated operations MID 123456 and MID 123654 completed on host db-02 without errors.
+2026-03-14T07:21:34.570Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 10.0.2.44.
+2026-03-14T07:21:39.135Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:21:44.565Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node web-01.
+2026-03-14T07:21:52.736Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:22:01.371Z  Security  Information  4624  A user was successfully authenticated: deploy from 10.0.2.44.
+2026-03-14T07:22:07.188Z  Application  Information  1102  Feature sso was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:22:10.961Z  Security  Warning  4625  Failed logon attempt for admin from 198.51.100.23 (reason: bad password).
+2026-03-14T07:22:17.932Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:22:24.900Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:22:28.806Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:22:36.998Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:22:44.782Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-02.
+2026-03-14T07:22:51.465Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:22:56.501Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node web-01.
+2026-03-14T07:23:00.067Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:23:08.786Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:23:16.873Z  Security  Warning  4625  Failed logon attempt for jdoe from 10.0.2.44 (reason: bad password).
+2026-03-14T07:23:24.469Z  Security  Warning  4625  Failed logon attempt for svc-backup from 10.0.2.44 (reason: bad password).
+2026-03-14T07:23:27.497Z  System  Information  7036  The SQLAgent service entered the stopped state.
+2026-03-14T07:23:32.325Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:23:37.460Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:23:43.975Z  Security  Warning  4625  Failed logon attempt for gferguson from 10.0.2.44 (reason: bad password).
+2026-03-14T07:23:49.210Z  Security  Warning  4625  Failed logon attempt for deploy from 10.0.2.44 (reason: bad password).
+2026-03-14T07:23:55.016Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 8425 items.
+2026-03-14T07:24:02.636Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:24:07.984Z  Security  Information  4634  Audit policy was changed by jdoe.
+2026-03-14T07:24:14.085Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:24:21.816Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node db-01.
+2026-03-14T07:24:26.807Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:24:35.031Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-01.
+2026-03-14T07:24:40.450Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:24:44.782Z  Security  Information  4624  A user was successfully authenticated: admin from 10.0.2.44.
+2026-03-14T07:24:53.133Z  System  Information  7036  The W3SVC service entered the stopped state.
+2026-03-14T07:25:00.525Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6143 items.
+2026-03-14T07:25:06.592Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module kernelbase.dll, offset 0x66fc.
+2026-03-14T07:25:10.402Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:25:18.236Z  Security  Information  4634  Audit policy was changed by admin.
+2026-03-14T07:25:25.545Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:25:30.984Z  System  Information  7036  The W3SVC service entered the stopped state.
+2026-03-14T07:25:38.181Z  Security  Information  4624  A user was successfully authenticated: gferguson from 172.16.4.9.
+2026-03-14T07:25:46.032Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:25:51.395Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node db-01.
+2026-03-14T07:25:57.337Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:26:01.395Z  Security  Warning  4625  Failed logon attempt for jdoe from 10.0.2.44 (reason: bad password).
+2026-03-14T07:26:04.495Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 8118 items.
+2026-03-14T07:26:08.851Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:26:17.093Z  Security  Information  4624  A user was successfully authenticated: admin from 203.0.113.7.
+2026-03-14T07:26:23.692Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:26:28.860Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:26:37.835Z  Security  Warning  4625  Failed logon attempt for deploy from 198.51.100.23 (reason: bad password).
+2026-03-14T07:26:43.086Z  Security  Information  4624  A user was successfully authenticated: gferguson from 10.0.2.44.
+2026-03-14T07:26:50.431Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on web-01.
+2026-03-14T07:26:55.287Z  Security  Warning  4625  Failed logon attempt for admin from 198.51.100.23 (reason: bad password).
+2026-03-14T07:27:02.576Z  System  Information  7040  Service host for job MID 123654 started cleanly after the last update.
+2026-03-14T07:27:05.653Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:27:12.100Z  Security  Information  4634  Audit policy was changed by svc-backup.
+2026-03-14T07:27:15.298Z  System  Information  7036  The Netlogon service entered the stopped state.
+2026-03-14T07:27:23.972Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0xbb68.
+2026-03-14T07:27:28.318Z  Windows Defender  Warning  1015  Potential threat PUA:Win32/InstallCore.G was detected and blocked on web-02.
+2026-03-14T07:27:33.304Z  Application  Information  1102  Feature sso was enabled for tenant branch-north by admin policy.
+2026-03-14T07:27:41.214Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 4219 items.
+2026-03-14T07:27:48.270Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:27:54.554Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 8105 items.
+2026-03-14T07:28:01.558Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node db-01.
+2026-03-14T07:28:10.547Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 7865 items.
+2026-03-14T07:28:17.314Z  Application  Information  8304  Scheduled task 'NightlyReport' finished with exit code 0 on node web-01.
+2026-03-14T07:28:24.042Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 4582 items.
+2026-03-14T07:28:29.777Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node db-01.
+2026-03-14T07:28:33.422Z  Security  Warning  4625  Failed logon attempt for jdoe from 172.16.4.9 (reason: bad password).
+2026-03-14T07:28:41.362Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:28:44.979Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 7482 items.
+2026-03-14T07:28:50.695Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module kernelbase.dll, offset 0x12a6.
+2026-03-14T07:28:57.385Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:29:05.358Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:29:13.462Z  System  Information  7036  The SQLAgent service entered the stopped state.
+2026-03-14T07:29:20.484Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node db-01.
+2026-03-14T07:29:28.101Z  System  Information  7040  The SQLAgent service was started in manual mode.
+2026-03-14T07:29:32.432Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node web-01.
+2026-03-14T07:29:35.527Z  Security  Information  4624  A user was successfully authenticated: mchen from 198.51.100.23.
+2026-03-14T07:29:39.956Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node web-01.
+2026-03-14T07:29:46.718Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module ntdll.dll, offset 0x634b.
+2026-03-14T07:29:54.447Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:30:01.277Z  Security  Warning  4625  Failed logon attempt for admin from 203.0.113.7 (reason: bad password).
+2026-03-14T07:30:06.015Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:30:14.078Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:30:18.051Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:30:26.562Z  Application  Error  1074  Maintenance stop requested for jobs MID 123456 / MID 123654 by administrator session from 192.168.1.1.
+2026-03-14T07:30:30.204Z  System  Information  7036  The Spooler service entered the stopped state.
+2026-03-14T07:30:37.686Z  System  Information  7036  The TermService service entered the stopped state.
+2026-03-14T07:30:45.465Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:30:54.301Z  System  Critical  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0x983f.
+2026-03-14T07:31:01.954Z  System  Information  7036  The Netlogon service entered the stopped state.
+2026-03-14T07:31:09.280Z  Security  Information  4624  A user was successfully authenticated: admin from 203.0.113.7.
+2026-03-14T07:31:12.614Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:31:21.553Z  Windows Defender  Warning  1015  Potential threat Trojan:Win32/Wacatac.A!cl was detected and blocked on db-01.
+2026-03-14T07:31:25.872Z  Security  Information  4624  A user was successfully authenticated: deploy from 10.0.2.44.
+2026-03-14T07:31:32.084Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node web-01.
+2026-03-14T07:31:40.520Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node web-01.
+2026-03-14T07:31:48.076Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node web-01.
+2026-03-14T07:31:55.521Z  Service Control Manager  Information  7036  The W3SVC service stopped after receiving a stop request.
+2026-03-14T07:32:04.185Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:32:07.434Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on app-03.
+2026-03-14T07:32:12.241Z  Security  Warning  4625  Failed logon attempt for gferguson from 172.16.4.9 (reason: bad password).
+2026-03-14T07:32:20.882Z  Security  Information  4624  A user was successfully authenticated: gferguson from 203.0.113.7.
+2026-03-14T07:32:28.327Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-02.
+2026-03-14T07:32:35.874Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module kernelbase.dll, offset 0xe7da.
+2026-03-14T07:32:39.211Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 172.16.4.9.
+2026-03-14T07:32:42.621Z  System  Information  7040  The MSDTC service was started in manual mode.
+2026-03-14T07:32:48.039Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-02.
+2026-03-14T07:32:51.864Z  Security  Warning  4625  Failed logon attempt for mchen from 198.51.100.23 (reason: bad password).
+2026-03-14T07:32:57.980Z  Security  Warning  4625  Failed logon attempt for jdoe from 198.51.100.23 (reason: bad password).
+2026-03-14T07:33:05.179Z  Security  Warning  4625  Failed logon attempt for gferguson from 198.51.100.23 (reason: bad password).
+2026-03-14T07:33:09.964Z  Security  Information  4624  A user was successfully authenticated: deploy from 172.16.4.9.
+2026-03-14T07:33:14.450Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 10.0.2.44.
+2026-03-14T07:33:18.144Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node app-03.
+2026-03-14T07:33:26.057Z  Security  Information  4634  Audit policy was changed by deploy.
+2026-03-14T07:33:32.190Z  Security  Information  4634  Audit policy was changed by mchen.
+2026-03-14T07:33:36.854Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6606 items.
+2026-03-14T07:33:41.186Z  Security  Warning  4625  Failed logon attempt for mchen from 198.51.100.23 (reason: bad password).
+2026-03-14T07:33:46.995Z  Security  Information  4624  A user was successfully authenticated: admin from 172.16.4.9.
+2026-03-14T07:33:53.352Z  Application  Information  8304  Scheduled task 'DataSync' finished with exit code 0 on node app-03.
+2026-03-14T07:33:57.532Z  Service Control Manager  Information  7036  The TermService service stopped after receiving a stop request.
+2026-03-14T07:34:05.635Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:34:11.231Z  Security  Information  4634  Audit policy was changed by gferguson.
+2026-03-14T07:34:20.209Z  Application  Information  1102  Feature sso was enabled for tenant corp-02 by admin policy.
+2026-03-14T07:34:25.711Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 6221 items.
+2026-03-14T07:34:29.302Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:34:34.985Z  Security  Information  4634  Audit policy was changed by mchen.
+2026-03-14T07:34:38.539Z  System  Information  7036  The Spooler service entered the stopped state.
+2026-03-14T07:34:44.428Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node db-01.
+2026-03-14T07:34:48.813Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module clr.dll, offset 0xbbbc.
+2026-03-14T07:34:53.630Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on app-03.
+2026-03-14T07:34:58.774Z  Security  Information  4624  A user was successfully authenticated: svc-backup from 203.0.113.7.
+2026-03-14T07:35:05.680Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module ntdll.dll, offset 0x2d6d.
+2026-03-14T07:35:14.502Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node web-02.
+2026-03-14T07:35:23.132Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on web-01.
+2026-03-14T07:35:29.160Z  System  Information  7040  The Spooler service was started in manual mode.
+2026-03-14T07:35:34.632Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node db-01.
+2026-03-14T07:35:37.717Z  Application  Information  8304  Scheduled task 'CertRenewal' finished with exit code 0 on node web-01.
+2026-03-14T07:35:42.862Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-02.
+2026-03-14T07:35:49.720Z  Application  Information  8304  Job MID 123456 started on node web-01 and finished in 41 seconds.
+2026-03-14T07:35:52.944Z  Service Control Manager  Information  7036  The SQLAgent service stopped after receiving a stop request.
+2026-03-14T07:36:00.811Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5822 items.
+2026-03-14T07:36:07.633Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:36:12.169Z  Security  Information  4624  A user was successfully authenticated: gferguson from 203.0.113.7.
+2026-03-14T07:36:17.277Z  Service Control Manager  Information  7036  The MSDTC service stopped after receiving a stop request.
+2026-03-14T07:36:25.532Z  Security  Information  4624  A user was successfully authenticated: admin from 172.16.4.9.
+2026-03-14T07:36:31.161Z  System  Information  7040  The Netlogon service was started in manual mode.
+2026-03-14T07:36:35.421Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:36:43.663Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:36:49.175Z  Application  Information  1102  Feature audit-trail was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:36:52.584Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:36:57.006Z  Security  Information  4624  A user was successfully authenticated: gferguson from 10.0.2.44.
+2026-03-14T07:37:05.684Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on db-01.
+2026-03-14T07:37:12.911Z  Service Control Manager  Information  7036  The MSDTC service stopped after receiving a stop request.
+2026-03-14T07:37:21.908Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:37:25.242Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 8419 items.
+2026-03-14T07:37:32.034Z  Windows Defender  Information  1116  Antimalware real-time protection scans are enabled for 5149 items.
+2026-03-14T07:37:35.240Z  System  Error  1001  Application 'apphost.exe' crashed; faulting module clr.dll, offset 0xf26a.
+2026-03-14T07:37:40.316Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:37:45.437Z  Service Control Manager  Information  7036  The Spooler service stopped after receiving a stop request.
+2026-03-14T07:37:51.588Z  Service Control Manager  Information  7036  The Netlogon service stopped after receiving a stop request.
+2026-03-14T07:37:56.797Z  Application  Information  8304  Scheduled task 'NightlyReport' finished with exit code 0 on node app-03.
+2026-03-14T07:38:01.642Z  Application  Warning  8305  Scheduled task 'CertRenewal' ran longer than its allotted window on node web-01.
+2026-03-14T07:38:10.325Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:38:19.308Z  Security  Warning  4625  Failed logon attempt for admin from 203.0.113.7 (reason: bad password).
+2026-03-14T07:38:27.301Z  Security  Information  4634  Audit policy was changed by deploy.
+2026-03-14T07:38:34.760Z  Security  Information  4624  A user was successfully authenticated: jdoe from 203.0.113.7.
+2026-03-14T07:38:39.626Z  System  Information  7036  The TermService service entered the stopped state.
+2026-03-14T07:38:45.980Z  System  Information  7036  The Netlogon service entered the stopped state.
+2026-03-14T07:38:52.871Z  Security  Warning  4625  Failed logon attempt for deploy from 198.51.100.23 (reason: bad password).
+2026-03-14T07:39:00.776Z  System  Error  1001  Application 'sync-engine.exe' crashed; faulting module ntdll.dll, offset 0x7cba.
+2026-03-14T07:39:04.435Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:39:10.162Z  Windows Defender  Warning  1015  Potential threat Ransom:Win32/Peacok.B!ml was detected and blocked on web-01.
+2026-03-14T07:39:15.984Z  Application  Information  1102  Feature sso was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:39:22.313Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node db-01.
+2026-03-14T07:39:26.609Z  System  Information  7036  The Spooler service entered the stopped state.
+2026-03-14T07:39:30.219Z  System  Information  63  Time synchronization completed with source time.windows.com.
+2026-03-14T07:39:36.237Z  Security  Warning  4625  Failed logon attempt for mchen from 203.0.113.7 (reason: bad password).
+2026-03-14T07:39:40.480Z  Application  Warning  8305  Scheduled task 'DataSync' ran longer than its allotted window on node app-03.
+2026-03-14T07:39:45.353Z  System  Error  1001  Application 'reporting.exe' crashed; faulting module ntdll.dll, offset 0x2d37.
+2026-03-14T07:39:50.476Z  Application  Warning  8305  Scheduled task 'NightlyReport' ran longer than its allotted window on node app-03.
+2026-03-14T07:39:57.796Z  Application  Information  1102  Feature sso was enabled for tenant corp-01 by admin policy.
+2026-03-14T07:40:05.932Z  Application  Warning  8305  Scheduled task 'LogRotate' ran longer than its allotted window on node app-03.
+2026-03-14T07:40:10.133Z  Security  Warning  4625  Failed logon attempt for deploy from 172.16.4.9 (reason: bad password).
