@@ -1,0 +1,400 @@
+Mar 14 07:00:02 srv2 systemd[887]: Stopping Daily apt download activities...
+Mar 14 07:00:06 db-01 cron[835]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:00:08 srv1 sshd[1439]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 34027 ssh2 [preauth]
+Mar 14 07:00:09 db-01 sshd[19554]: Connection closed by authenticating user deploy 203.0.113.7 port 45993 [preauth]
+Mar 14 07:00:11 db-01 sshd[13332]: Failed password for invalid user root from 198.51.100.23 port 2591 ssh2
+Mar 14 07:00:12 web-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:00:16 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:00:19 db-01 kernel: [8155.4029] NET: received packet for own address, dropped
+Mar 14 07:00:21 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:00:25 srv1 sshd[1676]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 37405 ssh2 [preauth]
+Mar 14 07:00:27 web-01 sshd[9695]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 57012 ssh2 [preauth]
+Mar 14 07:00:29 srv1 sshd[26825]: Connection closed by authenticating user root 172.16.4.9 port 63694 [preauth]
+Mar 14 07:00:31 db-01 kernel: [8167.3180] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:00:33 srv1 systemd[832]: Stopping Daily apt download activities...
+Mar 14 07:00:34 web-01 sshd[27853]: Failed password for invalid user root from 198.51.100.23 port 52887 ssh2
+Mar 14 07:00:37 srv1 kernel: [8180.6067] NET: received packet for own address, dropped
+Mar 14 07:00:38 srv1 sshd[1530]: Accepted publickey for deploy from 198.51.100.23 port 5116 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:00:40 web-01 sshd[10003]: Connection closed by authenticating user postgres 10.0.2.44 port 8175 [preauth]
+Mar 14 07:00:43 srv1 packagekitd[412]: package operation finished with idle
+Mar 14 07:00:47 db-01 packagekitd[412]: package operation finished with error
+Mar 14 07:00:48 db-01 kernel: [8199.9631] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:00:52 srv1 rsyslogd: imuxsock lost 7 messages from RID='syslog'
+Mar 14 07:00:55 srv2 rsyslogd: imuxsock lost 5 messages from RID='syslog'
+Mar 14 07:00:56 db-01 sshd[15993]: Failed password for invalid user root from 10.0.2.44 port 15268 ssh2
+Mar 14 07:00:59 db-01 sshd[25800]: Failed password for invalid user postgres from 172.16.4.9 port 13677 ssh2
+Mar 14 07:01:03 srv2 sudo[7609]: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:01:05 db-01 sshd[18295]: Connection closed by authenticating user root 203.0.113.7 port 2733 [preauth]
+Mar 14 07:01:09 srv2 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:01:12 srv2 sshd[18592]: Accepted publickey for deploy from 198.51.100.23 port 45849 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:01:13 srv2 cron[885]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:01:16 web-01 kernel: [8242.9010] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:01:19 srv1 kernel: [8245.4733] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:01:22 db-01 kernel: [8248.7729] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:01:24 web-01 packagekitd[412]: package operation finished with error
+Mar 14 07:01:26 db-01 sshd[24578]: Connection closed by authenticating user deploy 10.0.2.44 port 34364 [preauth]
+Mar 14 07:01:29 web-01 kernel: [8254.6476] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:01:31 web-01 systemd[857]: Stopping Daily apt download activities...
+Mar 14 07:01:34 db-01 sshd[17840]: Failed password for invalid user deploy from 203.0.113.9 port 12365 ssh2
+Mar 14 07:01:38 web-01 sshd[19959]: Failed password for root from 203.0.113.7 port 28037 ssh2
+Mar 14 07:01:40 srv2 packagekitd[412]: package operation finished with idle
+Mar 14 07:01:41 srv2 sshd[7988]: Accepted publickey for deploy from 198.51.100.23 port 26556 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:01:45 srv1 kernel: [8271.5909] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:01:46 srv1 sshd[5906]: Failed password for postgres from 203.0.113.7 port 33027 ssh2
+Mar 14 07:01:49 web-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:01:51 srv1 kernel: [8280.7840] NET: received packet for own address, dropped
+Mar 14 07:01:54 db-01 sshd[10981]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 20009 ssh2 [preauth]
+Mar 14 07:01:56 db-01 sshd[8807]: Connection closed by authenticating user www-data 203.0.113.7 port 33497 [preauth]
+Mar 14 07:01:59 db-01 sshd[4072]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 61293 ssh2 [preauth]
+Mar 14 07:02:01 srv2 sshd[4145]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 20989 ssh2 [preauth]
+Mar 14 07:02:03 srv2 systemd[848]: Stopping Daily apt download activities...
+Mar 14 07:02:06 srv2 sshd[23496]: Failed password for postgres from 203.0.113.7 port 24113 ssh2
+Mar 14 07:02:08 web-01 sshd[15697]: Accepted publickey for deploy from 172.16.4.9 port 55822 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:02:10 srv2 sshd[25014]: Connection closed by authenticating user root 198.51.100.23 port 24982 [preauth]
+Mar 14 07:02:12 srv2 cron[868]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:02:15 web-01 kernel: [8316.1993] NET: received packet for own address, dropped
+Mar 14 07:02:19 srv1 sudo[1095]: admin : TTY=pts/3 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:02:21 web-01 kernel: [8325.3929] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:02:24 db-01 kernel: [8330.5437] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:02:27 srv2 sshd[11953]: Failed password for root from 203.0.113.7 port 13374 ssh2
+Mar 14 07:02:31 web-01 packagekitd[412]: package operation finished with success
+Mar 14 07:02:33 db-01 packagekitd[412]: package operation finished with error
+Mar 14 07:02:35 srv1 kernel: [8346.4631] NET: received packet for own address, dropped
+Mar 14 07:02:38 srv2 sshd[21251]: Connection closed by authenticating user deploy 10.0.2.44 port 57407 [preauth]
+Mar 14 07:02:40 srv2 sshd[24178]: Accepted publickey for deploy from 198.51.100.23 port 17797 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:02:42 db-01 rsyslogd: imuxsock lost 4 messages from RID='syslog'
+Mar 14 07:02:44 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:02:45 web-01 kernel: [8360.4104] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:02:46 srv1 sshd[10899]: Failed password for invalid user deploy from 172.16.4.9 port 19091 ssh2
+Mar 14 07:02:50 web-01 sshd[17231]: Failed password for invalid user postgres from 203.0.113.9 port 63179 ssh2
+Mar 14 07:02:52 web-01 sshd[14194]: Accepted publickey for deploy from 198.51.100.23 port 12935 ssh2: ED25519 SHA256:b7:e0:44
+Mar 14 07:02:54 srv1 kernel: [8371.6207] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:02:55 srv1 sshd[1392]: Connection closed by authenticating user postgres 172.16.4.9 port 62907 [preauth]
+Mar 14 07:02:58 srv1 systemd[849]: Stopping Daily apt download activities...
+Mar 14 07:03:01 web-01 kernel: [8384.8774] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:03:03 web-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:03:07 srv1 sshd[3639]: Accepted publickey for deploy from 203.0.113.7 port 49464 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:03:08 web-01 sshd[28632]: Accepted publickey for deploy from 172.16.4.9 port 25934 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:03:09 web-01 sshd[4939]: Accepted publickey for deploy from 198.51.100.23 port 21529 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:03:12 srv2 sshd[12301]: Accepted publickey for deploy from 203.0.113.9 port 19769 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:03:16 web-01 sudo[4562]: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:03:20 srv2 sshd[29610]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 23263 ssh2 [preauth]
+Mar 14 07:03:21 srv2 sshd[27746]: Accepted publickey for deploy from 203.0.113.9 port 40565 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:03:25 srv1 sshd[29617]: Accepted publickey for deploy from 203.0.113.9 port 12972 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:03:26 srv1 sshd[17990]: Failed password for deploy from 198.51.100.23 port 6293 ssh2
+Mar 14 07:03:29 srv1 sshd[5217]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 48941 ssh2 [preauth]
+Mar 14 07:03:30 db-01 rsyslogd: imuxsock lost 2 messages from RID='syslog'
+Mar 14 07:03:33 srv2 sudo[18469]: www-data : TTY=pts/2 ; PWD=/home/www-data ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:03:35 srv2 sudo[22937]: postgres : TTY=pts/0 ; PWD=/home/postgres ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:03:38 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:03:41 web-01 sshd[5507]: Failed password for invalid user postgres from 198.51.100.23 port 15627 ssh2
+Mar 14 07:03:44 web-01 sudo[11006]: admin : TTY=pts/2 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:03:46 srv2 cron[885]: (deploy) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:03:48 db-01 cron[811]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:03:51 srv2 sshd[22650]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 25117 ssh2 [preauth]
+Mar 14 07:03:54 srv1 sshd[27377]: Failed password for invalid user deploy from 203.0.113.9 port 29219 ssh2
+Mar 14 07:03:55 web-01 sshd[28636]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 20502 ssh2 [preauth]
+Mar 14 07:03:56 db-01 cron[863]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:03:59 web-01 kernel: [8463.1403] NET: received packet for own address, dropped
+Mar 14 07:04:03 db-01 sshd[15671]: Accepted publickey for deploy from 198.51.100.23 port 43218 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:04:04 web-01 systemd[1]: Reached target Timers.
+Mar 14 07:04:06 db-01 kernel: [8471.8572] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:04:09 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:04:13 srv2 rsyslogd: imuxsock lost 9 messages from RID='syslog'
+Mar 14 07:04:14 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:04:17 web-01 cron[853]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:04:18 web-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:04:22 db-01 sshd[25519]: Failed password for deploy from 198.51.100.23 port 52139 ssh2
+Mar 14 07:04:23 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:04:25 web-01 sshd[12742]: Failed password for backup from 203.0.113.7 port 35314 ssh2
+Mar 14 07:04:29 srv1 sshd[27825]: Connection closed by authenticating user deploy 198.51.100.23 port 52656 [preauth]
+Mar 14 07:04:32 db-01 cron[892]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:04:35 db-01 sshd[20589]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 64616 ssh2 [preauth]
+Mar 14 07:04:36 web-01 sshd[6899]: Failed password for deploy from 203.0.113.7 port 26112 ssh2
+Mar 14 07:04:40 web-01 sshd[24061]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 57109 ssh2 [preauth]
+Mar 14 07:04:42 db-01 sshd[22497]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 63470 ssh2 [preauth]
+Mar 14 07:04:44 db-01 cron[806]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:04:48 srv1 rsyslogd: imuxsock lost 6 messages from RID='syslog'
+Mar 14 07:04:51 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:04:53 srv2 sshd[13314]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 29615 ssh2 [preauth]
+Mar 14 07:04:56 db-01 sshd[15222]: Connection closed by authenticating user backup 172.16.4.9 port 54038 [preauth]
+Mar 14 07:04:59 web-01 sudo[22504]: root : TTY=pts/0 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:05:03 srv1 cron[816]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:05:06 db-01 sudo[15105]: root : TTY=pts/1 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:05:10 srv1 systemd[1]: Reached target Timers.
+Mar 14 07:05:13 web-01 sshd[9990]: Failed password for admin from 203.0.113.9 port 26298 ssh2
+Mar 14 07:05:17 db-01 sudo[5234]: backup : TTY=pts/1 ; PWD=/home/backup ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:05:20 web-01 kernel: [8554.5853] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:05:24 web-01 kernel: [8557.4127] NET: received packet for own address, dropped
+Mar 14 07:05:26 db-01 systemd[1]: Reached target Timers.
+Mar 14 07:05:30 srv2 sudo[11729]: postgres : TTY=pts/2 ; PWD=/home/postgres ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:05:31 db-01 packagekitd[412]: package operation finished with success
+Mar 14 07:05:35 db-01 packagekitd[412]: package operation finished with success
+Mar 14 07:05:39 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:05:42 db-01 kernel: [8573.5014] NET: received packet for own address, dropped
+Mar 14 07:05:44 web-01 kernel: [8578.0412] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:05:46 db-01 sshd[18140]: Connection closed by authenticating user admin 203.0.113.7 port 17871 [preauth]
+Mar 14 07:05:48 db-01 packagekitd[412]: package operation finished with success
+Mar 14 07:05:50 web-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:05:51 srv2 sshd[3291]: Connection closed by authenticating user postgres 10.0.2.44 port 44292 [preauth]
+Mar 14 07:05:54 srv1 sshd[24106]: Connection closed by authenticating user www-data 203.0.113.7 port 2731 [preauth]
+Mar 14 07:05:58 srv1 sshd[15064]: Failed password for invalid user root from 172.16.4.9 port 44806 ssh2
+Mar 14 07:06:01 web-01 sshd[17358]: Failed password for invalid user www-data from 198.51.100.23 port 29546 ssh2
+Mar 14 07:06:04 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:06:06 db-01 packagekitd[412]: package operation finished with success
+Mar 14 07:06:09 srv1 sshd[15007]: Failed password for postgres from 203.0.113.9 port 58274 ssh2
+Mar 14 07:06:12 db-01 cron[803]: (deploy) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:06:14 web-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:06:18 db-01 sshd[1751]: Failed password for invalid user backup from 203.0.113.9 port 22165 ssh2
+Mar 14 07:06:21 srv1 sudo[28447]: postgres : TTY=pts/1 ; PWD=/home/postgres ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:06:23 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:06:26 srv2 sshd[8059]: Failed password for www-data from 172.16.4.9 port 31462 ssh2
+Mar 14 07:06:30 web-01 sshd[20592]: Failed password for postgres from 203.0.113.9 port 2002 ssh2
+Mar 14 07:06:33 web-01 packagekitd[412]: package operation finished with success
+Mar 14 07:06:34 db-01 sudo[21984]: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:06:36 web-01 sshd[10282]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 24099 ssh2 [preauth]
+Mar 14 07:06:38 srv2 sshd[20254]: Failed password for postgres from 203.0.113.9 port 33319 ssh2
+Mar 14 07:06:41 db-01 sshd[25761]: Accepted publickey for deploy from 203.0.113.9 port 3270 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:06:44 web-01 sshd[28809]: Failed password for invalid user deploy from 172.16.4.9 port 30880 ssh2
+Mar 14 07:06:47 db-01 kernel: [8670.2994] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:06:49 db-01 kernel: [8674.0885] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:06:50 srv1 kernel: [8677.2991] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:06:53 db-01 systemd[1]: Reached target Timers.
+Mar 14 07:06:54 srv1 sudo[4635]: www-data : TTY=pts/2 ; PWD=/home/www-data ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:06:56 db-01 kernel: [8685.8785] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:06:57 web-01 kernel: [8689.6704] NET: received packet for own address, dropped
+Mar 14 07:07:00 srv2 sshd[12474]: Failed password for deploy from 203.0.113.7 port 51592 ssh2
+Mar 14 07:07:03 web-01 packagekitd[412]: package operation finished with idle
+Mar 14 07:07:05 srv2 kernel: [8698.9651] NET: received packet for own address, dropped
+Mar 14 07:07:06 web-01 sudo[22769]: www-data : TTY=pts/0 ; PWD=/home/www-data ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:10 web-01 cron[849]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:07:13 srv2 sshd[10585]: Failed password for invalid user postgres from 198.51.100.23 port 13194 ssh2
+Mar 14 07:07:14 db-01 sshd[14426]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 61342 ssh2 [preauth]
+Mar 14 07:07:18 web-01 sudo[20055]: admin : TTY=pts/3 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:21 srv2 sshd[13234]: Connection closed by authenticating user postgres 203.0.113.9 port 41173 [preauth]
+Mar 14 07:07:23 srv2 sudo[15755]: www-data : TTY=pts/1 ; PWD=/home/www-data ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:27 web-01 sshd[10192]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 30212 ssh2 [preauth]
+Mar 14 07:07:31 db-01 sshd[18610]: Failed password for invalid user admin from 198.51.100.23 port 13356 ssh2
+Mar 14 07:07:33 srv1 sudo[14296]: admin : TTY=pts/3 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:34 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:07:37 db-01 sshd[16302]: Failed password for invalid user backup from 172.16.4.9 port 48220 ssh2
+Mar 14 07:07:39 db-01 sshd[20981]: Accepted publickey for deploy from 203.0.113.7 port 16271 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:07:40 srv2 sudo[18123]: admin : TTY=pts/2 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:42 srv2 sshd[20989]: Accepted publickey for deploy from 10.0.2.44 port 55660 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:07:43 web-01 sshd[9540]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 11654 ssh2 [preauth]
+Mar 14 07:07:47 srv1 sudo[6965]: admin : TTY=pts/2 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:07:50 web-01 packagekitd[412]: package operation finished with error
+Mar 14 07:07:53 web-01 sshd[11529]: Failed password for www-data from 198.51.100.23 port 24451 ssh2
+Mar 14 07:07:56 srv1 systemd[1]: Reached target Timers.
+Mar 14 07:08:00 srv1 kernel: [8766.6881] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:08:01 srv1 kernel: [8769.0335] NET: received packet for own address, dropped
+Mar 14 07:08:02 db-01 sshd[6719]: Accepted publickey for deploy from 203.0.113.7 port 40646 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:08:06 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:08:07 srv2 rsyslogd: imuxsock lost 4 messages from RID='syslog'
+Mar 14 07:08:10 srv2 sshd[17590]: Accepted publickey for deploy from 10.0.2.44 port 35197 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:08:12 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:08:13 web-01 sshd[8114]: Failed password for backup from 203.0.113.7 port 17775 ssh2
+Mar 14 07:08:15 db-01 sshd[6354]: Failed password for postgres from 10.0.2.44 port 42458 ssh2
+Mar 14 07:08:18 db-01 systemd[805]: Stopping Daily apt download activities...
+Mar 14 07:08:21 srv1 sudo[18354]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:08:24 srv1 sudo[7818]: root : TTY=pts/2 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:08:27 srv1 sudo[11645]: backup : TTY=pts/3 ; PWD=/home/backup ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:08:29 db-01 systemd[1]: Reached target Timers.
+Mar 14 07:08:31 srv2 sshd[12656]: Failed password for invalid user backup from 203.0.113.9 port 30416 ssh2
+Mar 14 07:08:34 srv1 sshd[19219]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 53046 ssh2 [preauth]
+Mar 14 07:08:38 db-01 sshd[1698]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 19306 ssh2 [preauth]
+Mar 14 07:08:40 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:08:44 db-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:08:48 db-01 kernel: [8833.4955] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:08:51 srv1 sshd[15537]: Failed password for backup from 203.0.113.7 port 31067 ssh2
+Mar 14 07:08:53 srv1 sshd[28769]: Failed password for www-data from 10.0.2.44 port 46090 ssh2
+Mar 14 07:08:57 db-01 kernel: [8842.6947] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:09:01 db-01 sshd[4227]: Failed password for root from 172.16.4.9 port 18074 ssh2
+Mar 14 07:09:04 web-01 sshd[8817]: Accepted publickey for deploy from 172.16.4.9 port 59201 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:09:07 srv1 sshd[19541]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 45227 ssh2 [preauth]
+Mar 14 07:09:10 srv2 packagekitd[412]: package operation finished with success
+Mar 14 07:09:13 srv1 sudo[28703]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:09:14 web-01 kernel: [8860.7097] NET: received packet for own address, dropped
+Mar 14 07:09:17 srv1 kernel: [8862.4508] NET: received packet for own address, dropped
+Mar 14 07:09:20 web-01 sshd[18401]: Failed password for invalid user postgres from 203.0.113.7 port 60493 ssh2
+Mar 14 07:09:23 db-01 sshd[16496]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 60183 ssh2 [preauth]
+Mar 14 07:09:27 srv2 sshd[4460]: Connection closed by authenticating user deploy 203.0.113.9 port 64533 [preauth]
+Mar 14 07:09:29 db-01 kernel: [8878.2197] NET: received packet for own address, dropped
+Mar 14 07:09:30 srv1 sshd[9002]: Connection closed by authenticating user postgres 203.0.113.7 port 60193 [preauth]
+Mar 14 07:09:33 web-01 sshd[21114]: Accepted publickey for deploy from 203.0.113.7 port 17352 ssh2: ED25519 SHA256:b7:e0:44
+Mar 14 07:09:37 srv2 sshd[11366]: Failed password for invalid user www-data from 203.0.113.9 port 8314 ssh2
+Mar 14 07:09:39 srv2 sshd[19871]: Accepted publickey for deploy from 203.0.113.7 port 62439 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:09:42 srv2 sshd[10988]: Connection closed by authenticating user root 203.0.113.9 port 49801 [preauth]
+Mar 14 07:09:45 web-01 sshd[15830]: Failed password for invalid user deploy from 10.0.2.44 port 47514 ssh2
+Mar 14 07:09:49 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:09:52 db-01 kernel: [8906.7023] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:09:55 srv1 sshd[21421]: Failed password for invalid user root from 198.51.100.23 port 16888 ssh2
+Mar 14 07:09:59 srv2 kernel: [8917.6189] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:10:01 srv2 packagekitd[412]: package operation finished with error
+Mar 14 07:10:02 db-01 sshd[9426]: Failed password for invalid user root from 172.16.4.9 port 16205 ssh2
+Mar 14 07:10:05 db-01 kernel: [8926.1133] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:10:09 srv2 systemd[828]: Stopping Daily apt download activities...
+Mar 14 07:10:12 web-01 sudo[13149]: root : TTY=pts/2 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:10:14 web-01 kernel: [8936.1015] NET: received packet for own address, dropped
+Mar 14 07:10:15 web-01 sshd[17397]: Connection closed by authenticating user www-data 203.0.113.9 port 35139 [preauth]
+Mar 14 07:10:17 srv2 sshd[12944]: Connection closed by authenticating user postgres 203.0.113.7 port 40223 [preauth]
+Mar 14 07:10:19 srv2 sshd[4692]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 4278 ssh2 [preauth]
+Mar 14 07:10:21 web-01 kernel: [8953.4806] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:10:23 srv1 sshd[23351]: Failed password for invalid user backup from 203.0.113.9 port 42288 ssh2
+Mar 14 07:10:25 srv2 sshd[1343]: Connection closed by authenticating user postgres 203.0.113.7 port 3812 [preauth]
+Mar 14 07:10:28 web-01 kernel: [8961.7295] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:10:31 db-01 kernel: [8966.5887] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:10:34 web-01 sshd[2757]: Accepted publickey for deploy from 198.51.100.23 port 58837 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:10:36 db-01 sshd[25763]: Failed password for postgres from 172.16.4.9 port 5781 ssh2
+Mar 14 07:10:37 srv1 sshd[20286]: Failed password for root from 10.0.2.44 port 42031 ssh2
+Mar 14 07:10:38 srv1 systemd[1]: Reached target Timers.
+Mar 14 07:10:42 srv2 sshd[11047]: Accepted publickey for deploy from 10.0.2.44 port 9028 ssh2: ED25519 SHA256:c3:5f:01
+Mar 14 07:10:45 db-01 systemd[1]: Reached target Timers.
+Mar 14 07:10:47 srv2 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:10:50 web-01 sshd[25718]: Failed password for deploy from 203.0.113.7 port 8861 ssh2
+Mar 14 07:10:52 web-01 sshd[1371]: Failed password for invalid user admin from 10.0.2.44 port 22916 ssh2
+Mar 14 07:10:55 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:10:56 srv2 kernel: [9013.4330] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:10:59 srv1 cron[806]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:11:02 web-01 systemd[1]: Reached target Timers.
+Mar 14 07:11:05 srv1 sshd[16242]: Failed password for backup from 203.0.113.9 port 6779 ssh2
+Mar 14 07:11:09 db-01 sshd[16508]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 65299 ssh2 [preauth]
+Mar 14 07:11:11 srv2 sshd[19594]: Connection closed by authenticating user root 198.51.100.23 port 52070 [preauth]
+Mar 14 07:11:14 srv1 sshd[7767]: Failed password for backup from 10.0.2.44 port 24565 ssh2
+Mar 14 07:11:17 web-01 sudo[4822]: www-data : TTY=pts/3 ; PWD=/home/www-data ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:11:19 srv1 sudo[16431]: deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:11:21 srv2 cron[899]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:11:24 srv1 sshd[15982]: Accepted publickey for deploy from 10.0.2.44 port 1293 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:11:25 srv1 rsyslogd: imuxsock lost 5 messages from RID='syslog'
+Mar 14 07:11:27 web-01 sshd[8055]: Failed password for admin from 203.0.113.9 port 21096 ssh2
+Mar 14 07:11:28 srv2 kernel: [9052.0329] NET: received packet for own address, dropped
+Mar 14 07:11:31 srv1 sshd[3905]: Failed password for invalid user backup from 198.51.100.23 port 60193 ssh2
+Mar 14 07:11:33 db-01 sudo[5848]: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:11:34 db-01 sshd[10874]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 12904 ssh2 [preauth]
+Mar 14 07:11:37 web-01 sshd[17848]: Failed password for invalid user root from 203.0.113.7 port 32263 ssh2
+Mar 14 07:11:40 srv1 kernel: [9066.5324] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:11:43 db-01 kernel: [9068.2260] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:11:45 web-01 packagekitd[412]: package operation finished with error
+Mar 14 07:11:48 web-01 sshd[17349]: Accepted publickey for deploy from 10.0.2.44 port 46637 ssh2: ED25519 SHA256:b7:e0:44
+Mar 14 07:11:52 srv1 sshd[22689]: Accepted publickey for deploy from 10.0.2.44 port 47530 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:11:54 srv1 sshd[19074]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 34992 ssh2 [preauth]
+Mar 14 07:11:57 srv1 sshd[14254]: Accepted publickey for deploy from 203.0.113.7 port 39998 ssh2: ED25519 SHA256:b7:e0:44
+Mar 14 07:11:59 db-01 cron[803]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:12:01 web-01 sudo[25848]: deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:12:05 db-01 sshd[14630]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 31843 ssh2 [preauth]
+Mar 14 07:12:07 srv1 sshd[28593]: Connection closed by authenticating user admin 203.0.113.7 port 11972 [preauth]
+Mar 14 07:12:09 srv1 kernel: [9106.0036] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:12:12 srv2 sshd[11358]: Failed password for backup from 10.0.2.44 port 26686 ssh2
+Mar 14 07:12:14 web-01 sshd[3390]: Failed password for postgres from 172.16.4.9 port 42726 ssh2
+Mar 14 07:12:15 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:12:19 srv1 rsyslogd: imuxsock lost 8 messages from RID='syslog'
+Mar 14 07:12:22 srv1 kernel: [9125.0796] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:12:26 srv2 kernel: [9128.5753] NET: received packet for own address, dropped
+Mar 14 07:12:29 srv1 systemd[869]: Stopping Daily apt download activities...
+Mar 14 07:12:30 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:12:33 srv1 sshd[27485]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 42165 ssh2 [preauth]
+Mar 14 07:12:36 srv2 sshd[28877]: error: maximum authentication attempts exceeded for root from 198.51.100.23 port 21061 ssh2 [preauth]
+Mar 14 07:12:39 srv2 kernel: [9139.8973] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:12:41 srv1 sudo[17199]: deploy : TTY=pts/3 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:12:44 srv1 kernel: [9145.4370] NET: received packet for own address, dropped
+Mar 14 07:12:45 srv1 systemd[1]: Reached target Timers.
+Mar 14 07:12:47 srv2 sshd[29645]: Accepted publickey for deploy from 203.0.113.7 port 27527 ssh2: ED25519 SHA256:b7:e0:44
+Mar 14 07:12:49 srv1 cron[834]: (deploy) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:12:51 db-01 sshd[6578]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 20881 ssh2 [preauth]
+Mar 14 07:12:55 db-01 sudo[22468]: root : TTY=pts/2 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:12:58 srv1 sshd[22394]: Failed password for invalid user postgres from 203.0.113.7 port 33151 ssh2
+Mar 14 07:12:59 web-01 sshd[21460]: Failed password for postgres from 203.0.113.9 port 28713 ssh2
+Mar 14 07:13:01 web-01 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:13:03 srv1 systemd[829]: Stopping Daily apt download activities...
+Mar 14 07:13:07 db-01 kernel: [9177.5222] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:13:09 srv1 kernel: [9179.6267] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:13:12 srv1 cron[875]: (deploy) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:13:14 srv2 sshd[16824]: Failed password for www-data from 203.0.113.7 port 7509 ssh2
+Mar 14 07:13:16 srv2 sshd[10684]: Failed password for invalid user root from 172.16.4.9 port 9512 ssh2
+Mar 14 07:13:18 srv1 kernel: [9194.5422] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:13:19 web-01 systemd[881]: Stopping Daily apt download activities...
+Mar 14 07:13:21 srv2 rsyslogd: imuxsock lost 5 messages from RID='syslog'
+Mar 14 07:13:23 srv2 sshd[8386]: Failed password for postgres from 203.0.113.7 port 37001 ssh2
+Mar 14 07:13:25 web-01 packagekitd[412]: package operation finished with error
+Mar 14 07:13:27 srv2 sshd[19088]: Accepted publickey for deploy from 10.0.2.44 port 11910 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:13:29 web-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:13:31 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:13:34 srv1 sshd[17399]: Failed password for invalid user postgres from 203.0.113.7 port 12159 ssh2
+Mar 14 07:13:37 db-01 sudo[4545]: backup : TTY=pts/1 ; PWD=/home/backup ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:13:41 srv1 sshd[8020]: Failed password for invalid user www-data from 203.0.113.9 port 29761 ssh2
+Mar 14 07:13:44 db-01 sshd[1335]: Connection closed by authenticating user www-data 198.51.100.23 port 3351 [preauth]
+Mar 14 07:13:46 db-01 rsyslogd: imuxsock lost 5 messages from RID='syslog'
+Mar 14 07:13:48 web-01 packagekitd[412]: package operation finished with success
+Mar 14 07:13:51 db-01 sshd[7076]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 54193 ssh2 [preauth]
+Mar 14 07:13:53 srv1 sshd[21073]: Connection closed by authenticating user postgres 198.51.100.23 port 38871 [preauth]
+Mar 14 07:13:55 web-01 packagekitd[412]: package operation finished with error
+Mar 14 07:13:57 srv2 sshd[26853]: Failed password for deploy from 10.0.2.44 port 61888 ssh2
+Mar 14 07:13:59 web-01 sshd[5488]: Failed password for backup from 10.0.2.44 port 51670 ssh2
+Mar 14 07:14:00 srv1 sshd[6808]: Failed password for www-data from 203.0.113.9 port 50784 ssh2
+Mar 14 07:14:02 web-01 sshd[29459]: Failed password for www-data from 198.51.100.23 port 50044 ssh2
+Mar 14 07:14:04 srv1 sudo[8927]: backup : TTY=pts/0 ; PWD=/home/backup ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:14:06 srv1 sshd[3293]: Failed password for invalid user root from 198.51.100.23 port 34558 ssh2
+Mar 14 07:14:08 db-01 sshd[27479]: Failed password for invalid user admin from 203.0.113.7 port 13036 ssh2
+Mar 14 07:14:10 web-01 kernel: [9278.6541] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:14:14 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:14:17 srv1 systemd[1]: Reached target Timers.
+Mar 14 07:14:18 web-01 sshd[28065]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 18497 ssh2 [preauth]
+Mar 14 07:14:21 web-01 sshd[6457]: Failed password for www-data from 203.0.113.9 port 41242 ssh2
+Mar 14 07:14:24 srv1 sshd[7479]: Failed password for admin from 203.0.113.9 port 40227 ssh2
+Mar 14 07:14:27 srv1 sshd[7639]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 47064 ssh2 [preauth]
+Mar 14 07:14:31 web-01 sudo[19126]: backup : TTY=pts/1 ; PWD=/home/backup ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:14:33 srv1 sshd[10609]: Failed password for invalid user postgres from 203.0.113.7 port 39642 ssh2
+Mar 14 07:14:34 db-01 sudo[15950]: postgres : TTY=pts/2 ; PWD=/home/postgres ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:14:35 srv1 kernel: [9318.7454] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:14:38 srv2 sudo[24861]: root : TTY=pts/2 ; PWD=/home/root ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:14:42 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:14:43 web-01 sshd[11372]: error: maximum authentication attempts exceeded for root from 203.0.113.9 port 11042 ssh2 [preauth]
+Mar 14 07:14:45 srv1 sshd[26687]: Accepted publickey for deploy from 203.0.113.7 port 45388 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:14:47 srv2 systemd[1]: Reached target Timers.
+Mar 14 07:14:48 srv2 sshd[3119]: Failed password for root from 198.51.100.23 port 6718 ssh2
+Mar 14 07:14:51 srv1 systemd[845]: Stopping Daily apt download activities...
+Mar 14 07:14:54 srv2 packagekitd[412]: package operation finished with success
+Mar 14 07:14:58 srv1 sshd[5724]: Failed password for root from 203.0.113.7 port 54500 ssh2
+Mar 14 07:14:59 db-01 sshd[16742]: Accepted publickey for deploy from 172.16.4.9 port 10897 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:15:03 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:15:06 web-01 kernel: [9358.0824] EXT4-fs (sda1): mounted filesystem with ordered data mode
+Mar 14 07:15:09 srv1 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:15:12 web-01 cron[806]: (root) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:15:16 web-01 systemd[843]: Stopping Daily apt download activities...
+Mar 14 07:15:17 db-01 rsyslogd: imuxsock lost 4 messages from RID='syslog'
+Mar 14 07:15:19 srv2 sshd[8005]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 21476 ssh2 [preauth]
+Mar 14 07:15:20 web-01 sshd[14873]: Accepted publickey for deploy from 203.0.113.7 port 28326 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:15:23 srv1 sshd[22149]: Failed password for root from 198.51.100.23 port 45212 ssh2
+Mar 14 07:15:25 srv2 sshd[22201]: Accepted publickey for deploy from 203.0.113.7 port 65389 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:15:28 web-01 systemd[1]: Reached target Timers.
+Mar 14 07:15:31 srv2 kernel: [9383.6409] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:15:34 srv1 sshd[20440]: error: maximum authentication attempts exceeded for root from 172.16.4.9 port 34212 ssh2 [preauth]
+Mar 14 07:15:37 srv2 sshd[5208]: Failed password for invalid user deploy from 10.0.2.44 port 9363 ssh2
+Mar 14 07:15:39 srv1 sshd[8219]: Connection closed by authenticating user admin 198.51.100.23 port 3098 [preauth]
+Mar 14 07:15:41 web-01 sshd[14921]: Accepted publickey for deploy from 203.0.113.9 port 20691 ssh2: ED25519 SHA256:9d:a2:6e
+Mar 14 07:15:43 web-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:15:44 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:15:46 web-01 sshd[23368]: Accepted publickey for deploy from 203.0.113.9 port 39642 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:15:50 db-01 kernel: [9414.3221] NET: received packet for own address, dropped
+Mar 14 07:15:51 db-01 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:15:54 srv2 sshd[26854]: Connection closed by authenticating user root 203.0.113.7 port 28516 [preauth]
+Mar 14 07:15:57 srv1 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:16:00 srv2 sshd[19123]: Failed password for invalid user deploy from 10.0.2.44 port 64872 ssh2
+Mar 14 07:16:02 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:16:03 srv1 cron[856]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:16:07 srv1 sshd[29995]: error: maximum authentication attempts exceeded for root from 10.0.2.44 port 33786 ssh2 [preauth]
+Mar 14 07:16:08 web-01 kernel: [9453.3547] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:16:11 db-01 systemd[894]: Stopping Daily apt download activities...
+Mar 14 07:16:14 db-01 sshd[17971]: Accepted publickey for deploy from 203.0.113.9 port 28041 ssh2: ED25519 SHA256:x1:2a:9c
+Mar 14 07:16:16 srv1 systemd[890]: Stopping Daily apt download activities...
+Mar 14 07:16:19 web-01 rsyslogd: imuxsock lost 6 messages from RID='syslog'
+Mar 14 07:16:21 web-01 rsyslogd: imuxsock lost 7 messages from RID='syslog'
+Mar 14 07:16:23 srv2 sshd[16512]: Failed password for www-data from 172.16.4.9 port 50107 ssh2
+Mar 14 07:16:25 web-01 sshd[28339]: error: maximum authentication attempts exceeded for root from 203.0.113.7 port 13394 ssh2 [preauth]
+Mar 14 07:16:28 srv2 cron[852]: (backup) CMD (/usr/local/bin/nightly-report.sh)
+Mar 14 07:16:29 srv2 systemd[1]: Started Nightly log rotation timer.
+Mar 14 07:16:30 srv2 kernel: [9494.4648] eth0: NIC Link is Up 1000 Mbps Full Duplex
+Mar 14 07:16:34 web-01 sudo[6080]: admin : TTY=pts/2 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Mar 14 07:16:35 db-01 sshd[11853]: Connection closed by authenticating user postgres 198.51.100.23 port 48496 [preauth]
+Mar 14 07:16:36 srv2 CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Mar 14 07:16:39 srv2 cron[887]: (deploy) CMD (/usr/local/bin/nightly-report.sh)
