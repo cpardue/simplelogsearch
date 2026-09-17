@@ -1,0 +1,300 @@
+{"ts":"2026-03-14T07:00:04.531Z","level":"warn","service":"billing","trace_id":"c470e2295efdae5f","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:00:07.473Z","level":"error","service":"orders","trace_id":"365c4260e770b681","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:00:10.533Z","level":"info","service":"inventory","trace_id":"40037d4650e8536b","message":"request completed status=200"}
+{"ts":"2026-03-14T07:00:15.284Z","level":"info","service":"search","trace_id":"87a60282a04fc0d1","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:00:19.116Z","level":"warn","service":"payments","trace_id":"e93839b6cd94ab73","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:00:22.893Z","level":"error","service":"search","trace_id":"a5ebc95a72fa33a9","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:00:28.635Z","level":"warn","service":"payments","trace_id":"0e9e488e3bfb998e","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:00:32.955Z","level":"error","service":"orders","trace_id":"63a84074af987e49","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:00:37.929Z","level":"warn","service":"billing","trace_id":"7a9efb1d9db83a86","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:00:43.462Z","level":"warn","service":"inventory","trace_id":"4ce7370f5c7f8e83","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:00:45.533Z","level":"info","service":"search","trace_id":"72793c81616d357a","message":"request completed status=200"}
+{"ts":"2026-03-14T07:00:48.618Z","level":"warn","service":"auth","trace_id":"e333bf773ee63a49","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:00:52.451Z","level":"warn","service":"auth","trace_id":"f5f6f69cef3108c1","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:00:56.434Z","level":"warn","service":"orders","trace_id":"205beeca01ac0565","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:01:01.476Z","level":"warn","service":"auth","trace_id":"7deb264a07cdfbd6","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:01:04.278Z","level":"info","service":"auth","trace_id":"3ef0ab65d21fa54f","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:01:06.799Z","level":"error","service":"payments","trace_id":"aa171e1268a7c38f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:01:10.017Z","level":"warn","service":"payments","trace_id":"f61bb83692e36096","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:01:12.225Z","level":"info","service":"payments","trace_id":"97a3d5197c34054f","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:01:17.719Z","level":"error","service":"billing","trace_id":"571c124c2b96b0d9","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:01:20.943Z","level":"info","service":"inventory","trace_id":"b6f1989482cbcfad","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:01:23.198Z","level":"error","service":"billing","trace_id":"2b147cf116643157","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:01:29.067Z","level":"info","service":"payments","trace_id":"c88ac7cd1f1723cb","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:01:34.311Z","level":"error","service":"payments","trace_id":"9249e0c36680b0ba","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:01:37.296Z","level":"info","service":"auth","trace_id":"f4250aafdc713091","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:01:43.225Z","level":"warn","service":"auth","trace_id":"c3a52a363e735354","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:01:47.502Z","level":"error","service":"inventory","trace_id":"80fd02587a413f5a","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:01:53.332Z","level":"info","service":"inventory","trace_id":"9e1d8a3ca1d13c2d","message":"request completed status=200"}
+{"ts":"2026-03-14T07:01:57.645Z","level":"error","service":"billing","trace_id":"d0b928f88dfbdf6b","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:02:01.773Z","level":"warn","service":"orders","trace_id":"bb4973fe62695d29","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:02:04.267Z","level":"error","service":"payments","trace_id":"4d895d4bb6fc1b3c","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:02:06.757Z","level":"error","service":"billing","trace_id":"bfb1e06f00c52600","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:02:11.229Z","level":"error","service":"billing","trace_id":"09348708e4939a5f","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:02:16.324Z","level":"error","service":"payments","trace_id":"07ac26abf90ce2ab","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:02:20.475Z","level":"error","service":"search","trace_id":"f7548bdd7d4bb118","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:02:24.619Z","level":"error","service":"search","trace_id":"f70b9708e2b35406","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:02:30.450Z","level":"warn","service":"inventory","trace_id":"1bfca6ec18d211b0","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:02:36.425Z","level":"error","service":"search","trace_id":"9a3a083c3f4ffa4a","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:02:38.648Z","level":"info","service":"billing","trace_id":"fa9cff6953024377","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:02:42.838Z","level":"warn","service":"auth","trace_id":"17444f031cf246c0","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:02:47.514Z","level":"info","service":"search","trace_id":"0feb2c36dbf52094","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:02:50.241Z","level":"warn","service":"payments","trace_id":"2bf1d235e8c21953","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:02:55.542Z","level":"error","service":"billing","trace_id":"3e606323ea4a8d9f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:03:00.754Z","level":"error","service":"payments","trace_id":"cd56d9212e8344ec","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:03:03.389Z","level":"error","service":"billing","trace_id":"3f28c656a401b540","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:03:09.059Z","level":"info","service":"auth","trace_id":"7f5c9bfd147785be","message":"nightly batch started"}
+{"ts":"2026-03-14T07:03:13.353Z","level":"warn","service":"billing","trace_id":"68a9488136fa5be7","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:03:16.650Z","level":"error","service":"inventory","trace_id":"ba014286e7ecefb1","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:03:21.246Z","level":"warn","service":"orders","trace_id":"b2b7d8486d52cc0f","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:03:25.472Z","level":"info","service":"billing","trace_id":"9f319db8c49f04dc","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:03:27.894Z","level":"error","service":"payments","trace_id":"abe331fc85e9a021","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:03:31.211Z","level":"error","service":"inventory","trace_id":"345eed6ffee29e9c","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:03:37.110Z","level":"error","service":"search","trace_id":"100487db7412fb4b","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:03:41.336Z","level":"error","service":"auth","trace_id":"ac2c190ae546f9b9","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:03:44.533Z","level":"error","service":"billing","trace_id":"69a002f0afa914ff","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:03:49.248Z","level":"warn","service":"payments","trace_id":"62b207402b7b1b96","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:03:51.927Z","level":"warn","service":"payments","trace_id":"fd4122c42fdc3b27","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:03:55.832Z","level":"warn","service":"payments","trace_id":"e04c09c995e4c39e","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:03:59.315Z","level":"error","service":"payments","trace_id":"bb2f3f0382b93adc","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:04:03.988Z","level":"error","service":"payments","trace_id":"838f13c72bbf22da","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:04:09.696Z","level":"error","service":"search","trace_id":"304dd59be020739a","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:04:15.316Z","level":"warn","service":"auth","trace_id":"d1a3f86339b59c4f","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:04:18.052Z","level":"warn","service":"auth","trace_id":"accbe29718a3a7ee","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:04:20.393Z","level":"info","service":"billing","trace_id":"30dca7221ba44acb","message":"request completed status=200"}
+{"ts":"2026-03-14T07:04:25.889Z","level":"warn","service":"orders","trace_id":"635f7b02adebf868","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:04:31.491Z","level":"warn","service":"auth","trace_id":"f60ce756e2a7bb85","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:04:36.746Z","level":"info","service":"auth","trace_id":"73d2466062dc9321","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:04:40.148Z","level":"error","service":"orders","trace_id":"ed33580f0180082d","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:04:43.058Z","level":"error","service":"inventory","trace_id":"69d618138cc5be83","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:04:47.542Z","level":"info","service":"billing","trace_id":"c6f72dbe6ad04b9b","message":"nightly batch started"}
+{"ts":"2026-03-14T07:04:50.095Z","level":"warn","service":"payments","trace_id":"c0365f1e712fbb93","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:04:52.890Z","level":"warn","service":"payments","trace_id":"473750229d3108e9","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:04:56.713Z","level":"warn","service":"auth","trace_id":"a0dc7d6fe564f705","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:04:59.478Z","level":"error","service":"search","trace_id":"850106cb63bbfae3","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:05:01.864Z","level":"error","service":"auth","trace_id":"20cdbb08c89338ab","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:05:05.281Z","level":"info","service":"search","trace_id":"bd6edb0566bb6c87","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:05:09.693Z","level":"warn","service":"billing","trace_id":"5dd30ed215a11d1a","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:05:14.446Z","level":"info","service":"search","trace_id":"226e114a5c340ddc","message":"nightly batch started"}
+{"ts":"2026-03-14T07:05:17.335Z","level":"info","service":"search","trace_id":"46af08ad73a720c6","message":"nightly batch started"}
+{"ts":"2026-03-14T07:05:21.718Z","level":"error","service":"billing","trace_id":"88242cbf7874c8ae","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:05:26.818Z","level":"info","service":"orders","trace_id":"9f69897138f5456d","message":"user session created"}
+{"ts":"2026-03-14T07:05:31.347Z","level":"error","service":"auth","trace_id":"495202ba36cc11fb","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:05:36.626Z","level":"info","service":"payments","trace_id":"0baecc6200270f07","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:05:41.606Z","level":"info","service":"payments","trace_id":"a71b7f6794e0ce34","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:05:47.580Z","level":"warn","service":"billing","trace_id":"a217f2782e1e7352","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:05:52.296Z","level":"error","service":"orders","trace_id":"3f93a339f4c9a816","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:05:54.427Z","level":"info","service":"orders","trace_id":"a16e753070e4e1ba","message":"request completed status=200"}
+{"ts":"2026-03-14T07:05:59.840Z","level":"error","service":"billing","trace_id":"329c05ab6ed6642a","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:06:04.343Z","level":"warn","service":"payments","trace_id":"3d6b1841ebcd54b6","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:06:09.753Z","level":"error","service":"auth","trace_id":"72c20fbb3f105af3","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:06:14.899Z","level":"info","service":"search","trace_id":"6a1c006c36d36dfa","message":"user session created"}
+{"ts":"2026-03-14T07:06:16.929Z","level":"info","service":"auth","trace_id":"0aa7df6f6aa76c9a","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:06:19.050Z","level":"warn","service":"inventory","trace_id":"759c3e2560631274","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:06:24.354Z","level":"warn","service":"billing","trace_id":"28b5ded15f8f10d3","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:06:28.686Z","level":"info","service":"auth","trace_id":"2e47a1ff84c6a267","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:06:33.319Z","level":"warn","service":"payments","trace_id":"79e1df268dfcc561","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:06:38.985Z","level":"error","service":"orders","trace_id":"0234c71824e81538","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:06:44.133Z","level":"error","service":"payments","trace_id":"4b2bbe9e611592c2","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:06:47.214Z","level":"error","service":"billing","trace_id":"1ae40f485537a1d4","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:06:49.353Z","level":"warn","service":"orders","trace_id":"4c140ea4f168587c","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:06:51.803Z","level":"warn","service":"orders","trace_id":"5908620cd13ae279","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:06:57.655Z","level":"error","service":"billing","trace_id":"9b35e906d21c4d0f","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:07:01.951Z","level":"error","service":"auth","trace_id":"ce876a5d79c58041","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:07:07.152Z","level":"error","service":"payments","trace_id":"fd3ca7465a8d04eb","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:07:12.683Z","level":"error","service":"billing","trace_id":"a3f30521b660154c","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:07:17.062Z","level":"info","service":"payments","trace_id":"0c02b825b901fc3c","message":"user session created"}
+{"ts":"2026-03-14T07:07:21.279Z","level":"warn","service":"payments","trace_id":"0fe9e2b671016b4f","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:07:25.277Z","level":"info","service":"payments","trace_id":"33925457b6928152","message":"request completed status=200"}
+{"ts":"2026-03-14T07:07:30.109Z","level":"info","service":"orders","trace_id":"8024b9791e09e05e","message":"request completed status=200"}
+{"ts":"2026-03-14T07:07:33.519Z","level":"error","service":"billing","trace_id":"d91da29edb31878c","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:07:39.134Z","level":"info","service":"payments","trace_id":"c9aa86952fb6483c","message":"request completed status=200"}
+{"ts":"2026-03-14T07:07:41.564Z","level":"error","service":"billing","trace_id":"7182bfba79627bc7","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:07:44.690Z","level":"warn","service":"billing","trace_id":"2749da02c56ddcc9","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:07:50.643Z","level":"warn","service":"orders","trace_id":"24b766e6951cf588","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:07:54.494Z","level":"error","service":"auth","trace_id":"05d02f6bc357d9d5","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:07:59.578Z","level":"warn","service":"search","trace_id":"0de5fdd2d3592d4f","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:08:03.767Z","level":"warn","service":"auth","trace_id":"50604f70de36c37d","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:08:06.000Z","level":"error","service":"payments","trace_id":"47ef14b45d251a4f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:08:10.730Z","level":"warn","service":"payments","trace_id":"fb06d48f1d7cfd94","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:08:13.174Z","level":"info","service":"billing","trace_id":"bb491ea4e03b130d","message":"user session created"}
+{"ts":"2026-03-14T07:08:18.460Z","level":"error","service":"auth","trace_id":"0e9f97059f6636ff","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:08:24.154Z","level":"error","service":"payments","trace_id":"b9d0ca19c7597053","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:08:30.058Z","level":"error","service":"inventory","trace_id":"be672bda077ce241","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:08:32.109Z","level":"warn","service":"auth","trace_id":"5ff4d513669608b8","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:08:37.645Z","level":"error","service":"inventory","trace_id":"12f182060a9ed7f6","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:08:41.871Z","level":"info","service":"orders","trace_id":"00e36cbf3cdd6d03","message":"user session created"}
+{"ts":"2026-03-14T07:08:46.705Z","level":"error","service":"auth","trace_id":"68a72ef2bfde1134","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:08:50.286Z","level":"info","service":"inventory","trace_id":"1e4099b3b611cd15","message":"nightly batch started"}
+{"ts":"2026-03-14T07:08:54.703Z","level":"info","service":"search","trace_id":"882f3591e6a27500","message":"nightly batch started"}
+{"ts":"2026-03-14T07:08:57.406Z","level":"warn","service":"payments","trace_id":"15233333445a6400","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:08:59.885Z","level":"warn","service":"orders","trace_id":"3c8c84a135305e3a","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:09:03.638Z","level":"warn","service":"billing","trace_id":"124da699bcae198b","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:09:05.712Z","level":"warn","service":"payments","trace_id":"47d5a0ab1a2d0f8c","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:09:11.208Z","level":"warn","service":"inventory","trace_id":"2969ddf74d32b722","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:09:16.006Z","level":"info","service":"search","trace_id":"a7b79e0685e07871","message":"nightly batch started"}
+{"ts":"2026-03-14T07:09:21.975Z","level":"warn","service":"auth","trace_id":"76b34f8f3a687468","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:09:26.640Z","level":"error","service":"inventory","trace_id":"eac45601b30b9c36","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:09:30.699Z","level":"warn","service":"billing","trace_id":"d17cccd3244fd5f9","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:09:32.944Z","level":"error","service":"auth","trace_id":"4d0c74958bb8c72b","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:09:36.497Z","level":"warn","service":"billing","trace_id":"dc9787ab8aa36a19","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:09:39.204Z","level":"warn","service":"orders","trace_id":"c565159ea36db2eb","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:09:42.115Z","level":"error","service":"billing","trace_id":"4071ff26c9bee821","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:09:44.273Z","level":"info","service":"billing","trace_id":"35c01b8879dfb2a2","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:09:46.491Z","level":"error","service":"search","trace_id":"10bca85e8f487750","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:09:49.030Z","level":"info","service":"orders","trace_id":"0babf7395c926060","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:09:51.256Z","level":"warn","service":"payments","trace_id":"9f24d78dd5ea215e","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:09:56.867Z","level":"info","service":"orders","trace_id":"d86736ed794e75ff","message":"user session created"}
+{"ts":"2026-03-14T07:10:00.764Z","level":"error","service":"orders","trace_id":"67cfb89cdc7bfc9e","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:10:03.046Z","level":"error","service":"billing","trace_id":"0681b5e48ac42f93","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:10:07.240Z","level":"error","service":"auth","trace_id":"428ba16490969ceb","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:10:09.605Z","level":"error","service":"billing","trace_id":"7d99aab2c4a4a26e","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:10:13.744Z","level":"info","service":"orders","trace_id":"078c82289c46569b","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:10:17.874Z","level":"warn","service":"inventory","trace_id":"303e0bd764457666","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:10:22.384Z","level":"warn","service":"inventory","trace_id":"dcfe525ee7ea8c68","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:10:27.676Z","level":"error","service":"auth","trace_id":"add49d15bdfefbbc","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:10:32.247Z","level":"warn","service":"billing","trace_id":"f31330828f919d3a","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:10:36.332Z","level":"error","service":"orders","trace_id":"d2aae4560164d8e9","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:10:39.928Z","level":"info","service":"billing","trace_id":"5f277a81d17e5add","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:10:43.424Z","level":"error","service":"payments","trace_id":"a1f9f6c089ea4c81","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:10:48.766Z","level":"warn","service":"payments","trace_id":"93837c8aeb9810f9","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:10:54.625Z","level":"warn","service":"payments","trace_id":"3ae715c3f3886695","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:11:00.612Z","level":"warn","service":"billing","trace_id":"5546e5a4ccba7c53","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:11:05.234Z","level":"error","service":"auth","trace_id":"3c4efe009ce0e7e2","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:11:09.525Z","level":"warn","service":"inventory","trace_id":"16d0c18091a7ecd3","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:11:12.445Z","level":"warn","service":"inventory","trace_id":"8a986984c1d03050","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:11:16.785Z","level":"info","service":"billing","trace_id":"c0db369c2f455d2a","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:11:22.024Z","level":"warn","service":"auth","trace_id":"0b055b198b71dd3c","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:11:24.805Z","level":"error","service":"inventory","trace_id":"f37b9727d1a31e6b","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:11:28.898Z","level":"warn","service":"billing","trace_id":"d6876909869d7535","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:11:32.958Z","level":"error","service":"auth","trace_id":"c391c69d0b788689","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:11:38.810Z","level":"error","service":"inventory","trace_id":"bf243dcb584100bc","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:11:43.724Z","level":"error","service":"inventory","trace_id":"11f4b4ef0f1307b5","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:11:49.314Z","level":"warn","service":"billing","trace_id":"b64101f39cb2cf7b","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:11:53.728Z","level":"error","service":"payments","trace_id":"05c8168a091470bd","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:11:58.156Z","level":"info","service":"payments","trace_id":"538f03553bd4784e","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:12:02.480Z","level":"error","service":"search","trace_id":"e377c6570e821f9d","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:12:08.437Z","level":"warn","service":"search","trace_id":"c54b9ace6e9f531c","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:12:12.795Z","level":"warn","service":"inventory","trace_id":"126e8c3ff3532197","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:12:15.355Z","level":"info","service":"search","trace_id":"8b9fc0b0e211a664","message":"user session created"}
+{"ts":"2026-03-14T07:12:17.992Z","level":"warn","service":"orders","trace_id":"1ea8b073db245bd0","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:12:21.588Z","level":"warn","service":"search","trace_id":"bc5420a742722247","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:12:26.536Z","level":"error","service":"payments","trace_id":"6079e9fa87179701","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:12:30.558Z","level":"error","service":"payments","trace_id":"d4928d52a0c4cad0","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:12:34.775Z","level":"warn","service":"auth","trace_id":"b273ed0970c8e9b7","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:12:40.351Z","level":"warn","service":"billing","trace_id":"df8aed30223cc830","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:12:45.632Z","level":"info","service":"auth","trace_id":"e2e762e893a217dd","message":"user session created"}
+{"ts":"2026-03-14T07:12:50.360Z","level":"error","service":"billing","trace_id":"96cf491570007631","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:12:54.622Z","level":"error","service":"payments","trace_id":"18b6ab351ef7d72c","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:13:00.183Z","level":"info","service":"orders","trace_id":"766a145dfd5ca8ed","message":"nightly batch started"}
+{"ts":"2026-03-14T07:13:03.019Z","level":"info","service":"inventory","trace_id":"22385e546986df0f","message":"request completed status=200"}
+{"ts":"2026-03-14T07:13:07.516Z","level":"warn","service":"payments","trace_id":"b3d3085b1b4ce426","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:13:13.306Z","level":"info","service":"orders","trace_id":"4324bf804e59c3f4","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:13:16.383Z","level":"info","service":"auth","trace_id":"06ad081aa4b97675","message":"user session created"}
+{"ts":"2026-03-14T07:13:22.336Z","level":"info","service":"payments","trace_id":"cc2b05bee2bc5377","message":"request completed status=200"}
+{"ts":"2026-03-14T07:13:25.116Z","level":"error","service":"search","trace_id":"3ff8853742776ed3","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:13:30.793Z","level":"error","service":"inventory","trace_id":"daba1f0aff8ea397","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:13:35.265Z","level":"warn","service":"search","trace_id":"30dc50eed5e618e8","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:13:39.799Z","level":"error","service":"inventory","trace_id":"a5e704cb05dd132a","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:13:45.041Z","level":"warn","service":"billing","trace_id":"7dcc837aa858bc4b","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:13:47.488Z","level":"error","service":"auth","trace_id":"cadcfc3c2b4a7465","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:13:51.038Z","level":"error","service":"payments","trace_id":"ff75f82d3c4027c1","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:13:55.914Z","level":"error","service":"billing","trace_id":"3210ed36c28b5fd1","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:13:58.287Z","level":"info","service":"orders","trace_id":"b83cdc27cf0e2c75","message":"request completed status=200"}
+{"ts":"2026-03-14T07:14:01.240Z","level":"info","service":"billing","trace_id":"0426c06742b0b17a","message":"nightly batch started"}
+{"ts":"2026-03-14T07:14:04.133Z","level":"error","service":"search","trace_id":"9e3936d7d0d716e8","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:14:08.790Z","level":"warn","service":"billing","trace_id":"259b2603aaef1e51","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:14:14.545Z","level":"info","service":"orders","trace_id":"69e0918877756514","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:14:19.068Z","level":"warn","service":"payments","trace_id":"f209a7e068365629","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:14:24.606Z","level":"warn","service":"billing","trace_id":"ba7d085640e1b6de","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:14:29.718Z","level":"error","service":"orders","trace_id":"396b22b6dab36345","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:14:31.927Z","level":"warn","service":"search","trace_id":"7b5f0e8b3c6fef56","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:14:34.256Z","level":"error","service":"orders","trace_id":"f3e1870bf1d47f15","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:14:38.943Z","level":"warn","service":"orders","trace_id":"56e5cab9ec136acc","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:14:42.150Z","level":"warn","service":"payments","trace_id":"9bf536b784d75339","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:14:45.102Z","level":"info","service":"inventory","trace_id":"7a5b18c05ce4b944","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:14:48.393Z","level":"info","service":"payments","trace_id":"705dd69bb8e6774e","message":"request completed status=200"}
+{"ts":"2026-03-14T07:14:54.388Z","level":"error","service":"billing","trace_id":"d0531131bf93d2a7","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:14:59.626Z","level":"warn","service":"auth","trace_id":"27b4397853f2e1ce","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:15:03.258Z","level":"error","service":"billing","trace_id":"9d45747e5ce5a59f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:15:08.868Z","level":"info","service":"auth","trace_id":"30e7fdb2cc907a1b","message":"user session created"}
+{"ts":"2026-03-14T07:15:12.517Z","level":"error","service":"billing","trace_id":"c33e0a7e5f5f005e","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:15:16.735Z","level":"error","service":"payments","trace_id":"f82bca3510dbd412","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:15:20.519Z","level":"info","service":"search","trace_id":"7144ea1287fedb50","message":"request completed status=200"}
+{"ts":"2026-03-14T07:15:25.667Z","level":"info","service":"billing","trace_id":"a3d02e5c237d6f96","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:15:31.027Z","level":"error","service":"search","trace_id":"1a39c90de7a58895","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:15:33.073Z","level":"error","service":"payments","trace_id":"b401ff84318863e3","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:15:37.027Z","level":"warn","service":"search","trace_id":"356130afb167a9a6","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:15:39.192Z","level":"warn","service":"orders","trace_id":"9e38b57cd36c85b7","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:15:43.431Z","level":"error","service":"search","trace_id":"ec723fdddcb92570","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:15:49.025Z","level":"error","service":"orders","trace_id":"56aa9a2ad5c383c6","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:15:54.945Z","level":"warn","service":"payments","trace_id":"359851b79e315e6d","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:15:57.986Z","level":"info","service":"payments","trace_id":"bd953aebe76d71e5","message":"request completed status=200"}
+{"ts":"2026-03-14T07:16:02.006Z","level":"warn","service":"orders","trace_id":"042d7630e856b078","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:16:07.322Z","level":"error","service":"auth","trace_id":"5f1bf2c43ee56c28","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:16:09.438Z","level":"error","service":"search","trace_id":"8c11077a765ea24f","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:16:15.175Z","level":"error","service":"auth","trace_id":"cd4cfedaf79fc338","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:16:19.076Z","level":"error","service":"payments","trace_id":"19e9172ab16f8934","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:16:23.429Z","level":"warn","service":"auth","trace_id":"ab9778693a3bad07","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:16:26.186Z","level":"info","service":"inventory","trace_id":"f20765716e6caf1f","message":"nightly batch started"}
+{"ts":"2026-03-14T07:16:30.823Z","level":"warn","service":"payments","trace_id":"b5bbb055cb62a600","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:16:33.631Z","level":"error","service":"billing","trace_id":"24e54d00adf2cb7f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:16:38.765Z","level":"info","service":"payments","trace_id":"610b4c928bcf3083","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:16:41.661Z","level":"error","service":"billing","trace_id":"4188f99d19e15243","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:16:46.807Z","level":"warn","service":"auth","trace_id":"509ac24b064dee35","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:16:50.451Z","level":"error","service":"payments","trace_id":"fa0ecb0cd53233d7","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:16:56.122Z","level":"error","service":"orders","trace_id":"785aede5c8a9e676","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:17:02.088Z","level":"error","service":"billing","trace_id":"649be7719f1734af","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:17:06.508Z","level":"info","service":"auth","trace_id":"ee1dbc72dcc5d549","message":"nightly batch started"}
+{"ts":"2026-03-14T07:17:10.652Z","level":"error","service":"search","trace_id":"71731b58f73c2b5b","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:17:16.300Z","level":"warn","service":"search","trace_id":"9403e54f71916ec3","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:17:18.753Z","level":"warn","service":"orders","trace_id":"b595d91a6ac18a06","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:17:21.940Z","level":"info","service":"orders","trace_id":"6ddf2c6b191b29bd","message":"nightly batch started"}
+{"ts":"2026-03-14T07:17:27.555Z","level":"info","service":"auth","trace_id":"a9e3cc7240c7f93a","message":"nightly batch started"}
+{"ts":"2026-03-14T07:17:32.302Z","level":"error","service":"auth","trace_id":"f5ad0d01211ffc3b","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:17:37.067Z","level":"error","service":"auth","trace_id":"667d5781c4d924e5","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:17:40.059Z","level":"error","service":"search","trace_id":"06bb261c76aa2fb5","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:17:42.146Z","level":"warn","service":"orders","trace_id":"b8dab67ed97de051","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:17:47.059Z","level":"info","service":"search","trace_id":"ec414c226c5336c1","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:17:49.625Z","level":"error","service":"auth","trace_id":"dffe147b3cd7f3b1","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:17:54.161Z","level":"info","service":"auth","trace_id":"295ec59d2fceed6b","message":"request completed status=200"}
+{"ts":"2026-03-14T07:17:59.658Z","level":"warn","service":"search","trace_id":"f7735ba0f6bffe42","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:18:02.940Z","level":"error","service":"orders","trace_id":"b3dcc4b4119b102f","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:18:05.098Z","level":"error","service":"billing","trace_id":"2fb9638faae429a6","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:18:10.310Z","level":"warn","service":"payments","trace_id":"4abb9cfb437a95c3","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:18:15.477Z","level":"error","service":"search","trace_id":"ce93a67e80f99784","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:18:19.416Z","level":"info","service":"payments","trace_id":"a3ab0923ee541871","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:18:23.730Z","level":"info","service":"inventory","trace_id":"602308999507c897","message":"request completed status=200"}
+{"ts":"2026-03-14T07:18:26.160Z","level":"warn","service":"payments","trace_id":"c22da83b77c53553","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:18:30.184Z","level":"warn","service":"billing","trace_id":"4fc775e0fe35909a","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:18:33.465Z","level":"warn","service":"search","trace_id":"18fc233634f2bf3d","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:18:36.482Z","level":"warn","service":"auth","trace_id":"877cb87a7d77de57","message":"retrying request (attempt 2 of 3)"}
+{"ts":"2026-03-14T07:18:38.834Z","level":"error","service":"search","trace_id":"c19b4da55646ca82","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:18:40.893Z","level":"error","service":"billing","trace_id":"5f746abac084ca99","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:18:43.007Z","level":"error","service":"auth","trace_id":"26e56df79ca5e7be","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:18:46.423Z","level":"error","service":"inventory","trace_id":"7cf3017db0cc45b5","message":"upstream timeout after 30s"}
+{"ts":"2026-03-14T07:18:49.330Z","level":"error","service":"search","trace_id":"6b6f943e9f2a0164","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:18:53.638Z","level":"info","service":"orders","trace_id":"d6d858028d75a494","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:18:57.855Z","level":"warn","service":"inventory","trace_id":"3044f60ca60d2f65","message":"disk usage at 78 percent on volume /data"}
+{"ts":"2026-03-14T07:19:00.939Z","level":"info","service":"payments","trace_id":"860b3ebc9a56a5da","message":"request completed status=200"}
+{"ts":"2026-03-14T07:19:03.504Z","level":"error","service":"auth","trace_id":"0239340d9e05bb2c","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:19:06.800Z","level":"info","service":"auth","trace_id":"b96a4ad3b055b030","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:19:08.921Z","level":"error","service":"orders","trace_id":"3e4de5775764757f","message":"failed to connect to replica db-2 (ECONNREFUSED)"}
+{"ts":"2026-03-14T07:19:13.283Z","level":"warn","service":"billing","trace_id":"110c4152791d5bae","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:19:17.082Z","level":"warn","service":"payments","trace_id":"0a62c0259dd062e3","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:19:21.798Z","level":"info","service":"orders","trace_id":"898103a82e954214","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:19:25.714Z","level":"warn","service":"inventory","trace_id":"929dbb3e6f5c036e","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:19:30.166Z","level":"error","service":"auth","trace_id":"d20a8699a097b9fc","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:19:32.246Z","level":"info","service":"inventory","trace_id":"a7e387cb8e52ee7b","message":"request completed status=200"}
+{"ts":"2026-03-14T07:19:37.047Z","level":"warn","service":"payments","trace_id":"f402c177eee1eb9e","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:19:41.262Z","level":"warn","service":"orders","trace_id":"280acb51bebf5a89","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:19:45.289Z","level":"info","service":"search","trace_id":"ff5f0289c9e9a37c","message":"health check ok latency=3ms"}
+{"ts":"2026-03-14T07:19:50.592Z","level":"error","service":"auth","trace_id":"f305e17a386931b8","message":"token verification failed: expired"}
+{"ts":"2026-03-14T07:19:54.688Z","level":"warn","service":"orders","trace_id":"a0dfbe9955f08360","message":"cache hit ratio below 80 percent for 5m"}
+{"ts":"2026-03-14T07:19:58.773Z","level":"warn","service":"inventory","trace_id":"24e51569e5a5d0e7","message":"slow query 1250ms on table orders"}
+{"ts":"2026-03-14T07:20:02.530Z","level":"error","service":"search","trace_id":"cbc68c2706663858","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:20:07.893Z","level":"error","service":"billing","trace_id":"7ccf93783449a110","message":"payment provider returned 502"}
+{"ts":"2026-03-14T07:20:10.264Z","level":"warn","service":"auth","trace_id":"faba487e3f281782","message":"queue depth above soft limit (1200)"}
+{"ts":"2026-03-14T07:20:15.954Z","level":"info","service":"auth","trace_id":"7ff17ea1d6a4b1b4","message":"cache refreshed for key catalog"}
+{"ts":"2026-03-14T07:20:21.251Z","level":"error","service":"billing","trace_id":"e15ce5d515bd0e25","message":"order write failed: deadlock detected"}
+{"ts":"2026-03-14T07:20:26.573Z","level":"warn","service":"payments","trace_id":"a9e74c62f522eb31","message":"slow query 1250ms on table orders"}
