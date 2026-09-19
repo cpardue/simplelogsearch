@@ -8,7 +8,8 @@ search-indexable, WebMCP-capable (AI agents can drive it), and deep enough to
 pass AdSense thin-content review. 100% client-side: log files never leave the
 user's browser (privacy is a feature, not just a constraint).
 
-**Live URL.** `https://cpardue.github.io/simplelogsearch/` (repo
+**Live URL.** `https://simplelogsearch.com/` (dedicated domain locked 2026-09-19
+per CHECKLIST 7.4; old subpath URLs 301 here) — repo
 `cpardue/simplelogsearch`, Pages "deploy from branch", no build step).
 
 ---
