@@ -1,6 +1,6 @@
 # Spec — SEO / Google Indexability + AdSense Thin-Content Strategy
 
-Base: `https://cpardue.github.io/simplelogsearch/` (subpath project site).
+Base: `https://simplelogsearch.com/` (dedicated-domain project site, locked 2026-09-19 per CHECKLIST 7.4; old subpath URLs 301 here).
 Anti-thin-content doctrine: **six genuinely useful pages, ~4,300 original
 words total, real author, visible (not just JSON-LD) FAQ, privacy policy, no
 templated doorway content.** Content stays English-only (i18n is UI-only by
@@ -79,7 +79,7 @@ JSON-LD blocks:
 
 | Page | JSON-LD |
 |---|---|
-| index | `WebSite` (name, url, `potentialAction` SearchAction → `https://cpardue.github.io/simplelogsearch/?q={search_term_string}`); `SoftwareApplication` (applicationCategory "DeveloperApplication", operatingSystem "Web", offers price 0 USD — **no aggregateRating/fake reviews**); `WebPage`; `FAQPage` mirroring the 10 visible index FAQs verbatim |
+| index | `WebSite` (name, url, `potentialAction` SearchAction → `https://simplelogsearch.com/?q={search_term_string}`); `SoftwareApplication` (applicationCategory "DeveloperApplication", operatingSystem "Web", offers price 0 USD — **no aggregateRating/fake reviews**); `WebPage`; `FAQPage` mirroring the 10 visible index FAQs verbatim |
 | query-syntax / how-to-search-logs | `Article` (headline, author Person Chris Pardue, dateModified) + `BreadcrumbList` |
 | faq | `WebPage` + `FAQPage` (14 Q/As verbatim) + BreadcrumbList |
 | about | `AboutPage` + `Person` (Chris Pardue, sameAs cehstudy.com/about/) + BreadcrumbList |
@@ -92,16 +92,16 @@ the SearchAction is functional, not decorative.
 
 - `sitemap.xml`: all 6 URLs, absolute, with `lastmod` (bump only when page
   content actually changes — cehstudy convention).
-- **Domain-root robots.txt is owned by the `cpardue.github.io` repo** (Pages
-  project-site gotcha). CHECKLIST 6.8 updates it via GitHub API: add
-  `Sitemap: https://cpardue.github.io/simplelogsearch/sitemap.xml` (create the
-  file if absent; keep any existing AI-crawler allowlist — cehstudy pattern:
-  GPTBot, Google-Extended, CCBot, ClaudeBot, PerplexityBot allowed). Also keep
-  a local `robots.txt` copy in this repo so the future custom-domain step is
-  mechanical.
+- **Domain-root robots.txt = this repo's `robots.txt`** (2026-09-19: dedicated
+  domain — the repo root serves at `https://simplelogsearch.com/`, so the
+  project owns its own domain root; the old username-repo constraint no longer
+  applies). It must carry `Sitemap: https://simplelogsearch.com/sitemap.xml` +
+  the AI-crawler allowlist (cehstudy pattern: GPTBot, Google-Extended, CCBot,
+  ClaudeBot, PerplexityBot allowed) — created in CHECKLIST 6.7, live-checked
+  in 6.8.
 - 404: branded dark `404.html` (logo + "page not found" + link home) — Pages
   serves it for bad paths under the site.
-- GSC (CHECKLIST 7.1, `[MANUAL user]`): property `cpardue.github.io`, submit
+- GSC (CHECKLIST 7.1, `[MANUAL user]`): property `simplelogsearch.com` (domain property), submit
   the sitemap URL, then request indexing for each of the 6 URLs right after
   deploy; monitor Index Coverage for ~2 weeks before the AdSense application.
 
