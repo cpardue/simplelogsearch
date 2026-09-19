@@ -3,8 +3,9 @@
 Goal: AI agents (browser-integrated, ChatGPT Desktop, Brave Leo, iframes) can
 drive the app directly via W3C WebMCP tools instead of simulating clicks.
 Loaded **only on index.html**; feature-detected; silently no-ops elsewhere.
-This file is the ONLY place that may reference `navigator.modelContext` —
-spec is still evolving, keep isolation absolute.
+This file is the ONLY place that may reference the WebMCP modelContext API
+(`document.modelContext`, with `navigator.modelContext` as fallback) — spec is
+still evolving, keep isolation absolute.
 
 ## 1. Browser/agent support (verified 2026-09)
 
@@ -24,13 +25,31 @@ touch `document.domain`), Permissions Policy `tools` defaults to `self`
 
 ```js
 (function () {
-  const mc = typeof navigator !== "undefined" ? navigator.modelContext : undefined;
+  // document first: on builds that deprecate the navigator alias, touching
+  // navigator.modelContext logs a console warning (violates §1 "no console noise").
+  const doc = typeof document !== "undefined" ? document : undefined;
+  const nav = typeof navigator !== "undefined" ? navigator : undefined;
+  const mc = (doc && doc.modelContext) || (nav && nav.modelContext);
   if (!mc || typeof mc.registerTool !== "function") return;   // no-op on unsupported
   const guard = (fn) => async (input) => {
     try { return fn(input); }
     catch (e) { return { ok: false, error: String((e && e.message) || e) }; }
   };
-  mc.registerTool("search_logs", {
+  // registerTool differs across builds (see note below the snippet): try the
+  // canonical 2-arg call; on sync throw / rejecting Promise fall back to the
+  // single-arg { name, …def } form. Every failure mode is swallowed — silent
+  // no-op, zero console noise.
+  const register = (name, def) => {
+    const alt = () => {
+      try { return Promise.resolve(mc.registerTool({ name, ...def })).catch(() => {}); }
+      catch (e) { return Promise.resolve(); }
+    };
+    try {
+      const r = mc.registerTool(name, def);
+      if (r && typeof r.then === "function") return r.catch(alt);
+    } catch (e) { return alt(); }
+  };
+  register("search_logs", {
     description: "Search the currently loaded log file with a boolean query " +
       '(quoted phrases, AND/OR/NOT, parentheses). Returns match count and ' +
       "up to 10 matching line previews with original line numbers. " +
@@ -45,6 +64,13 @@ touch `document.domain`), Permissions Policy `tools` defaults to `self`
   // … same pattern for the other 3 tools (below)
 })();
 ```
+
+*(2026-09-17 amended per protocol 8 after CHECKLIST 5.3 live probe on current Chromium
+(ms-playwright chromium-1234): modelContext lives on `document` and the `navigator`
+alias logs a deprecation warning; that build's `registerTool` rejects the canonical
+2-arg call with "not of type 'ModelContextTool'" while accepting single-arg
+`{ name, …def }`, which returns a Promise. Document-first + dual-signature keeps the
+canonical shape for spec-conformant builds and zero console noise everywhere.)*
 
 Rules: ≤ 10 tools/page (we use 4); names `snake_case`; descriptions written in
 plain English **for the agent** (state preconditions!); every `execute` returns
@@ -107,7 +133,8 @@ All < 50 KB, deterministic (seeded generator script kept in repo under
 ## 6. Origin trial (user action — CHECKLIST 5.5)
 
 Apply at developer.chrome.com origin trials for **WebMCP**; add origins
-`https://cpardue.github.io` and `http://localhost` (+`https://localhost`);
+`https://simplelogsearch.com` (serving origin) + `https://cpardue.github.io`
+(alias), and `http://localhost` (+`https://localhost`);
 insert returned tokens as `<meta http-equiv="Origin-Trial" content="…">` in
 index.html `<head>` (one meta per token); commit; re-run step 3–5 against the
 **live** URL. Edge trial: same, separate token, add to index too. Keep tokens
