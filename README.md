@@ -3,7 +3,7 @@
 Free, client-side log-file search tool with a Google-style dark UI, boolean
 (AND/OR/NOT) phrase queries, 21-language UI, WebMCP agent tools, and a
 Google-indexable, AdSense-ready content set. Hosted on GitHub Pages at
-`https://cpardue.github.io/simplelogsearch/` (repo: `cpardue/simplelogsearch`).
+`https://simplelogsearch.com/` (repo: `cpardue/simplelogsearch`).
 
 This folder is the **source of truth for planning** and will be mirrored 1:1 to
 the repo root (see CHECKLIST item 0.3), so any future LLM session can read the
