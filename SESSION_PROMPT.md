@@ -10,7 +10,7 @@ workspace or re-derive the plan — all startup context is in the prompt.
 SimpleLogSearch build session — bootstrap. Follow this exactly.
 
 PROJECT: SimpleLogSearch — free in-browser log search app (AND/OR/NOT), static
-HTML/CSS/vanilla JS, GitHub Pages at https://cpardue.github.io/simplelogsearch/,
+HTML/CSS/vanilla JS, GitHub Pages at https://simplelogsearch.com/,
 repo cpardue/simplelogsearch. All planning lives in the local folder
 `simplelogsearch/` under the workspace root
 (c:\Users\cpard\OneDrive\Documents\vscode\simplelogsearch), which maps 1:1 to
