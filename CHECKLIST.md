@@ -171,31 +171,24 @@ vector from spec/query-language §6.
 
 ## Phase 5 — WebMCP + sample logs (gate: spec/webmcp §5 protocol)
 
-- [ ] 5.1 Sample logs per spec/webmcp §4: write `test/gen-samples.mjs`
+- [x] 5.1 Sample logs per spec/webmcp §4: write `test/gen-samples.mjs`
   (seeded/deterministic, no deps) generating the 4 files in `samples/` with
   the required content markers; run it; commit both generator and outputs.
   Record the designed canonical-query match count for windows-event.log in
   the Session Log (used by 5.4).
-- [ ] 5.2 `js/webmcp.js` per spec/webmcp §2–§3: feature detection, guard
+- [x] 5.2 `js/webmcp.js` per spec/webmcp §2–§3: feature detection, guard
   wrapper, the 4 tools (`get_log_status`, `search_logs`, `reset_view`,
   `load_sample_log`) with exact schemas/returns; expose a tiny internal API on
   `window.SLS` (search/reset/status/loadSample) that both app.js and webmcp.js
   use — no tool may duplicate UI logic.
-- [ ] 5.3 Include `js/webmcp.js` in index.html only (after app.js).
-- [ ] 5.4 Local protocol (spec/webmcp §5 steps 1–4, 6): Chrome with
+- [x] 5.3 Include `js/webmcp.js` in index.html only (after app.js).
+- [x] 5.4 Local protocol (spec/webmcp §5 steps 1–4, 6): Chrome with
   `about:flags#enable-webmcp-testing` + Model Context Tool Inspector; serve
   the folder over localhost http(s). **Verify:** exactly 4 tools listed with
   correct schemas; scripted flow returns expected values (windows sample count
   matches the number recorded in 5.1); Firefox load → zero console noise.
-- [ ] 5.5 `[MANUAL user]` Origin trials: apply for WebMCP origin trial tokens
-  (Chrome: developer.chrome.com origin trials; Edge: Microsoft Edge origin
-  trials) with origins `https://cpardue.github.io`, `http://localhost`,
-  `https://localhost`; hand over the two tokens → LLM inserts
-  `<meta http-equiv="Origin-Trial">` metas in index.html head and pushes.
-- [ ] 5.6 Live Verify (spec/webmcp §5 steps 3–5 against
-  `https://cpardue.github.io/simplelogsearch/`): 4 tools listed; scripted flow
-  passes on the live origin; natural-language agent test (Chrome Gemini or
-  ChatGPT Desktop) returns the correct canonical-query count by invoking tools.
+*(5.5/5.6 moved to "Deferred" section at end, 2026-09-19 user directive —
+domain-dependent; see there.)*
 
 ## Phase 6 — Content pages + SEO (gate: schema-clean, links clean, word floors met)
 
@@ -213,10 +206,11 @@ vector from spec/query-language §6.
 - [ ] 6.7 `sitemap.xml` (6 absolute URLs + lastmod) and branded `404.html`;
   local `robots.txt` copy in repo (Sitemap line + AI-crawler allowlist per
   spec §3).
-- [ ] 6.8 Update domain-root robots: via GitHub API, read
-  `cpardue.github.io/robots.txt` (create if missing), ensure
-  `Sitemap: https://cpardue.github.io/simplelogsearch/sitemap.xml` present,
-  preserve existing content/AI allowlist. Push.
+- [ ] 6.8 Domain-root robots check (2026-09-19: dedicated domain — the repo
+  root now serves at the app's own origin root, so we own our own
+  domain-root robots): live-probe `https://simplelogsearch.com/robots.txt`
+  (created in 6.7) → carries `Sitemap: https://simplelogsearch.com/sitemap.xml`
+  + AI-crawler allowlist per spec §3. Push.
 - [ ] 6.9 Push everything; live probe all 6 URLs + 404 page.
 - [ ] 6.10 Write `test/links-check.mjs` (node): crawl the 6 local HTML files'
   internal hrefs (strip query/fragment) → each must resolve to a local file;
@@ -228,9 +222,10 @@ vector from spec/query-language §6.
 
 ## Phase 7 — Launch gates, GSC, AdSense prep (gate: site indexed + application submitted)
 
-- [ ] 7.1 `[MANUAL user]` Google Search Console: property `cpardue.github.io`
-  (create if missing), submit sitemap
-  `https://cpardue.github.io/simplelogsearch/sitemap.xml`, then request
+- [ ] 7.1 `[MANUAL user]` Google Search Console: property `simplelogsearch.com`
+  (domain property; create if missing — GSC DNS verification TXT record, LLM
+  hands the user the exact value), submit sitemap
+  `https://simplelogsearch.com/sitemap.xml`, then request
   indexing for each of the 6 URLs. **Verify:** user confirms submission; LLM
   records the date in Session Log (indexing clock starts now).
 - [ ] 7.2 Lighthouse (mobile + desktop) on index + query-syntax pages:
@@ -259,11 +254,39 @@ vector from spec/query-language §6.
   pattern), content pages first; re-verify zero placeholder slots and that
   FAQ/privacy disclosures remain accurate.
 
+## Deferred — WebMCP live (moved from Phase 5, 2026-09-19 user directive; IDs kept)
+
+*Domain locked 2026-09-19 = simplelogsearch.com (7.4) — origins/URL below
+already updated. No Phase 6/7 item depends on these (webmcp.js ships and
+feature-detects off without tokens; its deploy lands at 5.6).*
+
+- [ ] 5.5 `[MANUAL user]` Origin trials: apply for WebMCP origin trial tokens
+  (Chrome: developer.chrome.com origin trials; Edge: Microsoft Edge origin
+  trials) with origins `https://simplelogsearch.com` (serving origin),
+  `https://cpardue.github.io` (alias), `http://localhost`,
+  `https://localhost`; hand over the two tokens → LLM inserts
+  `<meta http-equiv="Origin-Trial">` metas in index.html head and pushes.
+- [ ] 5.6 Live Verify (spec/webmcp §5 steps 3–5 against
+  `https://simplelogsearch.com/`): 4 tools listed; scripted flow
+[2026-09-19 08:34] item 7.4 decided early per user directive (out of doc order; choice recorded per protocol 6) — option (b): dedicated domain, user buying + doing registrar DNS wiring externally now and will hand over the name; repo-side wiring runs in the session where the name arrives, BEFORE 6.1: CNAME file at repo root (apex), origin find-replace across spec/checklist/local copies (Phase-6 canonicals/og/sitemap don't exist yet → built on final origin directly = zero rework), HTTPS live probe, then mark 7.4 [x]; GSC property swap stays at 7.1 — no commit (local only)
+
+  passes on the live origin; natural-language agent test (Chrome Gemini or
+  ChatGPT Desktop) returns the correct canonical-query count by invoking tools.
+
 ---
 
 ## Session Log (newest first — one line per completed item)
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
+
+[2026-09-19 07:08] item 5.5 in progress — [MANUAL user] prep complete, STOPPED for user: applied protocol-8 origin amendment (chris-pardue.com) then REVERTED per user instruction ("don't add the origins if i need to get & set up a domain first") — serving origin to register is decided at application time; live site currently 301s cpardue.github.io → chris-pardue.com and trial tokens activate only on the serving origin — no commit (docs byte-identical to remote; nothing pushed) — waiting: user applies Chrome + Edge WebMCP origin trials, hands over the two tokens
+- [07:28] moved 5.5/5.6 verbatim (IDs kept) to "Deferred" section at end per user directive; first unchecked item now 6.1; domain-related items NOT moved — decision item 7.4 gates Phase-6 origin-baked artifacts (canonicals/sitemap/robots/GSC), pending user's domain decision
+
+[2026-09-17 15:49] item 5.4 done — local protocol gate (verify-sls-5.4.mjs, workspace root) 21/21 PASS over 127.0.0.1 http: chrome-headless-shell HeadlessChrome/151.0.7922.34 + --enable-features=WebMCPTesting (= about:flags#enable-webmcp-testing; C5 control: without flag → no document.modelContext) — getTools() read-back (same registry+invocation path the Model Context Tool Inspector uses per developer.chrome.com/docs/ai/webmcp) = exactly 4 tools, inputSchemas exact per spec §3 + search_logs description verbatim §2; scripted flow via mc.executeTool(tool, jsonInputString) — browser validates input vs schema: pre-load status all-null/false → load_sample_log(windows) {ok,"windows-event.log",400} (UI "windows-event.log — 400 lines", gutter from 1) → canonical query matched_lines=3 = 5.1 designed count, samples lines 18/89/215 ≤200-char previews, window shows EXACTLY those 3 rows → reset_view {ok,400,has_log} → get_log_status has_searched=false/match_count=null; zero console messages + page errors in Chrome; Firefox 155 (playwright firefox-1543 headless — no system FF installed) load → zero console noise + no-op path confirmed (no modelContext, SLS intact); samples re-verified vs 5.1 sha prefixes + line counts; parser regression 25/25 — no commit (local only; push happens at 5.6)
+[2026-09-17 14:03] item 5.3 done — include gate (verify-sls-5.3.mjs, workspace root) 15/15 PASS: static A1–A5 (exactly one <script src="js/webmcp.js" defer>, strictly after app.js = last of 5 deferred scripts before </body>; no other .html in tree references webmcp = "only on index.html"; no inline script touches modelContext; js/webmcp.js present) + real HeadlessChrome/151 (ms-playwright chromium-1234) over local http: all 5 scripts + css 200, window.SLS intact {status,search,reset,loadSample}, zero page errors / zero console messages, getTools() read-back lists exactly the 4 SLS tool names; parser gate re-run 25/25 + item-5.2 vm gate re-run 61/61 PASS. Protocol-8 fix driven by B6 first-run failure (4 uncaught registerTool TypeErrors + navigator.modelContext deprecation warning): live probes (diag-webmcp-api/bisect/timing/promise-5.3.mjs, kept) showed this build keeps modelContext on document (navigator alias logs a warning), rejects the canonical 2-arg registerTool via Promise rejection ("not of type 'ModelContextTool'"), and accepts single-arg { name, …def } → spec/webmcp.md amended FIRST (§2 snippet + header isolation line + dated rationale), then js/webmcp.js (document-first detection + dual-signature register(), all failures swallowed = silent no-op) — no commit (local only; next push at 5.6 Live Verify ships index.html + spec/webmcp.md + js/webmcp.js together)
+[2026-09-17 12:37] item 5.2 done — node vm gate (verify-sls-5.2.mjs, workspace root) 61/61 PASS: real query-parser+i18n+app+webmcp over a DOM stub with capturing navigator.modelContext + fetch over the real samples/ — window.SLS exactly {search,reset,status,loadSample}; exactly 4 tools in §3 order with exact inputSchemas (search_logs carries the §2 literal description; load_sample_log enum windows|linux|web|app + required) and exact §3 returns: pre-load status all-null, no-file errors verbatim, windows load → {ok,file_name,total_lines:400} with B3/B9 UI side effects; canonical query → matched_lines 3 = 5.1 designed count (lines 18/89/215) with ≤200-char previews + samples capped at 10 verified on a 300-match app-log search; bad query → exact query-language §3 detail with previous view untouched (B11); whitespace query → B10 whole-log view; reset_view → {ok,total_lines:400,has_log} then status has_searched=false match_count=null (§5 step 4); unknown-sample + fetch-500 errors leave state untouched; guard converts a throwing SLS method to {ok:false,error} without rejecting; silent no-op on 3 unsupported navigator shapes; zero console noise; shared-path UI regression (form submit / B11 slot text / Esc B12 / Reset button B8) green + node test/query-tests.mjs all PASS — no commit (local only; the index.html script tag lands in item 5.3)
+
+[2026-09-17 10:32] item 5.1 done — node gate test/gen-samples.mjs (seeded mulberry32, zero deps, no wall clock): 15/15 self-checks PASS on the written bytes — all four files < 50 KB (windows-event.log 48240 / linux-syslog.log 39582 / web-access.log 48319 / app-json.log 43536 B) with exact line counts 400/400/500/300; windows: MID123456=7, MID123654=7, both+192.168.1.1=2 (spec §4 minimums ≥3/≥3/≥2) + mixed severities Critical/Error/Information/Warning; linux: syslog format on all lines, 114 auth-failure lines, IPs present; web: Apache combined format on all lines, statuses 200/301/404/500 all present; app: all 300 lines JSON.parse OK with 16-hex trace_id, error+warn levels present. DESIGNED canonical-query count for windows-event.log = 3 (lines 18, 89, 215 1-based) — computed with the real js/query-parser.js (QueryParser.search over the generated file; consumed by 5.4/5.6 per spec/webmcp §5). Determinism: generator run twice, second run byte-identical on all four sha256 (67df7c962d4f/96ce89ccce80/7d886d5dbc11/cc0d83bfe24f). Pushed via Contents-API script push-sls-5.1.mjs (workspace root; git-data API 404 on this PAT): 5 commits — 351046cfd98e test/gen-samples.mjs, 6c870ef244a3 windows-event.log, fa2be6749bbb linux-syslog.log, 2ddd6a0bd255 web-access.log, ce294e1ab5d8a3e4ff4de8eb9f10247786c85d86 app-json.log (= main HEAD); post-push verify: remote content sha256+size 5/5 byte-identical to local — CHECKLIST.md checkoff stays local until the next push
 
 [2026-09-17 09:22] item 4.4 done — full 21-locale sweep gate (verify-sls-4.4.mjs, workspace root): Part A node vm spec-driven audit of js/i18n.js vs parsed spec/i18n.md + Part B REAL headless Chromium via raw CDP (chromium-1234; no playwright module — built-in WebSocket) serving simplelogsearch/ over localhost http → 1890/1890 PASS exit 0. A: LOCALES==§1 order, dirFor ×21 (rtl {ar,ur}), EN 23 keys byte-identical to §2, all 20 non-EN × 23 keys own translations (no silent EN fallback), slot names preserved in 483 locale/key pairs, err.✕ prefix ×84, "SimpleLogSearch" kept in footer.note ×21, numeric slots via toLocaleString(locale) (en 1,234,567 / de 1.234.567 hardcoded anchors), {query} 61→60+… and 60 untruncated ×42, {detail} untranslated ×21, index wordmark/options/boot-codes invariants. B: cycled all 21 locales through real #langSelect change — <html lang|dir> per §1, 14 static chrome slots localized per locale + live status.matched row re-rendered with locale numbers (browser ICU), select endonyms invariant ×21, logo wordmark + <title> exactly English in every locale, sls-lang persisted ×21; ar/ur mirror @1280×800 + 390×844: header order flips (lang-field inline-start), error-slot text anchored to right edge (+16px mobile padding), sticky gutter pinned to right viewport edge, zero page overflow at both widths (en ltr control passed); reload keeps ja (lang/select/storage/chrome re-applied); stored "xx-BOGUS" → boots en/ltr + storage rewritten to "en"; zero real console errors (only benign /favicon.ico 404, expected until Phase 6.6 favicon.svg). No app-code or spec changes (verification-only item). Gate notes: slot check enforces name multiset — spec §3.1 "position class" constrains role not sequence, and 7 locales (zh-CN/hi-IN/bn/ja/ko/tr/ur status.matched) naturally reorder {query}/{matches}; #statusRow excluded from static comparison (app-owned once a file loads — dedicated live status check covers it) — no deploy commit (nothing to ship); checkoff commit sha in history file
 
