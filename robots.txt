@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Sitemap: https://simplelogsearch.com/sitemap.xml
+
+# Explicitly allow AI/LLM crawlers for maximum LLM citation visibility
+User-agent: GPTBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
