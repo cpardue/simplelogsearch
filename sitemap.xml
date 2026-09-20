@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SimpleLogSearch sitemap (CHECKLIST 6.7, spec/seo-adsense §3).
+     All 6 pages, absolute URLs on the dedicated origin (locked 2026-09-19 per
+     CHECKLIST 7.4). lastmod = date the page content was last changed
+     (cehstudy convention — bump only on real content changes): all five
+     content pages authored in Phase 6 (items 6.1–6.5, 2026-09-19); index
+     below-fold content landed in item 6.6 (2026-09-20). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://simplelogsearch.com/</loc>
+    <lastmod>2026-09-20</lastmod>
+  </url>
+  <url>
+    <loc>https://simplelogsearch.com/query-syntax/</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+  <url>
+    <loc>https://simplelogsearch.com/how-to-search-logs/</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+  <url>
+    <loc>https://simplelogsearch.com/faq/</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+  <url>
+    <loc>https://simplelogsearch.com/about/</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+  <url>
+    <loc>https://simplelogsearch.com/privacy-policy/</loc>
+    <lastmod>2026-09-19</lastmod>
+  </url>
+</urlset>
