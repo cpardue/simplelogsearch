@@ -92,7 +92,10 @@ Runs the same parser/matcher as the UI. Returns:
 ### `reset_view` — input: none
 Restores the full log view and clears the search box (same as the Reset
 button). Returns `{ ok: true, total_lines: n, has_log: boolean }`. If no file
-is loaded → `{ ok: false, error: "No log is loaded." }`
+is loaded → `{ ok: false, error: "No log is loaded." }` A pasted snippet (the
+paste box's committed text, named `snippet`) counts as a loaded file; resetting
+it returns the page to the empty paste state and the tool returns
+`{ ok: true, total_lines: 0, has_log: false }`.
 
 ### `load_sample_log` — input: `{ sample: "windows" | "linux" | "web" | "app" }` (required enum)
 Fetches `samples/<sample>-*.log` (relative), loads it exactly as a user upload
@@ -138,4 +141,4 @@ Apply at developer.chrome.com origin trials for **WebMCP**; add origins
 insert returned tokens as `<meta http-equiv="Origin-Trial" content="…">` in
 index.html `<head>` (one meta per token); commit; re-run step 3–5 against the
 **live** URL. Edge trial: same, separate token, add to index too. Keep tokens
-in-repo (they are public by design).
+in-repo (they are public by design).
