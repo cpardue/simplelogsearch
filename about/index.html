@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About SimpleLogSearch — Who Built It and Why | SimpleLogSearch</title>
+  <meta name="description" content="Chris Pardue built SimpleLogSearch for his own log triage: a free in-browser search with AND/OR/NOT queries where your files never leave the browser.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#202124">
+  <link rel="canonical" href="https://simplelogsearch.com/about/">
+  <meta property="og:title" content="About SimpleLogSearch">
+  <meta property="og:description" content="Chris Pardue built SimpleLogSearch for his own log triage: a free in-browser search with AND/OR/NOT queries where your files never leave the browser.">
+  <meta property="og:url" content="https://simplelogsearch.com/about/">
+  <meta property="og:type" content="website">
+  <!-- Pre-paint i18n boot (spec/i18n §4 — identical to index.html): reads localStorage["sls-lang"],
+       validates against the known 21 codes, sets <html lang|dir> before first paint. Full
+       chrome-string application happens in js/i18n.js (deferred below); on content pages it
+       affects header/footer strings only — body copy stays English (spec/seo-adsense §1). -->
+  <script>
+    (function () {
+      var codes = ["en","zh-CN","es-ES","hi-IN","ar","bn","pt-BR","ru","ja","de","fr","ko","tr","vi","id","th","pl","ur","nl","it","uk"];
+      var locale = null;
+      try { locale = window.localStorage.getItem("sls-lang"); } catch (e) {}
+      if (codes.indexOf(locale) === -1) locale = "en";
+      document.documentElement.setAttribute("lang", locale);
+      document.documentElement.setAttribute("dir", locale === "ar" || locale === "ur" ? "rtl" : "ltr");
+    })();
+  </script>
+  <!-- JSON-LD per spec/seo-adsense §2 (about row): AboutPage + Person (Chris Pardue, sameAs
+       cehstudy.com/about/) + BreadcrumbList. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About SimpleLogSearch",
+    "url": "https://simplelogsearch.com/about/",
+    "description": "Who built SimpleLogSearch, why the tool exists, its design principles, and the technology behind it."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Chris Pardue",
+    "description": "Cybersecurity professional and author of SimpleLogSearch and CEHStudy, a free CEH v13 study resource site.",
+    "sameAs": ["https://cehstudy.com/about/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simplelogsearch.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://simplelogsearch.com/about/" }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Shared chrome per spec/seo-adsense §1: header (logo left, language select right) + footer nav (6 links) + dark theme. -->
+  <header>
+    <a class="wordmark" href="../index.html" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
+    <div class="lang-field">
+      <label for="langSelect" data-i18n="lang.label">Language</label>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="es-ES">Español</option>
+        <option value="hi-IN">हिन्दी</option>
+        <option value="ar">العربية</option>
+        <option value="bn">বাংলা</option>
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="ru">Русский</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="ko">한국어</option>
+        <option value="tr">Türkçe</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="th">ไทย</option>
+        <option value="pl">Polski</option>
+        <option value="ur">اردو</option>
+        <option value="nl">Nederlands</option>
+        <option value="it">Italiano</option>
+        <option value="uk">Українська</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="content">
+    <article>
+      <h1>About SimpleLogSearch</h1>
+      <p>SimpleLogSearch is a free log file search that runs entirely in your browser. You upload a log, type an AND, OR, or NOT query, and read the matching lines with their original line numbers — all of it executed on your own machine. This page is the short version of who built it, why it exists, and how it works under the hood.</p>
+
+      <h2>Why this tool exists</h2>
+      <p>I search logs all the time as part of my cybersecurity work. I use advanced log parsing tools, but in practice I often find that Notepad++ and Ctrl+F do the job just fine. The moment a task needs more than one plain search string — combine two terms, exclude a known noiser, match an exact quoted phrase — ordinary find falls short, and heavy tooling is overkill. SimpleLogSearch sits exactly in that gap: a search box with real boolean syntax on top of an ordinary text window, private enough to point at whatever I am investigating.</p>
+      <p>I made this tool for myself first, and have now made it available to you. It is the same one I would use daily: no signup, no tiers, nothing attached.</p>
+
+      <h2>Data safety</h2>
+      <p>Your logs are never uploaded to a SimpleLogSearch server — there is no server. Everything stays in your browser: the file is read into page memory with the browser's own file API, the search runs locally on your machine, and everything is discarded when you close the page or load another file. I need it this way so that I can use this at work on logs I am not free to copy out of my environment; you can use it at work, too. No accounts means nothing to store, leak, or sell, and the only preference the app remembers is your interface language.</p>
+
+      <h2>Design principles</h2>
+      <p>Three principles drove the design. First, privacy-first client-side processing: the architecture makes uploading impossible rather than merely unlikely. Second, a familiar Google-style dark UI — a magnifier search bar on a dark gray canvas, responsive down to phone width, with no learning curve for anyone who has ever used a web search box. Third, agent-friendly by design: through WebMCP the page exposes four tools (get_log_status, search_logs, reset_view, load_sample_log) so an AI assistant in a supported browser can run searches on your behalf.</p>
+
+      <h2>Under the hood</h2>
+      <p>SimpleLogSearch is a static site written in vanilla JavaScript — no frameworks, no build step, no runtime dependencies. It is hosted on GitHub Pages, which keeps the entire operation to a few dollars of static hosting per year. The results window is virtualized: only the rows currently visible exist in the page, so a 10 MB file with 100,000 lines scrolls without stutter while a 50 MB upload cap keeps memory in check. Matching is case-insensitive substring, deliberately grep-like in being honest about exactly what it will and will not find.</p>
+
+      <h2>Related projects</h2>
+      <ul>
+        <li><a href="https://cehstudy.com/">CEHStudy</a> — a free collection of condensed CEH v13 study resources (flashcards, practice questions, module notes, and a glossary), also built and maintained by Chris Pardue. His author page there is <a href="https://cehstudy.com/about/">cehstudy.com/about</a>.</li>
+        <li><a href="https://github.com/cpardue/simplelogsearch">SimpleLogSearch source code</a> — the complete app is plain HTML, CSS, and JavaScript on GitHub. Bug reports and feature requests are read personally; there is no ticket system to maintain because there are no accounts.</li>
+      </ul>
+
+      <p>If this tool is useful to you, bookmark the page and pass it on to your grep-illiterate co-workers. They can use it, too. Mine do.</p>
+    </article>
+  </main>
+  <footer>
+    <nav>
+      <a href="../index.html" data-i18n="nav.home">Home</a>
+      <a href="../query-syntax/" data-i18n="nav.syntax">Query Syntax</a>
+      <a href="../how-to-search-logs/" data-i18n="nav.howto">How-To Guide</a>
+      <a href="../faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="../about/" data-i18n="nav.about">About</a>
+      <a href="../privacy-policy/" data-i18n="nav.privacy">Privacy Policy</a>
+    </nav>
+    <p class="footer-note" data-i18n="footer.note">SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.</p>
+  </footer>
+
+  <script src="../js/i18n.js" defer></script>
+  <script>
+    // Content-page chrome i18n (spec/seo-adsense §1): on content pages the language
+    // switch affects header/footer strings only; the body copy stays English.
+    document.getElementById("langSelect").addEventListener("change", function () {
+      if (window.I18N) window.I18N.apply(this.value);
+    });
+  </script>
+
+</body>
+</html>
