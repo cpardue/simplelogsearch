@@ -9,6 +9,7 @@
      main            <form class="search-bar"> (.search-icon, .search-input,
                     .search-submit) + .btn-row (.btn × Reset/Upload)
      #errorSlot      role=alert; hidden except when active (JS toggles)
+     #pasteArea      empty-state paste box (faint THIS/THAT placeholder); §4 below
      footer          nav (6 links) + .footer-note
      .skip-link      a11y.skipToResults (ui-spec §6)
 */
@@ -90,6 +91,34 @@ header, #errorSlot, main, footer {
 }
 [dir="rtl"] #logViewport::after {
   background: linear-gradient(225deg, transparent 50%, var(--gutter) 50%);
+}
+
+/* Paste area — empty state (ui-spec §4, 2026-09-20 user request). Same box
+   language as the viewport: bg #1d1f22, mono 13px/16px, initial height =
+   20 rows (344px), native vertical resize. The placeholder is the faint
+   two-line THIS/THAT demo (i18n log.placeholder). */
+#pasteArea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 344px;                /* = viewport initial (20 rows + padding) */
+  min-height: 80px;
+  max-height: 90vh;
+  padding-block: 12px;
+  padding-inline: 4px;
+  border: none;
+  background: #1d1f22;
+  color: var(--text);
+  font: 13px/16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre;
+  overflow-wrap: normal;
+  resize: vertical;
+}
+#pasteArea[hidden] { display: none; }   /* author display:block would otherwise beat [hidden] */
+#pasteArea::placeholder { color: #9aa0a6; }  /* faint — same token as .search-input::placeholder */
+#pasteArea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;           /* inside the box, away from neighbors */
 }
 
 /* Spacer — js/log-view.js sets height = rows × 16px; the absolutely
@@ -426,5 +455,18 @@ section.content code {
   padding: 1px 5px;
   border-radius: 3px;
 }
+
+/* ===== "About This Tool" collapsed section (spec/seo-adsense §1.1, 2026-09-20
+   user request) — native <details>, closed by default; the article content stays
+   in the DOM for SEO/AdSense. Reuses section.content typography above. ===== */
+details.about-details > summary {
+  cursor: pointer;
+  font-size: 20px;                     /* matches section.content h2 */
+  line-height: 1.3;
+  margin-block: 8px 4px;
+  color: var(--text);
+  user-select: none;
+}
+details.about-details > summary:hover { color: var(--accent); }
 
 
