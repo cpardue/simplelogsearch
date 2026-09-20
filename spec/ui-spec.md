@@ -22,9 +22,10 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 <div id="errorSlot" role="alert" aria-live="polite">          (only when active)
 <main>    [search bar: 🔍 icon | input | 🔍 submit button]
           [ Reset ]  [ Upload ]        (12px gap, centered)
-<section id="results" hidden>            (appears after first successful upload)
-   [status row: filename • lines • match count]
-   [log viewport: gutter + virtualized rows, CSS-resizable]
+<section id="results">                   (always visible; empty state = paste area)
+   [status row: filename • lines • match count]   (hidden until content loads)
+   [paste area: textarea, faint placeholder THIS/THAT]  (empty state only)
+   [log viewport: gutter + virtualized rows, CSS-resizable]   (content state only)
 </section>
 <footer>  nav links (6 pages) + footer.note
 ```
@@ -48,6 +49,9 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 - **Error slot**: between header and search bar; `color:#f28b82; font-size:14px;
   margin-bottom:8px;` one line max (truncates). Auto-dismiss after 6 s or on
   next successful action; Esc also clears it.
+- **Index-only, between #results and the footer**: the article content ("About
+  This Tool") lives in a collapsed native `<details>` (closed by default; summary
+  i18n `about.title`) — see spec/seo-adsense §1.1.
 
 ## 3. Upload flash ("momentary light-up")
 
@@ -64,7 +68,8 @@ Trigger: add class + error message together; remove class on `animationend`.
 
 - Container: `width:100%;` full browser width (no max-width), margin-top 24px.
 - Status row: 13px `#9aa0a6`, padding 8px 4px; content per i18n status keys;
-  double-clicking it re-focuses the search input.
+  double-clicking it re-focuses the search input. Hidden in the empty state
+  (no content loaded).
 - Viewport: `overflow:auto; resize:vertical;` **initial height = 20 rows ≈
   344px** (20 × 16px + padding); `min-height:80px; max-height:90vh;`
   bottom-right corner grip rendered as a CSS gradient triangle (decorative —
@@ -84,16 +89,27 @@ Trigger: add class + error message together; remove class on `animationend`.
   file*; when showing matches, the gutter shows each match's original number
   (never renumbered 1..N).
 - Scroll to top on every new search / reset / file load.
+- **Paste area (empty state, user request 2026-09-20)**: from first paint
+  `#results` is visible; with no content loaded it shows `<textarea id="pasteArea">`
+  styled like the viewport (bg #1d1f22, 13px/16px mono, initial height 344px,
+  min 80px / max 90vh) while the viewport is hidden. Placeholder = two faint
+  lines `THIS` / `THAT` in `#9aa0a6` (same token as input placeholders; i18n
+  `log.placeholder` — literal demo data, identical in every locale). Pasted or
+  typed text commits on the paste event or a ~500 ms typing pause: loaded
+  exactly like an upload named `snippet` (first line = line 1; trailing-newline
+  rule as for files), textarea hidden + cleared, viewport shown from line 1,
+  status `loaded`, focus moves to the search input. Reset with a snippet loaded
+  returns to this empty state (B15).
 
 ## 5. Behavior matrix (authoritative — CHECKLIST verifies every row)
 
 | # | State | Action | Result |
 |---|---|---|---|
-| B1 | no file | submit search (any text) | Upload button flashes; error slot shows `✕ Upload Log File before searching`; input kept; results stay hidden |
-| B2 | no file | click Reset | nothing happens (no error, no state change) |
-| B3 | no file | Upload → pick valid file | window appears (20 rows), full log shown, status `loaded` |
+| B1 | no file | submit search (any text) | Upload button flashes; error slot shows `✕ Upload Log File before searching`; input kept; paste area stays in the empty state |
+| B2 | no file | click Reset | nothing happens (no error, no state change); uncommitted paste-area text, if any, is cleared |
+| B3 | no file | Upload → pick valid file | full log shown in the window from line 1 (the window was already visible), status `loaded` |
 | B4 | no file | Upload → cancel picker | nothing changes |
-| B5 | no file | pick file > 50 MB | error slot `fileTooLarge`; window stays hidden |
+| B5 | no file | pick file > 50 MB | error slot `fileTooLarge`; paste area stays in the empty state; previous load untouched |
 | B6 | file loaded | submit valid query | only matches shown; original line numbers; status `matched`/`noMatches`; scroll top |
 | B7 | matches shown | submit new query | same window updates to new matches |
 | B8 | file loaded (any view) | click Reset | input cleared; **entire log** shown again; status `loaded`; error cleared |
@@ -102,6 +118,8 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B11 | matches shown | submit invalid query | error slot `invalidQuery` + detail; previous matches stay visible |
 | B12 | any | Esc in search input | clears error slot only; input text kept |
 | B13 | big file, read > ~200 ms | during read | status shows `loading` for filename; UI stays responsive (async read) |
+| B14 | empty state | paste or type text into the paste area | commits as a log named `snippet`: whole text from line 1; textarea hidden (placeholder gone); status `loaded` |
+| B15 | snippet loaded | click Reset | back to the empty state: textarea + placeholder shown; search input cleared; no log in state |
 
 ## 6. Keyboard & a11y
 
@@ -118,4 +136,4 @@ Trigger: add class + error message together; remove class on `animationend`.
 - < 720px: buttons stay centered under the bar; result window keeps full width;
   gutter width auto-fits; everything remains usable (resize handle less
   convenient on touch — accepted).
-
+
