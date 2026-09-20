@@ -133,15 +133,21 @@
     </div>
   </main>
 
-  <section id="results" hidden>
-    <div id="statusRow" aria-live="polite" data-i18n="status.noFile">No log loaded. Use Upload to open a log file.</div>
-    <div id="logViewport" aria-label="Log content" data-i18n-aria="a11y.logView"></div>
+  <section id="results">
+    <div id="statusRow" aria-live="polite" hidden></div>
+    <!-- Empty-state paste box (ui-spec §4): faint two-line THIS/THAT demo
+         placeholder (i18n log.placeholder); commits as a "snippet" log on paste
+         or a typing pause. -->
+    <textarea id="pasteArea" spellcheck="false" placeholder="THIS&#10;THAT" data-i18n-placeholder="log.placeholder"></textarea>
+    <div id="logViewport" aria-label="Log content" data-i18n-aria="a11y.logView" hidden></div>
   </section>
 
-  <!-- Below-fold content per spec/seo-adsense §1.1 (CHECKLIST 6.6). Body copy is
+  <!-- "About This Tool" — collapsed by default (spec/seo-adsense §1.1, 2026-09-20
+       user direction; content preserved in the DOM for SEO/AdSense). Body copy is
        English-only — the language switch localizes chrome strings only (§1); these
-       elements intentionally carry no data-i18n attributes. -->
-  <section class="content" id="belowFold">
+       elements intentionally carry no data-i18n attributes except the summary. -->
+  <details class="content about-details" id="aboutDetails">
+    <summary data-i18n="about.title">About This Tool</summary>
     <h1>Free Online Log File Search with AND, OR, and NOT Queries</h1>
 
     <p>SimpleLogSearch is a free log file search that runs entirely in your browser. Click Upload, pick a log, type a query with AND, OR, NOT, and quoted phrases, and read the matching lines with their original line numbers. Nothing is sent to any server: your file is read into page memory with your browser's own file API, the search executes on your machine, and everything is discarded when you close the tab or load another file. There is no account, no signup, and nothing to install — it is a search box with real boolean syntax sitting on top of an ordinary text window. The query box accepts the same phrasing you would use in grep or a SIEM search bar, so existing muscle memory carries over. It was built for security work — access logs, event exports, application debug output — but it handles any line-based text. New to the syntax? The <a href="query-syntax/">query syntax reference</a> walks through every operator with examples.</p>
@@ -198,7 +204,7 @@
     <p>Any evergreen browser: current versions of Chrome, Edge, Firefox, and Safari all run the full app — upload, boolean search, 50 MB files, and the resizable results window. One feature set is newer. The WebMCP agent tools listed in Features need a client with W3C WebMCP support; today that means Chrome 149 or later, Edge 150 or later, or ChatGPT Desktop. In other browsers the page loads as an ordinary website, silently and without console noise.</p>
 
     <p>SimpleLogSearch is built and maintained by Chris Pardue — the <a href="about/">about page</a> covers why the tool exists and what it runs on.</p>
-  </section>
+  </details>
 
   <footer>
     <nav>
