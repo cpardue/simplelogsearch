@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SimpleLogSearch Privacy Policy — Your Files Never Leave Your Browser | SimpleLogSearch</title>
+  <meta name="description" content="Your logs never leave your browser. SimpleLogSearch is fully client-side — no uploads, no accounts, no analytics; only your language choice is remembered.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#202124">
+  <link rel="canonical" href="https://simplelogsearch.com/privacy-policy/">
+  <meta property="og:title" content="SimpleLogSearch Privacy Policy">
+  <meta property="og:description" content="Your logs never leave your browser. SimpleLogSearch is fully client-side — no uploads, no accounts, no analytics; only your language choice is remembered.">
+  <meta property="og:url" content="https://simplelogsearch.com/privacy-policy/">
+  <meta property="og:type" content="website">
+  <!-- Pre-paint i18n boot (spec/i18n §4 — identical to index.html): reads localStorage["sls-lang"],
+       validates against the known 21 codes, sets <html lang|dir> before first paint. Full
+       chrome-string application happens in js/i18n.js (deferred below); on content pages it
+       affects header/footer strings only — body copy stays English (spec/seo-adsense §1). -->
+  <script>
+    (function () {
+      var codes = ["en","zh-CN","es-ES","hi-IN","ar","bn","pt-BR","ru","ja","de","fr","ko","tr","vi","id","th","pl","ur","nl","it","uk"];
+      var locale = null;
+      try { locale = window.localStorage.getItem("sls-lang"); } catch (e) {}
+      if (codes.indexOf(locale) === -1) locale = "en";
+      document.documentElement.setAttribute("lang", locale);
+      document.documentElement.setAttribute("dir", locale === "ar" || locale === "ur" ? "rtl" : "ltr");
+    })();
+  </script>
+  <!-- JSON-LD per spec/seo-adsense §2 (privacy-policy row): WebPage + BreadcrumbList. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SimpleLogSearch Privacy Policy",
+    "url": "https://simplelogsearch.com/privacy-policy/",
+    "description": "What SimpleLogSearch does and does not do with your data: no uploads, no server-side storage, no accounts, no file-content tracking; the only data kept is your chosen interface language."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simplelogsearch.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://simplelogsearch.com/privacy-policy/" }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Shared chrome per spec/seo-adsense §1: header (logo left, language select right) + footer nav (6 links) + dark theme. -->
+  <header>
+    <a class="wordmark" href="../index.html" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
+    <div class="lang-field">
+      <label for="langSelect" data-i18n="lang.label">Language</label>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="es-ES">Español</option>
+        <option value="hi-IN">हिन्दी</option>
+        <option value="ar">العربية</option>
+        <option value="bn">বাংলা</option>
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="ru">Русский</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="ko">한국어</option>
+        <option value="tr">Türkçe</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="th">ไทย</option>
+        <option value="pl">Polski</option>
+        <option value="ur">اردو</option>
+        <option value="nl">Nederlands</option>
+        <option value="it">Italiano</option>
+        <option value="uk">Українська</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="content">
+    <article>
+      <h1>Privacy Policy</h1>
+      <p>SimpleLogSearch is a free log file search that runs entirely in your browser, and this page states what that means in practice: what the site does with your data (almost nothing), the one preference it remembers, and the third-party advertising that keeps the service free. There is no server-side storage to speak of and no account system to protect, so this policy is short — but it covers every place where data could plausibly touch a network.</p>
+
+      <h2>Your files never leave your browser</h2>
+      <p>When you select a log file, your browser reads it into the page's own memory using its built-in file API. From that moment the file is processed strictly in memory and strictly read-only: the app tokenizes each line for matching, keeps the original text so matched lines display exactly as written, and holds nothing on disk. Nothing is uploaded, transmitted, or sent to a server at any point — there is no server, because SimpleLogSearch is a static site with no backend of any kind. Your file contents never appear in a request, a log, a database, or an advertisement. When you close the tab, reload the page, or load a different file, the in-memory copy is discarded and unrecoverable by anyone but you, including the author. The app also cannot reach any file you did not explicitly select; it sees only what you choose to open.</p>
+
+      <h2>No accounts, no tracking of file contents</h2>
+      <p>There is no sign-up, no login, no email address, and no user profile on this site. Because no account exists, there is nothing to store about you on a server, and therefore nothing that could be leaked or sold in the way account data is. The app does not track, index, record, or share file contents in any form: which lines you search, what queries you run, and what matches you read are all computed on your machine and exist only while the page is open. If your organization policy restricts how logs may leave their environment, this tool satisfies the strictest reading of that rule — the log text never crosses the boundary at all.</p>
+      <h2>What is stored in your browser</h2>
+      <p>The only thing SimpleLogSearch ever writes to persistent storage is the interface language you choose from the header menu, kept in your browser's local storage under the key <code>sls-lang</code> so that the next visit opens in the same language. It is a single locale code — it contains no file names, queries, or personal information — and it never leaves your browser. You can delete it at any time through your browser's site-data settings; the app then simply defaults to English again. No other cookies or local-storage entries are set by this site itself.</p>
+
+      <h2>Google AdSense</h2>
+      <p>To keep SimpleLogSearch free, the site is monetized with Google AdSense advertisements (served after approval). Ads are delivered by third parties: Google and its partners may set cookies in accordance with Google's own advertising policy, which can include information about your visits to this and other sites so that ads shown to you are more relevant. That advertising data belongs to Google's system, not to SimpleLogSearch, and it never receives anything from the app — no file name, file content, or search query is passed to any advertising script. You can opt out of personalized advertising at Google's Ads Settings page (adssettings.google.com) or manage these cookies through your browser's cookie controls. Displaying non-personalized ads instead does not change anything about how your files are processed.</p>
+
+      <h2>Analytics</h2>
+      <p>Version 1 of SimpleLogSearch contains no analytics scripts: there are no page-view counters, no usage dashboards, and no fingerprinting of any kind. The site records nothing about you or your sessions. If analytics are ever added in a future version, this page will be updated first, and they will not have access to file contents under any configuration.</p>
+
+      <h2>Contact</h2>
+      <p>Questions, feedback, or privacy concerns can be sent to the author, Chris Pardue, through the contact page at cehstudy.com/contact (the same personal channel listed in our FAQ), or as a GitHub issue on the SimpleLogSearch repository at github.com/cpardue/simplelogsearch. Reports are read personally; there is no ticket system to maintain because there are no accounts.</p>
+    </article>
+  </main>
+  <footer>
+    <nav>
+      <a href="../index.html" data-i18n="nav.home">Home</a>
+      <a href="../query-syntax/" data-i18n="nav.syntax">Query Syntax</a>
+      <a href="../how-to-search-logs/" data-i18n="nav.howto">How-To Guide</a>
+      <a href="../faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="../about/" data-i18n="nav.about">About</a>
+      <a href="../privacy-policy/" data-i18n="nav.privacy">Privacy Policy</a>
+    </nav>
+    <p class="footer-note" data-i18n="footer.note">SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.</p>
+  </footer>
+
+  <script src="../js/i18n.js" defer></script>
+  <script>
+    // Content-page chrome i18n (spec/seo-adsense §1): on content pages the language
+    // switch affects header/footer strings only; the body copy stays English.
+    document.getElementById("langSelect").addEventListener("change", function () {
+      if (window.I18N) window.I18N.apply(this.value);
+    });
+  </script>
+
+</body>
+</html>
