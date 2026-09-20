@@ -328,3 +328,103 @@ footer a:focus-visible {
   /* #results keeps full width (outside the 720px column);
      gutter width is set per file by js/log-view.js (§4). */
 }
+/* ===== Content pages (CHECKLIST 6.1, spec/seo-adsense §1) — shared article body
+   on the dark theme; header/footer/main chrome already styled above. main keeps
+   the 720px reading column. The other five content pages reuse this block. ===== */
+main.content {
+  padding-block: 8px 24px;
+  padding-inline: 16px;
+}
+main.content h1 {
+  font-size: 28px;
+  line-height: 1.3;
+  margin-block: 16px 8px;
+}
+main.content h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-block: 28px 8px;
+}
+main.content p,
+main.content li {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-block: 0 12px;
+}
+main.content a { color: var(--accent); }
+main.content ul,
+main.content ol {
+  padding-inline-start: 22px;
+  margin-block: 0 12px;
+}
+main.content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: #1d1f22;                 /* row-bg token — consistent with the app */
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+main.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 12px 16px;
+  font-size: 14px;
+}
+main.content th,
+main.content td {
+  text-align: start;                   /* logical — mirrors in rtl */
+  vertical-align: top;
+  padding: 8px 10px;
+  border: 1px solid #3c4043;           /* hover-state surface tone, reads as a border on --bg */
+}
+main.content th { color: var(--text-dim); font-weight: 500; }
+
+/* ===== index below-fold content (CHECKLIST 6.6, spec/seo-adsense §1.1) =====
+   Reuses the content-page typography above. Only header/#errorSlot/main/footer are
+   pinned to the 720px column by the layout rule (#results is deliberately full
+   width), so section.content carries its own column constraint + the same
+   padding as main.content. */
+section.content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  padding-block: 8px 24px;
+  padding-inline: 16px;
+}
+section.content h1 {
+  font-size: 28px;
+  line-height: 1.3;
+  margin-block: 16px 8px;
+}
+section.content h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-block: 28px 8px;
+}
+section.content h3 {
+  font-size: 17px;
+  line-height: 1.4;
+  margin-block: 20px 6px;
+}
+section.content p,
+section.content li {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-block: 0 12px;
+}
+section.content a { color: var(--accent); }
+section.content ul,
+section.content ol {
+  padding-inline-start: 22px;
+  margin-block: 0 12px;
+}
+section.content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: #1d1f22;                 /* row-bg token — consistent with the app */
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+
