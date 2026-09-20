@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frequently Asked Questions | SimpleLogSearch</title>
+  <meta name="description" content="Frequently asked questions about SimpleLogSearch: privacy, file types and the 50 MB limit, case sensitivity, browsers, WebMCP AI agent tools, and contact.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#202124">
+  <link rel="canonical" href="https://simplelogsearch.com/faq/">
+  <meta property="og:title" content="Frequently Asked Questions">
+  <meta property="og:description" content="Frequently asked questions about SimpleLogSearch: privacy, file types and the 50 MB limit, case sensitivity, browsers, WebMCP AI agent tools, and contact.">
+  <meta property="og:url" content="https://simplelogsearch.com/faq/">
+  <meta property="og:type" content="website">
+  <!-- Pre-paint i18n boot (spec/i18n §4 — identical to index.html): reads localStorage["sls-lang"],
+       validates against the known 21 codes, sets <html lang|dir> before first paint. Full
+       chrome-string application happens in js/i18n.js (deferred below); on content pages it
+       affects header/footer strings only — body copy stays English (spec/seo-adsense §1). -->
+  <script>
+    (function () {
+      var codes = ["en","zh-CN","es-ES","hi-IN","ar","bn","pt-BR","ru","ja","de","fr","ko","tr","vi","id","th","pl","ur","nl","it","uk"];
+      var locale = null;
+      try { locale = window.localStorage.getItem("sls-lang"); } catch (e) {}
+      if (codes.indexOf(locale) === -1) locale = "en";
+      document.documentElement.setAttribute("lang", locale);
+      document.documentElement.setAttribute("dir", locale === "ar" || locale === "ur" ? "rtl" : "ltr");
+    })();
+  </script>
+  <!-- JSON-LD per spec/seo-adsense §2 (faq row): WebPage + FAQPage (14 Q/As, answer text
+       verbatim-matching the visible answers) + BreadcrumbList. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Frequently Asked Questions",
+    "url": "https://simplelogsearch.com/faq/"
+  }
+  </script>
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is my data sent anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your log file never leaves your browser. The app is fully client-side: your browser reads the file into memory with its own file API, JavaScript running on your machine tokenizes and searches it, and everything is forgotten when you close the page or load another file. There is no upload step, no server to host your data, nothing in cookies or local storage except the interface language you choose, and no analytics reading file contents." } },
+      { "@type": "Question", "name": "Can I search CSV, JSON, or XML files?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — any line-based text file works. The engine treats each line as a plain string and applies case-insensitive substring matching, so it never needs to understand the format. Plain application logs, syslog output, web server access logs, Windows Event flat-text exports, CSV spreadsheets, JSON-lines data, and XML dumps all work as long as every record sits on its own line and the file is UTF-8 text. Binary files are not supported." } },
+      { "@type": "Question", "name": "Why is there no account or server?", "acceptedAnswer": { "@type": "Answer", "text": "Because neither is required. Searching a file that never leaves your machine takes no database, no upload pipeline, and no login, so none was built. No account means nothing to store, leak, or sell; no server means the site stays fast, costs pennies to host on GitHub Pages, and is private by design rather than by promise. The only preference the app remembers is your interface language, kept in your own browser." } },
+      { "@type": "Question", "name": "What browsers are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any evergreen browser: current versions of Chrome, Edge, Firefox, and Safari all run the full app — upload, boolean search, 50 MB files, and the resizable results window. One feature set is newer. The WebMCP agent tools described below need a client with W3C WebMCP support; today that means Chrome 149 or later, Edge 150 or later, or ChatGPT Desktop. In other browsers the page loads as an ordinary website, silently and without console noise." } },
+      { "@type": "Question", "name": "What is WebMCP, and how do I use it as a user?", "acceptedAnswer": { "@type": "Answer", "text": "WebMCP is a W3C standard that lets a web page expose its capabilities to AI agents as tools. SimpleLogSearch registers four — get_log_status, search_logs, reset_view, and load_sample_log — so an agent can see what file is loaded, run queries, reset the view, or load one of the built-in samples. You do nothing special: in a WebMCP-capable browser you ask your assistant in natural language, for example to find every 500 status line except the health-check traffic, and it calls the tools for you." } },
+      { "@type": "Question", "name": "How big a file can I open?", "acceptedAnswer": { "@type": "Answer", "text": "Up to 50 MB per file; anything larger is rejected with a clear error before it is read. Large files stay smooth because the results window is virtualized — only the rows currently in view exist in the page, so even a 10 MB log with 100,000 lines scrolls without stutter. Reading happens in the background while the status row shows the file name and a reading notice, then the total line count appears." } },
+      { "@type": "Question", "name": "Can I search across multiple files?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. Version 1 holds one log at a time: uploading a second file replaces the first, and running one query across several files at once is on the roadmap rather than shipped today. The workaround is the workflow most triage sessions already follow — upload a file, search it, note the matching line numbers, then load the next file." } },
+        { "@type": "Question", "name": "How do line numbers work?", "acceptedAnswer": { "@type": "Answer", "text": "Every result is labeled with its original line number from your uploaded file, starting at 1 — filtering never renumbers. A match labeled 4,182 is line 4,182 in the file: open it in an editor, SIEM, or any other text tool and jump straight there. Line counting treats the file as it is on disk, and a trailing newline at the end does not create a phantom extra line." } },
+      { "@type": "Question", "name": "What happens to my file when I reset or upload a new one?", "acceptedAnswer": { "@type": "Answer", "text": "Reset only clears the search box and any error message — the file stays loaded and the window returns to the full log from line 1. Uploading a new file discards the old one completely: the previous data is thrown away, the search input is cleared, and the new file is shown from its first line. Since files live only in page memory, closing or reloading the page forgets everything as well." } },
+      { "@type": "Question", "name": "Is it mobile-friendly?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The layout is responsive down to phone width — the search bar, buttons, and results window all adapt, and the interface is verified at 390 pixels wide. Searching large files works on a phone too, though a desktop screen makes long result sets more comfortable to read." } },
+      { "@type": "Question", "name": "Is the search case-sensitive?", "acceptedAnswer": { "@type": "Answer", "text": "No. Matching is case-insensitive substring: error, Error, and ERROR all find the same lines, so you can type queries in whatever case feels natural. One subtlety comes with substring matching — there are no word boundaries, so searching for 192.168.1.1 also matches a line that contains only 192.168.1.10. The Query Syntax reference explains the trailing-space trick that narrows these collisions down." } },
+      { "@type": "Question", "name": "Why is it free?", "acceptedAnswer": { "@type": "Answer", "text": "Because there is nothing to charge for: no server, no database, no per-seat licensing — the entire site is a few dollars of static hosting on GitHub Pages. To help cover even that modest cost, the site is monetized with Google AdSense advertisements, and that is the complete model. There is no premium tier, no paywall, and your files are never shared with any advertiser; the Privacy Policy page states all of it in full." } },
+      { "@type": "Question", "name": "Who makes this?", "acceptedAnswer": { "@type": "Answer", "text": "Chris Pardue builds and maintains SimpleLogSearch. He is a certified cybersecurity professional who also runs CEHStudy, a free CEH exam preparation site. The tool exists for the reason behind its name: he wanted a fast, private way to triage log files without sending them anywhere, and — through WebMCP — a way for AI agents to do the same." } },
+      { "@type": "Question", "name": "How do I contact the author?", "acceptedAnswer": { "@type": "Answer", "text": "Use the contact page at cehstudy.com/contact, reachable from the footer of CEHStudy. Bug reports, feature requests, and general feedback are all read personally — multi-file search is the most requested addition — and there is no ticket system to maintain because there are no accounts." } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simplelogsearch.com/" },
+      { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://simplelogsearch.com/faq/" }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- Shared chrome per spec/seo-adsense §1: header (logo left, language select right) + footer nav (6 links) + dark theme. -->
+  <header>
+    <a class="wordmark" href="../index.html" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
+    <div class="lang-field">
+      <label for="langSelect" data-i18n="lang.label">Language</label>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="zh-CN">简体中文</option>
+        <option value="es-ES">Español</option>
+        <option value="hi-IN">हिन्दी</option>
+        <option value="ar">العربية</option>
+        <option value="bn">বাংলা</option>
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="ru">Русский</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="ko">한국어</option>
+        <option value="tr">Türkçe</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="th">ไทย</option>
+        <option value="pl">Polski</option>
+        <option value="ur">اردو</option>
+        <option value="nl">Nederlands</option>
+        <option value="it">Italiano</option>
+        <option value="uk">Українська</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="content">
+    <article>
+      <h1>Frequently Asked Questions</h1>
+      <p>SimpleLogSearch answers log questions the way a search engine answers web questions: you type a query, and it shows the matching lines with their original numbers. This page collects the fourteen questions users ask most — privacy first, then file types and limits, browsers, WebMCP, and how to reach the author.</p>
+      <h2>Is my data sent anywhere?</h2>
+      <p>No. Your log file never leaves your browser. The app is fully client-side: your browser reads the file into memory with its own file API, JavaScript running on your machine tokenizes and searches it, and everything is forgotten when you close the page or load another file. There is no upload step, no server to host your data, nothing in cookies or local storage except the interface language you choose, and no analytics reading file contents.</p>
+      <h2>Can I search CSV, JSON, or XML files?</h2>
+      <p>Yes — any line-based text file works. The engine treats each line as a plain string and applies case-insensitive substring matching, so it never needs to understand the format. Plain application logs, syslog output, web server access logs, Windows Event flat-text exports, CSV spreadsheets, JSON-lines data, and XML dumps all work as long as every record sits on its own line and the file is UTF-8 text. Binary files are not supported.</p>
+      <h2>Why is there no account or server?</h2>
+      <p>Because neither is required. Searching a file that never leaves your machine takes no database, no upload pipeline, and no login, so none was built. No account means nothing to store, leak, or sell; no server means the site stays fast, costs pennies to host on GitHub Pages, and is private by design rather than by promise. The only preference the app remembers is your interface language, kept in your own browser.</p>
+      <h2>What browsers are supported?</h2>
+      <p>Any evergreen browser: current versions of Chrome, Edge, Firefox, and Safari all run the full app — upload, boolean search, 50 MB files, and the resizable results window. One feature set is newer. The WebMCP agent tools described below need a client with W3C WebMCP support; today that means Chrome 149 or later, Edge 150 or later, or ChatGPT Desktop. In other browsers the page loads as an ordinary website, silently and without console noise.</p>
+      <h2>What is WebMCP, and how do I use it as a user?</h2>
+      <p>WebMCP is a W3C standard that lets a web page expose its capabilities to AI agents as tools. SimpleLogSearch registers four — get_log_status, search_logs, reset_view, and load_sample_log — so an agent can see what file is loaded, run queries, reset the view, or load one of the built-in samples. You do nothing special: in a WebMCP-capable browser you ask your assistant in natural language, for example to find every 500 status line except the health-check traffic, and it calls the tools for you.</p>
+      <h2>How big a file can I open?</h2>
+      <p>Up to 50 MB per file; anything larger is rejected with a clear error before it is read. Large files stay smooth because the results window is virtualized — only the rows currently in view exist in the page, so even a 10 MB log with 100,000 lines scrolls without stutter. Reading happens in the background while the status row shows the file name and a reading notice, then the total line count appears.</p>
+      <h2>Can I search across multiple files?</h2>
+      <p>Not yet. Version 1 holds one log at a time: uploading a second file replaces the first, and running one query across several files at once is on the roadmap rather than shipped today. The workaround is the workflow most triage sessions already follow — upload a file, search it, note the matching line numbers, then load the next file.</p>
+      <h2>How do line numbers work?</h2>
+      <p>Every result is labeled with its original line number from your uploaded file, starting at 1 — filtering never renumbers. A match labeled 4,182 is line 4,182 in the file: open it in an editor, SIEM, or any other text tool and jump straight there. Line counting treats the file as it is on disk, and a trailing newline at the end does not create a phantom extra line.</p>
+      <h2>What happens to my file when I reset or upload a new one?</h2>
+      <p>Reset only clears the search box and any error message — the file stays loaded and the window returns to the full log from line 1. Uploading a new file discards the old one completely: the previous data is thrown away, the search input is cleared, and the new file is shown from its first line. Since files live only in page memory, closing or reloading the page forgets everything as well.</p>
+      <h2>Is it mobile-friendly?</h2>
+      <p>Yes. The layout is responsive down to phone width — the search bar, buttons, and results window all adapt, and the interface is verified at 390 pixels wide. Searching large files works on a phone too, though a desktop screen makes long result sets more comfortable to read.</p>
+      <h2>Is the search case-sensitive?</h2>
+      <p>No. Matching is case-insensitive substring: error, Error, and ERROR all find the same lines, so you can type queries in whatever case feels natural. One subtlety comes with substring matching — there are no word boundaries, so searching for 192.168.1.1 also matches a line that contains only 192.168.1.10. The Query Syntax reference explains the trailing-space trick that narrows these collisions down.</p>
+      <h2>Why is it free?</h2>
+      <p>Because there is nothing to charge for: no server, no database, no per-seat licensing — the entire site is a few dollars of static hosting on GitHub Pages. To help cover even that modest cost, the site is monetized with Google AdSense advertisements, and that is the complete model. There is no premium tier, no paywall, and your files are never shared with any advertiser; the Privacy Policy page states all of it in full.</p>
+      <h2>Who makes this?</h2>
+      <p>Chris Pardue builds and maintains SimpleLogSearch. He is a certified cybersecurity professional who also runs CEHStudy, a free CEH exam preparation site. The tool exists for the reason behind its name: he wanted a fast, private way to triage log files without sending them anywhere, and — through WebMCP — a way for AI agents to do the same.</p>
+      <h2>How do I contact the author?</h2>
+      <p>Use the contact page at cehstudy.com/contact, reachable from the footer of CEHStudy. Bug reports, feature requests, and general feedback are all read personally — multi-file search is the most requested addition — and there is no ticket system to maintain because there are no accounts.</p>
+    </article>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html" data-i18n="nav.home">Home</a>
+      <a href="../query-syntax/" data-i18n="nav.syntax">Query Syntax</a>
+      <a href="../how-to-search-logs/" data-i18n="nav.howto">How-To Guide</a>
+      <a href="../faq/" data-i18n="nav.faq">FAQ</a>
+      <a href="../about/" data-i18n="nav.about">About</a>
+      <a href="../privacy-policy/" data-i18n="nav.privacy">Privacy Policy</a>
+    </nav>
+    <p class="footer-note" data-i18n="footer.note">SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.</p>
+  </footer>
+
+  <script src="../js/i18n.js" defer></script>
+  <script>
+    // Content-page chrome i18n (spec/seo-adsense §1): on content pages the language
+    // switch affects header/footer strings only; the body copy stays English.
+    document.getElementById("langSelect").addEventListener("change", function () {
+      if (window.I18N) window.I18N.apply(this.value);
+    });
+  </script>
+
+</body>
+</html>
