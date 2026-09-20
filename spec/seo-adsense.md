@@ -9,7 +9,11 @@ decision) → single canonical URL per page, no hreflang alternates beyond the
 
 ## 1. Page inventory & content outlines (word targets are floors)
 
-### 1.1 `index.html` — the app + ~900 words below the fold
+### 1.1 `index.html` — the app + ~900 words in a collapsed "About This Tool" section
+- (2026-09-20, user direction) All content below this line lives in a collapsed
+  native `<details>` ("About This Tool", i18n `about.title`) closed by default:
+  the page reads as app-only, while the full article stays in the DOM — word
+  floors and the FAQPage JSON-LD parity rules are unchanged.
 - `<h1>Free Online Log File Search with AND, OR, and NOT Queries</h1>`
 - Intro (~150 w): what it is, 100% in-browser (privacy), boolean phrase search, no signup.
 - **How it works** — 3 steps (Upload → Query → Read matches with original line numbers).
@@ -135,4 +139,4 @@ expect a "thin content" round on the first review of a tool site; use the
 6. Disclosure: FAQ + privacy already disclose AdSense — keep them accurate as
    the ads go live.
 
-
+
