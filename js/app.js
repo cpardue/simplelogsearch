@@ -28,6 +28,13 @@
 // matched/noMatches (B6/B7); a parse error shows err.invalidQuery {detail}
 // with the previous view untouched (B11); a ?q= URL param prefills the input
 // on load only — never auto-runs (SearchAction support).
+ // Paste box (2026-09-20 user request — ui-spec §4/B14/B15): #results is visible
+ // from first paint; the empty state shows #pasteArea (faint two-line THIS/THAT
+ // demo placeholder, i18n log.placeholder) with the viewport hidden. Pasted or
+ // typed text commits as a log named "snippet" through the shared commitLoad
+ // path (paste event immediately, ~500 ms after a typing pause); Reset with a
+ // snippet returns to the empty state (B15); an upload or sample load replaces
+ // it under normal B9 semantics.
 
 (function () {
   "use strict";
@@ -45,6 +52,8 @@
   const fileInput = document.getElementById("fileInput");
   const results = document.getElementById("results");
   const statusRow = document.getElementById("statusRow");
+  const pasteArea = document.getElementById("pasteArea"); // empty-state paste box (ui-spec §4)
+  const logViewportEl = document.getElementById("logViewport");
 
   // Result-window view (CHECKLIST 2.1): drives #logViewport from here on.
   const logView = LogView.create(document.getElementById("logViewport"));
@@ -113,6 +122,53 @@
     });
   }
 
+  // --- Paste box (ui-spec §4 — empty state; B14/B15, 2026-09-20 user request) -----
+  // The empty state shows #pasteArea with a faint two-line demo placeholder
+  // ("THIS" / "THAT", i18n log.placeholder). Any pasted or typed text commits the
+  // textarea's content as a log named "snippet" through the shared commitLoad
+  // path — on the paste event immediately, or ~500 ms after a typing pause.
+  // Whitespace-only text never commits (the placeholder stays). Committing hides
+  // the textarea, shows the viewport from line 1 and moves focus to the search
+  // input (the natural next step: type a query).
+  const PASTE_IDLE_MS = 500;
+  let typeTimer = null;
+
+  function commitPaste() {
+    if (typeTimer !== null) { clearTimeout(typeTimer); typeTimer = null; }
+    const text = pasteArea.value;
+    if (text.trim() === "") return; // whitespace only → stay in the empty state
+    state.file = { name: "snippet", pasted: true }; // descriptor — commitLoad only needs .name
+    commitLoad("snippet", text); // shared success path (split/linesLower/B9/render/status)
+    searchInput.focus();
+  }
+
+  pasteArea.addEventListener("paste", function () {
+    setTimeout(commitPaste, 0); // let the browser insert the clipboard text first
+  });
+  pasteArea.addEventListener("input", function () {
+    if (typeTimer !== null) clearTimeout(typeTimer);
+    if (pasteArea.value.trim() === "") return;
+    typeTimer = setTimeout(function () { typeTimer = null; commitPaste(); }, PASTE_IDLE_MS);
+  });
+
+  // Back to the empty state: no log in state, paste box + placeholder shown,
+  // status row hidden. Used by Reset with a snippet loaded (B15).
+  function clearToPaste() {
+    if (typeTimer !== null) { clearTimeout(typeTimer); typeTimer = null; }
+    state.file = null;
+    state.lines = null;
+    state.linesLower = null;
+    state.status = null;
+    statusRow.textContent = "";
+    statusRow.hidden = true;
+    logView.setLines([]); // empty view — 0px spacer, no rows
+    logViewportEl.hidden = true;
+    pasteArea.value = "";
+    pasteArea.hidden = false;
+    searchInput.value = "";
+    clearError();
+  }
+
   // --- Language (spec/i18n §4) ------------------------------------------------------
   // change → I18N.apply(value): sets every string, <html lang|dir> and
   // persists sls-lang (persistence lives inside apply). Boot sync: the
@@ -130,6 +186,10 @@
   // error slot, show the entire log again from line 1 (setLines resets the view
   // to the whole file and scrolls to top per §4), status `loaded` for the same file.
   function doReset() {
+    // B15 (ui-spec §5) — a loaded pasted snippet resets back to the empty state
+    // (paste box + placeholder shown, no log in state). Everything else keeps
+    // the B8 behavior below.
+    if (state.file && state.file.pasted === true) return clearToPaste();
     // B8 (CHECKLIST 2.4) — the shared reset path for the Reset button and
     // window.SLS.reset (CHECKLIST 5.2, spec/webmcp §3 reset_view): clear the
     // search input and the error slot, show the entire log again from line 1
@@ -142,7 +202,13 @@
   }
 
   resetBtn.addEventListener("click", function () {
-    if (!state.file) return; // B2 — strict no-op: no error, no state change
+    if (!state.file) {
+      // B2 — strict no-op for loaded state; uncommitted paste-box text is
+      // discarded so Reset always lands on a clean page.
+      if (typeTimer !== null) { clearTimeout(typeTimer); typeTimer = null; }
+      pasteArea.value = "";
+      return;
+    }
     doReset();
   });
 
@@ -172,6 +238,10 @@
     searchInput.value = "";   // B9 — replace clears any previous query
     logView.setLines(lines);  // whole file from line 1, scrolled to top (§4)
     results.hidden = false;   // after setLines → ResizeObserver sees the real size (2.1)
+    statusRow.hidden = false; // content is present → status row visible
+    pasteArea.value = "";     // empty state is over (or an upload replaced a pasted snippet)
+    pasteArea.hidden = true;
+    logViewportEl.hidden = false;
     setStatus("status.loaded", { file: name, lines: lines.length });
     clearError();             // next successful action clears the error slot (§2)
   }
@@ -274,8 +344,14 @@
     // error object only (the UI button stays a strict B2 no-op).
     reset() {
       if (!state.file) return { ok: false, error: "No log is loaded." };
+      const wasPasted = state.file.pasted === true;
+      const total = state.lines.length;
       doReset();
-      return { ok: true, total_lines: state.lines.length, has_log: true };
+      // spec/webmcp §3 (2026-09-20): a pasted snippet resets to the empty paste
+      // state → no log remains.
+      return wasPasted
+        ? { ok: true, total_lines: 0, has_log: false }
+        : { ok: true, total_lines: total, has_log: true };
     },
 
     // load_sample_log (§3) — fetches samples/<name> by relative URL and commits
