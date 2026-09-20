@@ -163,32 +163,43 @@ header, #errorSlot, main, footer {
   font: 13px/16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* ===== header: [logo wordmark] …spacer… [Language: <select>] ===== */
+/* ===== header: full-width row — wordmark centered above the search bar;
+   Language pinned to the far top-right corner of the screen (2026-09-20) ===== */
 header {
   display: flex;
-  align-items: center;      /* logo vertically centered */
-  padding-inline: 16px;     /* §2: header padding 16px inline */
+  align-items: center;       /* logo vertically centered */
+  justify-content: center;   /* wordmark centered above the search bar */
+  position: relative;        /* anchor for the corner language field */
+  max-width: none;           /* full-width row — 720px exception (ui-spec §2) */
+  padding: 8px 16px;
 }
 
-/* Logo wordmark — 26px/500 system font, one span per letter; Google colors
-   cycle [#4285F4, #EA4335, #FBBC04, #34A853]. Never i18n'd (ui-spec §2). */
+/* Logo wordmark — solid off-white #dce7fa (Google multicolor retired,
+   2026-09-20 user request); one span per letter stays in the DOM. Rendered
+   height capped at 92px: font-size scales with viewport width (15 chars ≈
+   7.8em advance) reserving ~560px of horizontal corner zone (2 × worst-case
+   locale label + select + margin) so it never collides with the language
+   field; line-height:1 keeps element height == font-size ≤ 92px (ui-spec §2).
+   Full 92px cap reached at ≥ ~1278px viewports. */
 .wordmark {
-  font-size: 26px;
+  font-size: clamp(24px, calc((100vw - 560px) / 7.8), 92px);
+  line-height: 1;
   font-weight: 500;
+  color: #dce7fa;
   text-decoration: none;
 }
-/* Letters cycle Google colors per spec/ui-spec §2, one span per char. */
-.wordmark span:nth-child(4n+1) { color: #4285F4; }
-.wordmark span:nth-child(4n+2) { color: #EA4335; }
-.wordmark span:nth-child(4n+3) { color: #FBBC04; }
-.wordmark span:nth-child(4n)   { color: #34A853; }
 
-/* Language field: visible "Language" label (i18n lang.label) + native select */
+/* Language field: visible "Language" label (i18n lang.label) + native select,
+   pinned to the far top-right corner of the screen; inset-inline-end mirrors
+   it to the top-left in ar/ur. */
 .lang-field {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-inline-start: auto;   /* …spacer… pushes the select to the end */
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 12px;
+  transform: translateY(-50%); /* vertically centered in the header row */
 }
 .lang-field label {
   font-size: 14px;
@@ -350,7 +361,17 @@ footer a:focus-visible {
 
 /* ===== ui-spec §7 — responsive (< 720px) ===== */
 @media (max-width: 719.98px) {
-  header { flex-wrap: wrap; gap: 8px; }
+  header {
+    flex-direction: column;   /* language row above the centered logo (§7) */
+    gap: 10px;
+  }
+  .lang-field {
+    position: static;         /* own top-right row on small screens */
+    transform: none;
+    order: -1;
+    align-self: flex-end;
+  }
+  .wordmark { font-size: min(calc((100vw - 48px) / 7.8), 72px); }
   main { padding-inline: 16px; }         /* keep chrome in view on small screens */
   #errorSlot { padding-inline: 16px; }   /* align with padded chrome */
   .btn-row { flex-wrap: wrap; }          /* buttons stay centered under the bar */
