@@ -12,13 +12,15 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 --text      #e8eaed   (primary)   --text-dim #9aa0a6  (icons, secondary)
 --error     #f28b82   --accent    #8ab4f8  (focus ring, flash glow)
 --gutter    #7d8590   (line numbers)
+--logo      #dce7fa   (wordmark — solid off-white since 2026-09-20)
 --row-h     16px      (fixed log row height; 13px/16px ui-monospace)
 ```
 
 ## 2. Layout (single column, centered max-width 720px — EXCEPT result window)
 
 ```
-<header>  [logo wordmark]  …spacer…  [Language: <select>]
+<header>  full-width row: wordmark CENTERED above the search bar (≤ 92px tall);
+          Language pinned to the far top-right corner of the screen (RTL mirror)
 <div id="errorSlot" role="alert" aria-live="polite">          (only when active)
 <main>    [search bar: 🔍 icon | input | 🔍 submit button]
           [ Reset ]  [ Upload ]        (12px gap, centered)
@@ -30,14 +32,22 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 <footer>  nav links (6 pages) + footer.note
 ```
 
-- Header padding: 16px inline; logo vertically centered.
-- **Logo**: text wordmark `SimpleLogSearch`, 26px, weight 500, system font;
-  letters cycle Google colors [#4285F4, #EA4335, #FBBC04, #34A853] per
-  character (one span/char). **Never i18n'd.** `<a href="index.html">` with
-  `aria-label="SimpleLogSearch"`.
+- Header: full-width row (720px exception, like #results — user request
+  2026-09-20); padding 16px inline; logo vertically + horizontally centered.
+- **Logo**: text wordmark `SimpleLogSearch`, weight 500, system font, solid
+  off-white `#dce7fa` (2026-09-20 user request — the Google multicolor cycle
+  is retired; one span/char stays in the DOM). **Never i18n'd.** Rendered
+  height capped at **92px**: font-size scales with viewport width via clamp so
+  the logo never exceeds 92px tall and never collides with the corner language
+  field (≈ 560px of horizontal corner zone reserved — 2 × worst-case locale
+  label + select + margin; full cap reached at ≥ ~1278px viewports). `<a href="index.html">`
+  with `aria-label="SimpleLogSearch"`.
 - **Language select**: native `<select>`, 14px, `background:#202124;
   color:#e8eaed; border:1px solid #5f6368; border-radius:8px; padding:6px 8px;`
-  visible label "Language" before it (i18n `lang.label`).
+  visible label "Language" before it (i18n `lang.label`). Pinned to the far
+  top-right corner of the screen (absolute in the header, vertically centered;
+  mirrors to the top-left in ar/ur). On < 720px it stacks as its own row above
+  the centered logo.
 - **Search bar**: `height:46px; border-radius:24px; background:#303134;
   display:flex; align-items:center;` left magnifier SVG 20px `#9aa0a6`, margin
   start 12px; input transparent, 16px, `::placeholder #9aa0a6`; right submit
@@ -132,8 +142,10 @@ Trigger: add class + error message together; remove class on `animationend`.
 
 ## 7. Responsive
 
-- ≥ 720px: as specified above.
-- < 720px: buttons stay centered under the bar; result window keeps full width;
-  gutter width auto-fits; everything remains usable (resize handle less
-  convenient on touch — accepted).
+- ≥ 720px: as specified above (single full-width header row: centered logo,
+  corner language field).
+- < 720px: header stacks into two rows — language field top-right, centered
+  logo below it at mobile scale (≤ 72px); buttons stay centered under the bar;
+  result window keeps full width; gutter width auto-fits; everything remains
+  usable (resize handle less convenient on touch — accepted).
 
