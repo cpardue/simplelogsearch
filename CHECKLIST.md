@@ -222,7 +222,7 @@ domain-dependent; see there.)*
 
 ## Phase 7 — Launch gates, GSC, AdSense prep (gate: site indexed + application submitted)
 
-- [ ] 7.1 `[MANUAL user]` Google Search Console: property `simplelogsearch.com`
+- [x] 7.1 `[MANUAL user]` Google Search Console: property `simplelogsearch.com`
   (domain property; create if missing — GSC DNS verification TXT record, LLM
   hands the user the exact value), submit sitemap
   `https://simplelogsearch.com/sitemap.xml`, then request
@@ -278,6 +278,10 @@ feature-detects off without tokens; its deploy lands at 5.6).*
 ## Session Log (newest first — one line per completed item)
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
+
+[2026-09-21 00:18] item 7.1 done — user confirmed the full submission (sub-steps 1–2 confirmed last session: GSC domain property simplelogsearch.com created + DNS TXT verification, sitemap https://simplelogsearch.com/sitemap.xml submitted; sub-step 3 confirmed this session by user message "Done": indexing requested for all 6 URLs — /, query-syntax/, how-to-search-logs/, faq/, about/, privacy-policy/) — indexing clock starts 2026-09-21 (date recorded per item; GSC UI state is user-confirmed, LLM has no GSC access) — single checkoff commit (box + this done line + the kept 00:08 in-progress line ride this push; its sha recorded in the history file)
+
+[2026-09-21 00:08] item 7.1 in progress — [MANUAL user] GSC: domain property simplelogsearch.com created + DNS TXT verification done, sitemap https://simplelogsearch.com/sitemap.xml submitted (both confirmed by the user this session); STOPPED for user: request indexing for each of the 6 URLs (exact GSC steps handed over in chat) — on user confirmation: mark [x] + record date (indexing clock starts) + push checkoff — no commit (local only, rides the checkoff push per 5.5/7.4 precedent)
 
 [2026-09-20 23:46] item 6.11 done — word-count audit gate (simplelogsearch/test/word-count.mjs, zero-dep node; strips <script>/<style>/comments/tags per page then counts whitespace-separated visible words) 6/6 PASS exit 0, every page ≥ its spec §1 floor — index 1469/900 · query-syntax 1586/950 · how-to-search-logs 1779/1000 · faq 1151/600 · about 648/350 · privacy-policy 772/450 (table printed by the gate) — push (node Contents-API, push-sls-6.11.mjs, CRLF trailing-\r convention per 6.8): gate file commit 2a8e170a77710d9280718d61f6861f2bb78ae2bf (post-push byte-identical); this checkoff = separate follow-up commit
 
