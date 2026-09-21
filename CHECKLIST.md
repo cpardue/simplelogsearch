@@ -228,7 +228,7 @@ domain-dependent; see there.)*
   `https://simplelogsearch.com/sitemap.xml`, then request
   indexing for each of the 6 URLs. **Verify:** user confirms submission; LLM
   records the date in Session Log (indexing clock starts now).
-- [ ] 7.2 Lighthouse (mobile + desktop) on index + query-syntax pages:
+- [x] 7.2 Lighthouse (mobile + desktop) on index + query-syntax pages:
   Perf ≥ 90, A11y ≥ 95, SEO = 100, Best Practices ≥ 90. Fix any regression and
   re-run. **Verify:** record both scorecards in Session Log.
 - [ ] 7.3 Full manual re-run on the **live** site with a clean cache: every B#
@@ -278,6 +278,8 @@ feature-detects off without tokens; its deploy lands at 5.6).*
 ## Session Log (newest first — one line per completed item)
 
 <!-- format: [YYYY-MM-DD HH:MM] item X.Y done — verify result — commit sha -->
+
+[2026-09-21 00:58] item 7.2 done — Lighthouse 13.4.1 vs live https://simplelogsearch.com (local npx CLI; CHROME_PATH=ms-playwright chromium-1234 chrome-win64 Chrome/151.0.7922.34 headless=new; pre-run diff-sls-7.2.mjs: 35/35 paths in sync + 8/8 site assets byte-identical live==local) — scorecards (Perf/A11y/BP/SEO, both form factors, gate Perf≥90 A11y≥95 SEO=100 BP≥90): mobile index 100/100/100/100 (FCP .9s LCP 1.1s TBT 0ms CLS 0), desktop index 100/100/100/100 (.2s/.3s/0/0), mobile query-syntax 100/100/96/100, desktop query-syntax 100/100/96/100 — sole sub-100 audit = errors-in-console: GET /favicon.ico → 404 (the 5 content pages were missing the icon link index.html+404.html carry) → fixed per item ("Fix any regression and re-run"): <link rel=icon type=image/svg+xml href=../favicon.svg> added after theme-color on all 5 content pages (about/faq/how-to-search-logs/privacy-policy/query-syntax; specs silent on icon links → protocol 8 not triggered) — pushed as 5 Contents-API commits 6ca418ab5835813c73a4d730634edba1f01ba904..77e6892cd064a99b8bf44489e839568b4feb0e26 (HEAD; 5/5 remote byte-identical); Pages deploy confirmed ~1 min post-push (live query-syntax carries the link; /favicon.svg 200) — re-ran all 4: mobile index 100/100/100/100, desktop index 100/100/100/100, mobile query-syntax 100/100/100/100, desktop query-syntax 100/100/100/100 — ALL THRESHOLDS PASS (both scorecards recorded per item) — reports lh-7.2-{mobile,desktop}-{index,querysyntax}.json + parse-lh-7.2.mjs + lh-7.2-scorecards.json kept at workspace root (note: npx CLI exits 1 after the report writes due to a chrome-launcher Windows temp-dir EPERM teardown race — all 4 JSONs fully valid and parsed) — checkoff commit sha recorded in history file
 
 [2026-09-21 00:18] item 7.1 done — user confirmed the full submission (sub-steps 1–2 confirmed last session: GSC domain property simplelogsearch.com created + DNS TXT verification, sitemap https://simplelogsearch.com/sitemap.xml submitted; sub-step 3 confirmed this session by user message "Done": indexing requested for all 6 URLs — /, query-syntax/, how-to-search-logs/, faq/, about/, privacy-policy/) — indexing clock starts 2026-09-21 (date recorded per item; GSC UI state is user-confirmed, LLM has no GSC access) — single checkoff commit (box + this done line + the kept 00:08 in-progress line ride this push; its sha recorded in the history file)
 
