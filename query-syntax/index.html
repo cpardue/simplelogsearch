@@ -34,7 +34,7 @@
     "@type": "Article",
     "headline": "Log Search Query Syntax: AND, OR, NOT, and Quoted Phrases",
     "author": { "@type": "Person", "name": "Chris Pardue" },
-    "dateModified": "2026-09-19"
+    "dateModified": "2026-09-22"
   }
   </script>
   <script type="application/ld+json">
@@ -84,83 +84,87 @@
   <main class="content">
     <article>
       <h1>Log Search Query Syntax: AND, OR, NOT, and Quoted Phrases</h1>
-      <p>SimpleLogSearch speaks one small, predictable query language: three boolean operators — <code>AND</code>, <code>OR</code> and <code>NOT</code> — plus double-quoted phrases. That is the entire syntax. This reference documents every rule the parser implements, with concrete examples taken from a 24-line sample application log so you can see exactly which lines each query would return before you ever run it. If you only read one section, make it the worked precedence example below: it steps through the canonical multi-ID correlation query the way the engine itself evaluates it.</p>
+      <p>SimpleLogSearch speaks one small query language: <code>AND</code>, <code>OR</code>, <code>NOT</code> and double-quoted phrases — the entire syntax. Every rule below runs against a 24-line sample application log, so you can see exactly which lines each query returns.</p>
 
       <h2>The basic idea: terms and phrases</h2>
-      <p>Every query is built from two blocks. A <strong>term</strong> is a single token with no whitespace — <code>error</code>, <code>MID</code>, <code>192.168.1.1</code>. A <strong>phrase</strong> is anything wrapped in double quotes, spaces included — <code>"status=500"</code>, <code>"MID 123456"</code>, <code>"timeout after 30s"</code>. Both are tested against each line of the file as a case-insensitive substring: the engine asks one question per line — "does this exact sequence of characters appear anywhere here?" Grep-style. No word boundaries, no regular expressions, no wildcards, no field syntax.</p>
-      <p>A query is evaluated independently per line: a line either matches or it does not, and the result window shows only the matching lines while keeping each line's original number from the file. A hit on line 4,182 of your log is labeled 4,182 — jump straight back to your editor, SIEM or text tool.</p>
+      <p>Two blocks build every query:</p>
+      <ul>
+        <li><strong>Term</strong> — a single token with no whitespace: <code>error</code>, <code>MID</code>, <code>192.168.1.1</code>.</li>
+        <li><strong>Phrase</strong> — anything in double quotes, spaces included: <code>"status=500"</code>, <code>"MID 123456"</code>.</li>
+      </ul>
+      <p>Both are tested per line as a case-insensitive substring — grep-style: no word boundaries, no wildcards, no field syntax.</p>
 
 
       <h2>The three operators</h2>
-      <p><code>AND</code> keeps lines matching every branch, <code>OR</code> keeps lines matching at least one branch, and <code>NOT</code> removes any line where its argument appears — anywhere on the line. Six examples against the 24-line sample log:</p>
+      <p><code>AND</code> keeps lines matching every branch; <code>OR</code> keeps at least one; <code>NOT</code> removes any line its argument appears on. Six examples against the 24-line sample log:</p>
       <table>
         <thead>
           <tr><th>Operator</th><th>Example query</th><th>What it matches in the sample log</th></tr>
         </thead>
         <tbody>
-          <tr><td rowspan="2"><code>AND</code></td><td><code>"status=500" AND payments</code></td><td>Lines carrying both the failed request and the payments dependency on the same line — the classic "what broke, and why" pair.</td></tr>
-          <tr><td><code>error AND timeout</code></td><td>Any line mentioning both words; order and distance between them do not matter.</td></tr>
-          <tr><td rowspan="2"><code>OR</code></td><td><code>"status=200" OR "status=500"</code></td><td>Every healthy or failed request line: lines 6, 11 and 15.</td></tr>
-          <tr><td><code>"svc=api" OR "svc=db"</code></td><td>All API-service and database-service lines — a broad first pass before narrowing.</td></tr>
-          <tr><td rowspan="2"><code>NOT</code></td><td><code>NOT "192.168.1.1"</code></td><td>Every line that does not mention that IP at all — 17 of the 24 sample lines, and line 10 is excluded too, because its <code>192.168.1.10</code> still contains the quoted substring.</td></tr>
-          <tr><td><code>"svc=db" NOT vacuum</code></td><td>Database lines minus the routine maintenance noise.</td></tr>
+          <tr><td rowspan="2"><code>AND</code></td><td><code>"status=500" AND payments</code></td><td>Lines carrying both the failed request and the payments dependency — the "what broke, and why" pair.</td></tr>
+          <tr><td><code>error AND timeout</code></td><td>Any line mentioning both words; order and distance do not matter.</td></tr>
+          <tr><td rowspan="2"><code>OR</code></td><td><code>"status=200" OR "status=500"</code></td><td>Every healthy or failed request line: 6, 11 and 15.</td></tr>
+          <tr><td><code>"svc=api" OR "svc=db"</code></td><td>All API-service and database-service lines — a broad first pass.</td></tr>
+          <tr><td rowspan="2"><code>NOT</code></td><td><code>NOT "192.168.1.1"</code></td><td>Lines not mentioning that IP — 17 of the 24 sample lines; line 10 is excluded too (its <code>192.168.1.10</code> still contains it).</td></tr>
+          <tr><td><code>"svc=db" NOT vacuum</code></td><td>Database lines minus routine maintenance noise.</td></tr>
         </tbody>
       </table>
-      <p>Operator tokens are matched as whole words in any casing — <code>and</code>, <code>And</code> and <code>AND</code> parse identically. That same rule is why a bare <code>and</code> can never be searched for literally (see mistake five below).</p>
+      <p>Operator tokens match as whole words in any casing — <code>and</code>, <code>And</code> and <code>AND</code> parse identically; a bare <code>and</code> is therefore always an operator (mistake five).</p>
 
       <h2>Precedence and parentheses</h2>
-      <p>When a query mixes operators without parentheses, SimpleLogSearch binds them in a fixed order: <code>NOT</code> tightest, then <code>AND</code>, then <code>OR</code>. So <code>a OR b AND c</code> is evaluated as <code>a OR (b AND c)</code>, never as <code>(a OR b) AND c</code>. Parentheses override precedence completely and are always legal — when a query gets long, adding them costs nothing and removes all doubt.</p>
-      <p>Here is the engine's canonical example, worked step by step against the 24-line sample log:</p>
+      <p>Without parentheses, <code>NOT</code> binds tightest, then <code>AND</code>, then <code>OR</code> — so <code>a OR b AND c</code> means <code>a OR (b AND c)</code>. Parentheses override completely.</p>
+      <p>The engine's canonical example, worked step by step against the 24-line sample log:</p>
       <p><code>"MID 123456" and "MID 123654" not "192.168.1.1"</code></p>
-      <p><strong>Step 1 — apply precedence.</strong> There are no parentheses. The <code>not</code> claims only its immediate argument, <code>"192.168.1.1"</code>, and the <code>and</code> chain evaluates left to right, so the query is exactly equivalent to:</p>
+      <p><strong>Step 1 — apply precedence.</strong> No parentheses: <code>not</code> claims only its immediate argument, and the <code>and</code> chain evaluates left to right:</p>
       <p><code>("MID 123456" AND "MID 123654") AND NOT "192.168.1.1"</code></p>
-      <p><strong>Step 2 — the inner AND.</strong> A line must contain both correlation IDs. In the sample log exactly two lines qualify:</p>
+      <p><strong>Step 2 — the inner AND.</strong> The line must contain both IDs; exactly two qualify:</p>
       <ul>
         <li><strong>Line 7</strong> — <code>… WARN svc=api   MID 123456 and MID 123654 correlated by trace=t-77</code></li>
         <li><strong>Line 20</strong> — <code>… ERROR svc=db    MID 123456 MID 123654 replication lag 52s host=db-2 via 192.168.1.1</code></li>
       </ul>
-      <p><strong>Step 3 — the NOT exclusion.</strong> <code>NOT</code> filters whole lines: any line containing <code>192.168.1.1</code> anywhere is dropped, even when that IP sits outside the matched phrases. Line 20 ends with <code>via 192.168.1.1</code>, so it is removed. The final result is a single line — line 7, the one place both IDs appear without the noisy address.</p>
-      <p>That last step is the one to internalize: <strong>an exclusion applies to the entire line, not just to what the AND matched.</strong> Appending <code>not "noise"</code> at the end of any query removes every line where "noise" appears — almost always the behaviour you want when correlating incidents.</p>
+      <p><strong>Step 3 — the NOT exclusion.</strong> <code>NOT</code> filters whole lines, so line 20 — which ends with <code>via 192.168.1.1</code> — is removed even though that IP sits outside the matched phrases. Final result: line 7, the one place both IDs appear without the noisy address.</p>
+      <p><strong>Key takeaway:</strong> an exclusion applies to the entire line, not just to what the AND matched — appending <code>not "noise"</code> removes every line where it appears.</p>
 
 
       <h2>Implicit AND</h2>
-      <p>Two operands placed side by side are ANDed — the whitespace between them is itself the operator. That means unquoted <code>MID 123456</code> is not one phrase; it is the term <code>MID</code> AND the term <code>123456</code>, and it matches any line containing both substrings anywhere, in either order. The quoted form <code>"MID 123456"</code> requires the exact adjacent sequence instead. On the sample log both happen to return the same seven lines, but on a messier file they can diverge — so quote whenever you mean the literal sequence.</p>
+      <p>Two operands side by side are ANDed — whitespace is itself the operator. Unquoted <code>MID 123456</code> means term <code>MID</code> AND term <code>123456</code>: any line containing both, in either order. Quoted <code>"MID 123456"</code> demands the exact adjacent sequence; on messier files the two can diverge, so quote whenever you mean the literal sequence.</p>
 
       <h2>Case-insensitive matching — and one substring caveat</h2>
-      <p>Every test is case-insensitive: <code>mid 123456</code>, <code>MID 123456</code> and <code>"Status=200"</code> all match the exact-case spellings in the log, so you can type queries however you like. The other side of substring matching is a caveat worth knowing: because there are no word boundaries, <code>"192.168.1.1"</code> also matches a line that contains only <code>192.168.1.10</code> — sample log line 10, <code>packet loss to 192.168.1.10 interface=eth0</code>, is caught by it. The standard fix is to quote one extra character of context, usually a trailing space: <code>"192.168.1.1 "</code> matches only lines where the IP is followed by whitespace, which narrows the sample log to line 16 alone. The same trick disambiguates any prefix collision — <code>"status=50"</code> versus <code>"status=500"</code>, a short hostname inside a long one, table prefixes.</p>
+      <p>Every test is case-insensitive: <code>mid 123456</code>, <code>MID 123456</code> and <code>"Status=200"</code> all match. The caveat: no word boundaries, so <code>"192.168.1.1"</code> also matches a line containing only <code>192.168.1.10</code> (sample line 10). The fix — quote one extra character of context, usually a trailing space: <code>"192.168.1.1 "</code> narrows the sample log to line 16 alone; the same trick disambiguates any prefix collision.</p>
 
       <h2>Twelve queries, annotated</h2>
-      <p>Each row below was run against the same 24-line sample log; "lines" are the original 1-based file line numbers that survive the query.</p>
+      <p>Each row ran against the same 24-line sample log; line numbers are original, 1-based.</p>
       <table>
         <thead>
           <tr><th>#</th><th>Query</th><th>What it matches</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td><code>"MID 123456"</code></td><td>Every line containing that exact phrase — lines 2, 4, 7, 8, 16, 20 and 23.</td></tr>
-          <tr><td>2</td><td><code>MID 123456</code></td><td>The unquoted, implicit-AND spelling of row 1 — term MID AND term 123456 — which lands on the same seven lines here.</td></tr>
+          <tr><td>1</td><td><code>"MID 123456"</code></td><td>The exact phrase — lines 2, 4, 7, 8, 16, 20 and 23.</td></tr>
+          <tr><td>2</td><td><code>MID 123456</code></td><td>The unquoted, implicit-AND spelling of row 1 — the same seven lines here.</td></tr>
           <tr><td>3</td><td><code>"MID 123456" and "MID 123654"</code></td><td>Only lines carrying both correlation IDs: 7 and 20.</td></tr>
-          <tr><td>4</td><td><code>"MID 123456" and "MID 123654" not "192.168.1.1"</code></td><td>The canonical query — row 3 minus any line mentioning the IP, leaving line 7 alone (worked step by step above).</td></tr>
-          <tr><td>5</td><td><code>not "192.168.1.1"</code></td><td>All lines without that substring: 17 of 24 — including the exclusion of line 10, whose .10 address still contains it.</td></tr>
+          <tr><td>4</td><td><code>"MID 123456" and "MID 123654" not "192.168.1.1"</code></td><td>The canonical query — row 3 minus the IP: line 7 alone (worked above).</td></tr>
+          <tr><td>5</td><td><code>not "192.168.1.1"</code></td><td>All lines without that substring: 17 of 24 (line 10's .10 address still contains it).</td></tr>
           <tr><td>6</td><td><code>"status=200" OR "status=500"</code></td><td>The healthy and failed request lines: 6, 11 and 15.</td></tr>
-          <tr><td>7</td><td><code>"svc=db" AND ("deadlock" OR "replication")</code></td><td>Database lines about the two serious failure modes: 5 (deadlock) and 20 (replication lag).</td></tr>
-          <tr><td>8</td><td><code>("svc=api" OR "svc=db") AND error</code></td><td>ERROR-level lines from either service: 5, 12, 20 and 23 — parentheses change the answer compared with <code>"svc=api" OR ("svc=db" AND error)</code>.</td></tr>
-          <tr><td>9</td><td><code>"192.168.1.1"</code></td><td>The substring trap: lines 1, 4, 8, 16, 17 and 20 — plus line 10, whose <code>.10</code> address still contains the phrase.</td></tr>
-          <tr><td>10</td><td><code>"192.168.1.1 "</code></td><td>Same phrase with a trailing space: only line 16, where the IP is followed by a word.</td></tr>
-          <tr><td>11</td><td><code>"svc=api" "status=200"</code></td><td>Implicit AND of two phrases — API lines that completed successfully: 6 and 15.</td></tr>
+          <tr><td>7</td><td><code>"svc=db" AND ("deadlock" OR "replication")</code></td><td>Database lines about the two serious failure modes: 5 (deadlock), 20 (replication lag).</td></tr>
+          <tr><td>8</td><td><code>("svc=api" OR "svc=db") AND error</code></td><td>ERROR-level lines from either service: 5, 12, 20, 23 — parentheses change the answer versus <code>"svc=api" OR ("svc=db" AND error)</code>.</td></tr>
+          <tr><td>9</td><td><code>"192.168.1.1"</code></td><td>The substring trap: lines 1, 4, 8, 16, 17, 20 — plus line 10 (its <code>.10</code> address still contains it).</td></tr>
+          <tr><td>10</td><td><code>"192.168.1.1 "</code></td><td>Same phrase with a trailing space: only line 16.</td></tr>
+          <tr><td>11</td><td><code>"svc=api" "status=200"</code></td><td>Implicit AND of two phrases — successful API lines: 6 and 15.</td></tr>
           <tr><td>12</td><td><code>"and"</code></td><td>The quoted operator as literal text: line 7, whose message contains the word "and".</td></tr>
         </tbody>
       </table>
 
       <h2>Five common mistakes</h2>
       <ol>
-        <li><strong>Missing quotes on a multi-word phrase.</strong> <code>timeout after</code> without quotes is two terms ANDed — it matches a line containing both words in either order, even far apart. Only <code>"timeout after"</code> demands the exact sequence.</li>
-        <li><strong>Believing operators must be typed in one case.</strong> They do not — <code>and</code>, <code>And</code> and <code>AND</code> (the same for OR and NOT) are matched as whole tokens in any casing and parse identically. A lowercase query behaves exactly like an uppercase one.</li>
-        <li><strong>Empty phrases.</strong> <code>""</code> — two quotes with nothing between them — is a rejected query ("empty phrase"), not a zero-result search. Remove the empty pair; there is nothing for it to match.</li>
-        <li><strong>Dangling operators.</strong> Every <code>NOT</code>, <code>AND</code> and <code>OR</code> needs a search term on each side: <code>"svc=api" AND</code>, <code>AND "svc=api"</code> and <code>OR OR</code> are all rejected with an explicit "missing a search term" error. Count your operators against your terms before pressing Enter.</li>
-        <li><strong>Searching for the literal word "and" unquoted.</strong> A bare operator token is always an operator, never a literal — typing it inside a query changes the logic instead of searching for the word. Quote it: <code>"and"</code> matches the word itself (row 12 above).</li>
+        <li><strong>Missing quotes on a multi-word phrase.</strong> <code>timeout after</code> without quotes is two terms ANDed; only <code>"timeout after"</code> demands the exact sequence.</li>
+        <li><strong>Believing operators must be typed in one case.</strong> They are whole-token matches in any casing: <code>and</code>, <code>And</code> and <code>AND</code> parse identically (same for OR/NOT).</li>
+        <li><strong>Empty phrases.</strong> <code>""</code> is a rejected query ("empty phrase"), not a zero-result search — nothing for it to match.</li>
+        <li><strong>Dangling operators.</strong> Every <code>NOT</code>, <code>AND</code> and <code>OR</code> needs a term on each side: <code>"svc=api" AND</code> and <code>OR OR</code> are rejected with "missing a search term".</li>
+        <li><strong>Searching for the literal word "and" unquoted.</strong> A bare operator token is always an operator — quote it: <code>"and"</code> matches the word itself (row 12).</li>
       </ol>
 
-      <p>That is the whole language: three operators, one quoting rule, one precedence chain. The fastest way to learn it is to load a sample log from the home page and run every query on this page — the result window keeps original line numbers, so each hit is traceable straight back into your file. For the investigation workflow that surrounds these queries, see the How-To Guide; for privacy, browser and file-type questions, see the FAQ.</p>
+      <p>That is the whole language: three operators, one quoting rule, one precedence chain. Load a sample log from the home page and run every query on this page — the result window keeps original line numbers. For the investigation workflow, see the How-To Guide; for privacy questions, the FAQ.</p>
     </article>
   </main>
 
