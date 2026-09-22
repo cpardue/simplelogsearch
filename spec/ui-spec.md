@@ -99,6 +99,19 @@ Trigger: add class + error message together; remove class on `animationend`.
   file*; when showing matches, the gutter shows each match's original number
   (never renumbered 1..N).
 - Scroll to top on every new search / reset / file load.
+- **Live highlight preview (user request 2026-09-22 — B16)**: with content
+  loaded, while typing in the search input (no submit), the visible rows
+  highlight every case-insensitive occurrence of each **positive atom**
+  (quoted phrases + bare terms; subtrees under `NOT` are never highlighted)
+  as a `<mark class="hl">` span — but only when the trimmed query is **> 3
+  characters** and parses cleanly. The preview is viewport-only (virtualization
+  — no whole-file scan per keystroke) and never runs the search: no match
+  filtering, no status-row change until Enter (B6/B7 semantics untouched).
+  ≤ 3 chars trimmed, no content loaded, or a mid-typing parse error
+  (unterminated quote / dangling operator) → no highlight (marks cleared).
+  Marks persist across scroll and survive submit (the input keeps the query);
+  they are cleared on file load / paste commit (B9 clears the input) and on
+  Reset (B8).
 - **Paste area (empty state, user request 2026-09-20)**: from first paint
   `#results` is visible; with no content loaded it shows `<textarea id="pasteArea">`
   styled like the viewport (bg #1d1f22, 13px/16px mono, initial height 344px,
@@ -130,6 +143,7 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B13 | big file, read > ~200 ms | during read | status shows `loading` for filename; UI stays responsive (async read) |
 | B14 | empty state | paste or type text into the paste area | commits as a log named `snippet`: whole text from line 1; textarea hidden (placeholder gone); status `loaded` |
 | B15 | snippet loaded | click Reset | back to the empty state: textarea + placeholder shown; search input cleared; no log in state |
+| B16 | content loaded | type in the search box (no submit) | trimmed query > 3 chars AND parses → every visible row highlights case-insensitive occurrences of each positive atom as `<mark class="hl">` (NOT subtrees never highlighted); ≤ 3 chars, no content, or mid-typing parse error → no highlight; the search is NOT run — filtering + status still wait for Enter |
 
 ## 6. Keyboard & a11y
 
