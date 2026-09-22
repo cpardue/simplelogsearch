@@ -4,7 +4,9 @@
      CHECKLIST 7.4). lastmod = date the page content was last changed
      (cehstudy convention — bump only on real content changes): all five
      content pages authored in Phase 6 (items 6.1–6.5, 2026-09-19); index
-     below-fold content landed in item 6.6 (2026-09-20). -->
+     below-fold content landed in item 6.6 (2026-09-20); the four guide pages
+     (query-syntax, how-to-search-logs, faq, about) were re-dieted in item 7.4A
+     (2026-09-22). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simplelogsearch.com/</loc>
@@ -12,19 +14,19 @@
   </url>
   <url>
     <loc>https://simplelogsearch.com/query-syntax/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-22</lastmod>
   </url>
   <url>
     <loc>https://simplelogsearch.com/how-to-search-logs/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-22</lastmod>
   </url>
   <url>
     <loc>https://simplelogsearch.com/faq/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-22</lastmod>
   </url>
   <url>
     <loc>https://simplelogsearch.com/about/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-22</lastmod>
   </url>
   <url>
     <loc>https://simplelogsearch.com/privacy-policy/</loc>
