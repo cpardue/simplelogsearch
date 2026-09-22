@@ -163,6 +163,14 @@ header, #errorSlot, main, footer {
   font: 13px/16px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* Live highlight preview (ui-spec §4 / B16) — <mark> injected by log-view.js while
+   the user types a >3-char query. Faint accent wash, text color unchanged. */
+.log-row .lc mark.hl {
+  background: rgba(138, 180, 248, .22);  /* --accent #8ab4f8 at 22% on #1d1f22 */
+  color: inherit;
+  border-radius: 2px;
+}
+
 /* ===== header: full-width row — wordmark centered above the search bar;
    Language pinned to the far top-right corner of the screen (2026-09-20) ===== */
 header {
