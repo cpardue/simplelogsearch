@@ -21,6 +21,11 @@
 //                                              over the pre-lowercased lines runs (§2)
 //   QueryParser.run(predicate, linesLower)  → number[] of 0-based matching indexes (§2)
 //   QueryParser.search(query, linesLower)   → convenience: parseQuery + compile + run
+//   QueryParser.positiveAtoms(ast)          → string[] of pre-lowercased atoms with POSITIVE
+//                                              polarity — the live highlight preview's terms
+//                                              (ui-spec §4 / B16). AND/OR inherit the parent
+//                                              polarity, NOT flips it (double negation ≡
+//                                              positive, per §1). Deduped, first-seen order.
 //   QueryParser.QueryParseError             → Error subclass; .detail = exact §3 detail string
 //
 // AST nodes:
@@ -224,11 +229,44 @@
     return run(compile(parseQuery(query)), linesLower);
   }
 
+  // --- positiveAtoms (ui-spec §4 / B16 — live highlight preview) ------------------------
+  // Walks the AST and returns the atoms whose effective polarity is POSITIVE:
+  // AND/OR children inherit the parent's polarity, NOT flips it — so
+  // `not not "x"` ≡ `"x"` (query-language §1 double negation) yields ["x"], while
+  // a bare `not "x"` yields [] (a fully negative query highlights nothing).
+  // Atoms are pre-lowercased; the UI matches them case-insensitively against the
+  // original line text. Deduped, first-seen order. Pure — no DOM access.
+
+  function positiveAtoms(ast) {
+    var out = [];
+    var seen = {};
+    (function walk(node, positive) {
+      if (!node || typeof node !== "object") return;
+      switch (node.type) {
+        case "ATOM":
+          if (positive && node.value && !seen[node.value]) {
+            seen[node.value] = true;
+            out.push(node.value);
+          }
+          break;
+        case "AND":
+        case "OR":
+          for (var i = 0; i < node.children.length; i += 1) walk(node.children[i], positive);
+          break;
+        case "NOT":
+          walk(node.child, !positive); // flips polarity — double negation restores it (§1)
+          break;
+      }
+    })(ast, true);
+    return out;
+  }
+
   var QueryParser = {
     parseQuery: parseQuery,
     compile: compile,
     run: run,
     search: search,
+    positiveAtoms: positiveAtoms,
     QueryParseError: QueryParseError,
   };
 
