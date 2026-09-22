@@ -85,6 +85,22 @@ const VECTORS = [
   { id: "V25", query: "OR OR", expectError: 'operator "OR" is missing a search term' }, // impl choice per §6 note
 ];
 
+// --- Highlight-preview atoms (spec/ui-spec.md §4 / B16; QueryParser.positiveAtoms) -----
+// Positive-atom extraction for the live highlight preview: AND/OR inherit the parent's
+// polarity, NOT flips it (double negation restores positive — query-language §1).
+// Expected arrays = pre-lowercased, deduped, first-seen order. Parse-error queries must
+// never reach positiveAtoms (the UI parses first) — so no error vectors here.
+const ATOM_VECTORS = [
+  { id: "A01", query: "\"MID 123456\"", expectAtoms: ["mid 123456"] },
+  { id: "A02", query: "MID 123456", expectAtoms: ["mid", "123456"] }, // bare implicit AND
+  { id: "A03", query: "\"MID 123456\" and \"MID 123654\" not \"192.168.1.1\"", expectAtoms: ["mid 123456", "mid 123654"] }, // canonical §4 — NOT excluded
+  { id: "A04", query: "\"status=200\" OR \"status=500\"", expectAtoms: ["status=200", "status=500"] },
+  { id: "A05", query: "not not \"svc=db\"", expectAtoms: ["svc=db"] }, // double negation ≡ positive
+  { id: "A06", query: "\"and\"", expectAtoms: ["and"] }, // quoted operator = literal (V19)
+  { id: "A07", query: "\"MID 123456\" OR \"MID 123456\"", expectAtoms: ["mid 123456"] }, // dedupe
+  { id: "A08", query: "not \"svc=db\"", expectAtoms: [] }, // fully negative → nothing to highlight
+];
+
 // --- Pre-flight: fixture = exactly 24 lines, verbatim vs spec/query-language.md §5 --
 function fmt(lines) { return "[" + lines.join(",") + "]"; }
 
@@ -162,9 +178,33 @@ for (const v of VECTORS) {
   }
 }
 
-if (vecFailures === 0) {
-  console.log("RESULT: " + VECTORS.length + "/" + VECTORS.length + " PASS — all vectors green (spec/query-language.md §6)");
-} else {
-  console.log("RESULT: " + (VECTORS.length - vecFailures) + "/" + VECTORS.length + " PASS — " + vecFailures + " vector(s) FAILED");
+// --- Highlight-atom run (ui-spec §4 / B16) ----------------------------------------------
+let atomFailures = 0;
+for (const v of ATOM_VECTORS) {
+  let got, errDetail = null;
+  try {
+    got = QueryParser.positiveAtoms(QueryParser.parseQuery(v.query));
+  } catch (err) {
+    errDetail = err && typeof err.detail === "string" ? err.detail : String(err);
+  }
+  if (errDetail !== null) {
+    console.log("FAIL " + v.id + " expected atoms got ERROR (" + errDetail + ")");
+    atomFailures += 1;
+  } else {
+    const same = v.expectAtoms.length === got.length && v.expectAtoms.every((a, i) => a === got[i]);
+    if (same) {
+      console.log("PASS " + v.id + " " + JSON.stringify(v.query) + " → atoms " + fmt(got));
+    } else {
+      console.log("FAIL " + v.id + " expected atoms " + fmt(v.expectAtoms) + " got " + fmt(got));
+      atomFailures += 1;
+    }
+  }
 }
-process.exitCode = vecFailures === 0 ? 0 : 1;
+
+const totalFails = vecFailures + atomFailures;
+if (totalFails === 0) {
+  console.log("RESULT: " + VECTORS.length + "/" + VECTORS.length + " search vectors + " + ATOM_VECTORS.length + "/" + ATOM_VECTORS.length + " atom vectors PASS (query-language §6 + ui-spec B16)");
+} else {
+  console.log("RESULT: " + (VECTORS.length - vecFailures) + "/" + VECTORS.length + " search + " + (ATOM_VECTORS.length - atomFailures) + "/" + ATOM_VECTORS.length + " atom PASS — " + totalFails + " vector(s) FAILED");
+}
+process.exitCode = totalFails === 0 ? 0 : 1;
