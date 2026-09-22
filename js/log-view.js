@@ -10,6 +10,10 @@
 //                                  // renumbered 1..N)
 //   lv.scrollToTop()               // every new search / reset / file load
 //                                  // starts at line 1 (§4)
+ //   lv.setHighlight(terms)         // string[] of pre-lowercased atoms — visible rows wrap
+ //                                  // case-insensitive occurrences in <mark class="hl">
+ //                                  // (live preview, §4/B16); viewport-only by design
+ //   lv.clearHighlight()            // drop the preview marks (§4/B16)
 //
 // Rendering (§4): fixed 16px rows; a .log-spacer element carries the total
 // height (rows.length × 16px); only the visible slice + 10-row overscan is
@@ -41,6 +45,7 @@
     let lines = [];     // strings of the loaded file (original text)
     let view = [];      // original 0-based indexes currently shown (all or matches)
     let gutterW = "3ch";// .ln width — recomputed on setLines (§4)
+    let hlRegex = null; // §4/B16 live preview — combined case-insensitive alternation of the highlight atoms, or null
     let queued = false;
 
     function render() {
@@ -82,7 +87,30 @@
         const lc = document.createElement("span");
         lc.className = "lc";
         const raw = lines[src];
-        lc.textContent = raw == null || raw === "" ? ZWSP : raw;
+        if (raw == null || raw === "") {
+          lc.textContent = ZWSP;
+        } else if (!hlRegex) {
+          lc.textContent = raw;
+        } else {
+          // §4/B16 live highlight preview: wrap case-insensitive occurrences of the
+          // highlight atoms in <mark class="hl">. Node-based (no innerHTML) so
+          // arbitrary log text needs no escaping; viewport-only by construction
+          // (virtualization never keeps more rows in the DOM than visible+overscan).
+          const frag = document.createDocumentFragment();
+          let last = 0;
+          for (const m of raw.matchAll(hlRegex)) {
+            if (m.index > last) frag.appendChild(document.createTextNode(raw.slice(last, m.index)));
+            if (m[0] !== "") { // defensive — atoms are ≥1 char, but never emit an empty <mark>
+              const mk = document.createElement("mark");
+              mk.className = "hl";
+              mk.textContent = m[0];
+              frag.appendChild(mk);
+            }
+            last = m.index + m[0].length;
+          }
+          if (last < raw.length) frag.appendChild(document.createTextNode(raw.slice(last)));
+          lc.appendChild(frag);
+        }
 
         row.appendChild(ln);
         row.appendChild(lc);
@@ -123,6 +151,21 @@
       scrollToTop() {
         viewport.scrollTop = 0;                // fires scroll → re-render
       },
+      setHighlight(terms) {
+        const list = Array.prototype.filter.call(terms || [], (t) => typeof t === "string" && t !== "");
+        if (list.length === 0) {
+          hlRegex = null;
+        } else {
+          // Longest first so the longer atom wins when two terms start at the same
+          // offset. Atoms arrive pre-lowercased (query-parser ATOM nodes); 'i' makes
+          // them match the original-case line text case-insensitively (§2).
+          const escaped = list.slice().sort((a, b) => b.length - a.length)
+            .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+          hlRegex = new RegExp(escaped.join("|"), "gi");
+        }
+        queueRender();
+      },
+      clearHighlight() { this.setHighlight([]); },
     };
   }
 
