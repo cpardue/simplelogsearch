@@ -94,28 +94,32 @@
   <main class="content">
     <article>
       <h1>About SimpleLogSearch</h1>
-      <p>SimpleLogSearch is a free log file search that runs entirely in your browser. You upload a log, type an AND, OR, or NOT query, and read the matching lines with their original line numbers — all of it executed on your own machine. This page is the short version of who built it, why it exists, and how it works under the hood.</p>
+      <p>A free log file search that runs entirely in your browser.</p>
 
       <h2>Why this tool exists</h2>
-      <p>I search logs all the time as part of my cybersecurity work. I use advanced log parsing tools, but in practice I often find that Notepad++ and Ctrl+F do the job just fine. The moment a task needs more than one plain search string — combine two terms, exclude a known noiser, match an exact quoted phrase — ordinary find falls short, and heavy tooling is overkill. SimpleLogSearch sits exactly in that gap: a search box with real boolean syntax on top of an ordinary text window, private enough to point at whatever I am investigating.</p>
-      <p>I made this tool for myself first, and have now made it available to you. It is the same one I would use daily: no signup, no tiers, nothing attached.</p>
+      <p>I search logs daily for my cybersecurity work. Ctrl+F handles one string; combine two terms, exclude a noiser, or match an exact phrase and ordinary find falls short while heavy tooling is overkill. SimpleLogSearch fills that gap.</p>
+      <p>I made it for myself first: no signup, no tiers, nothing attached.</p>
 
       <h2>Data safety</h2>
-      <p>Your logs are never uploaded to a SimpleLogSearch server — there is no server. Everything stays in your browser: the file is read into page memory with the browser's own file API, the search runs locally on your machine, and everything is discarded when you close the page or load another file. I need it this way so that I can use this at work on logs I am not free to copy out of my environment; you can use it at work, too. No accounts means nothing to store, leak, or sell, and the only preference the app remembers is your interface language.</p>
+      <p>Your logs are never uploaded — there is no server. Files are read into page memory, searched locally, and discarded when you close the page. I need it this way to triage at work on logs I'm not free to copy out. No accounts means nothing to store, leak or sell.</p>
 
       <h2>Design principles</h2>
-      <p>Three principles drove the design. First, privacy-first client-side processing: the architecture makes uploading impossible rather than merely unlikely. Second, a familiar Google-style dark UI — a magnifier search bar on a dark gray canvas, responsive down to phone width, with no learning curve for anyone who has ever used a web search box. Third, agent-friendly by design: through WebMCP the page exposes four tools (get_log_status, search_logs, reset_view, load_sample_log) so an AI assistant in a supported browser can run searches on your behalf.</p>
+      <ul>
+        <li><strong>Privacy-first, client-side</strong> — uploading is impossible by architecture, not by promise.</li>
+        <li><strong>Familiar Google-style dark UI</strong> — a search bar anyone has used, responsive to phone width.</li>
+        <li><strong>Agent-friendly via WebMCP</strong> — an AI assistant in a supported browser can run searches on your behalf.</li>
+      </ul>
 
       <h2>Under the hood</h2>
-      <p>SimpleLogSearch is a static site written in vanilla JavaScript — no frameworks, no build step, no runtime dependencies. It is hosted on GitHub Pages, which keeps the entire operation to a few dollars of static hosting per year. The results window is virtualized: only the rows currently visible exist in the page, so a 10 MB file with 100,000 lines scrolls without stutter while a 50 MB upload cap keeps memory in check. Matching is case-insensitive substring, deliberately grep-like in being honest about exactly what it will and will not find.</p>
+      <p>A static site in vanilla JavaScript — no frameworks, no build step — hosted on GitHub Pages. The results window is virtualized, so 100,000-line files scroll smoothly under the 50 MB cap; matching is case-insensitive substring, grep-like.</p>
 
       <h2>Related projects</h2>
       <ul>
-        <li><a href="https://cehstudy.com/">CEHStudy</a> — a free collection of condensed CEH v13 study resources (flashcards, practice questions, module notes, and a glossary), also built and maintained by Chris Pardue. His author page there is <a href="https://cehstudy.com/about/">cehstudy.com/about</a>.</li>
-        <li><a href="https://github.com/cpardue/simplelogsearch">SimpleLogSearch source code</a> — the complete app is plain HTML, CSS, and JavaScript on GitHub. Bug reports and feature requests are read personally; there is no ticket system to maintain because there are no accounts.</li>
+        <li><a href="https://cehstudy.com/">CEHStudy</a> — free, condensed CEH v13 study resources, also by Chris Pardue; author page: <a href="https://cehstudy.com/about/">cehstudy.com/about</a>.</li>
+        <li><a href="https://github.com/cpardue/simplelogsearch">SimpleLogSearch source code</a> — plain HTML, CSS and JavaScript on GitHub; bug reports are read personally.</li>
       </ul>
 
-      <p>If this tool is useful to you, bookmark the page and pass it on to your grep-illiterate co-workers. They can use it, too. Mine do.</p>
+      <p>If this helps, pass it on to your grep-illiterate co-workers — mine use it too.</p>
     </article>
   </main>
   <footer>
