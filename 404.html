@@ -7,22 +7,25 @@
   <meta name="description" content="The page you are looking for does not exist. Return to SimpleLogSearch — free in-browser log file search with AND, OR, and NOT queries.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#202124">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <!-- Branded 404 (CHECKLIST 6.7, spec/seo-adsense §3): logo + "page not found"
        + link home, on the shared dark theme. Served by GitHub Pages for bad
        paths under the site. No JSON-LD and no i18n script: it is a dead-end
-       utility page, English-only like all body copy (spec/seo-adsense §1). -->
-  <link rel="stylesheet" href="css/styles.css">
+       utility page, English-only like all body copy (spec/seo-adsense §1).
+       All refs are ROOT-ABSOLUTE: this file is served from arbitrary deep
+       paths, so relative refs would 404 (unstyled page + home link pointing
+       at another missing path) — fixed in CHECKLIST 7.3 live re-run. -->
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header>
-    <a class="wordmark" href="index.html" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
+    <a class="wordmark" href="/" aria-label="SimpleLogSearch"><span>S</span><span>i</span><span>m</span><span>p</span><span>l</span><span>e</span><span>L</span><span>o</span><span>g</span><span>S</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></a>
   </header>
 
   <main class="content">
     <h1>Page not found</h1>
     <p>The page you are looking for does not exist or has moved. The log search, query syntax reference, how-to guide, FAQ, about page, and privacy policy all start from the home page.</p>
-    <p><a href="index.html">Return to SimpleLogSearch</a></p>
+    <p><a href="/">Return to SimpleLogSearch</a></p>
   </main>
 
 </body>
