@@ -1,13 +1,20 @@
 # Spec — SEO / Google Indexability + AdSense Thin-Content Strategy
 
 Base: `https://simplelogsearch.com/` (dedicated-domain project site, locked 2026-09-19 per CHECKLIST 7.4; old subpath URLs 301 here).
-Anti-thin-content doctrine: **six genuinely useful pages, ~4,300 original
-words total, real author, visible (not just JSON-LD) FAQ, privacy policy, no
+Anti-thin-content doctrine: **six genuinely useful pages, ~5,350 original words total (measured 2026-09-22 post item-7.4A diet — the guide pages' required operator/example tables, worked case study and FAQ parity pairs floor them at ~3,100 w combined), real author, visible (not just JSON-LD) FAQ, privacy policy, no
 templated doorway content.** Content stays English-only (i18n is UI-only by
 decision) → single canonical URL per page, no hreflang alternates beyond the
 `en-us`/`x-default` pattern cehstudy uses.
 
 ## 1. Page inventory & content outlines (word targets are floors)
+
+(2026-09-22 amendment, CHECKLIST item 7.4A — user directive: readers find the
+four guide pages too wordy to read. Floors lowered: query-syntax 950→600,
+how-to-search-logs 1000→600, faq 600→400, about 350→200; index 900 and
+privacy-policy 450 unchanged. **Concise voice (those four pages):** short
+sentences, one idea per sentence, lists/steps over paragraphs, zero filler,
+keep every topic. §4's thin-content doctrine is unchanged — the floors still
+guard content ahead of the 7.6 application.)
 
 ### 1.1 `index.html` — the app + ~900 words in a collapsed "About This Tool" section
 - (2026-09-20, user direction) All content below this line lives in a collapsed
@@ -23,7 +30,7 @@ decision) → single canonical URL per page, no hreflang alternates beyond the
 - Links out to all 4 guide pages + privacy.
 - Meta: title `SimpleLogSearch — Free Log File Search with AND/OR/NOT (In-Browser)`; description ≤ 155 chars.
 
-### 1.2 `query-syntax/index.html` — ~950 words — "Log Search Query Syntax Reference"
+### 1.2 `query-syntax/index.html` — ~800 words (floor 600) — "Log Search Query Syntax Reference"
 H1 `Log Search Query Syntax: AND, OR, NOT, and Quoted Phrases`. Sections:
 The basic idea (phrase = quoted substring; term = single token); Operators
 table (AND/OR/NOT with 2 examples each); Precedence & parentheses (work the
@@ -34,7 +41,7 @@ substring caveat with the trailing-space narrowing trick; 12-row example table
 (5 items: missing quotes for multi-word, uppercase operators myth, empty
 phrase, dangling AND, searching for the literal word and).
 
-### 1.3 `how-to-search-logs/index.html` — ~1,000 words — practical guide
+### 1.3 `how-to-search-logs/index.html` — ~900 words (floor 600) — practical guide
 H1 `How to Search Log Files Like a Pro`. Sections: What logs actually tell
 you (timestamps/IPs/levels/correlation IDs — MID is one example); The 6-step
 investigation workflow using this tool (load → orient with broad terms →
@@ -46,7 +53,7 @@ exports, JSON lines, any line-based text — one example line each); 10 pro tips
 (quote exact strings, use NOT for noise IPs, quote the time prefix to bound a
 time range, combine service + level terms, …).
 
-### 1.4 `faq/index.html` — ~600 words, 14 Q/As
+### 1.4 `faq/index.html` — ~550 words (floor 400), 14 Q/As
 Superset of index FAQ + additions: Is my data sent anywhere? (No — all
 client-side; cite the architecture) Can I search CSV/JSON/XML? (Any line-based
 text file) Why no account/server? What browsers? (all evergreen; WebMCP agent
@@ -56,7 +63,7 @@ open? Can I search across multiple files? (v1: one at a time — roadmap note)
 Is it mobile-friendly? Who makes this? Ads disclosure (monetized via Google
 AdSense; see privacy). Contact → cehstudy.com contact page.
 
-### 1.5 `about/index.html` — ~350 words
+### 1.5 `about/index.html` — ~280 words (floor 200)
 H1 `About SimpleLogSearch`. Author: Chris Pardue (cybersecurity professional,
 consistent with cehstudy.com — link both ways); why this tool exists (private,
 no-server log triage); design principles (privacy-first client-side, familiar
