@@ -4,8 +4,9 @@
 // and <style> blocks, HTML comments, and all tags (so attribute values never
 // count), then count whitespace-separated words in the remaining visible text.
 // Each page must meet or exceed its spec/seo-adsense.md §1 floor ("word targets
-// are floors"): index 900 | query-syntax 950 | how-to-search-logs 1000 |
-// faq 600 | about 350 | privacy-policy 450.
+// are floors"): index 900 | query-syntax 600 | how-to-search-logs 600 |
+// faq 400 | about 200 | privacy-policy 450. Guide-page floors lowered
+// 2026-09-22 by the item 7.4A spec amendment (concise voice, shorter pages).
 // Run from workspace root or repo root:
 //   node simplelogsearch/test/word-count.mjs
 //   node test/word-count.mjs
@@ -23,10 +24,10 @@ const root = path.resolve(here, "..");
 // §1 floors (spec/seo-adsense.md) — source of truth.
 const PAGES = [
   { file: "index.html", floor: 900 },                        // §1.1 (~900 w in the collapsed article)
-  { file: "query-syntax/index.html", floor: 950 },           // §1.2
-  { file: "how-to-search-logs/index.html", floor: 1000 },    // §1.3
-  { file: "faq/index.html", floor: 600 },                    // §1.4
-  { file: "about/index.html", floor: 350 },                  // §1.5
+  { file: "query-syntax/index.html", floor: 600 },           // §1.2 (7.4A)
+  { file: "how-to-search-logs/index.html", floor: 600 },     // §1.3 (7.4A)
+  { file: "faq/index.html", floor: 400 },                    // §1.4 (7.4A)
+  { file: "about/index.html", floor: 200 },                  // §1.5 (7.4A)
   { file: "privacy-policy/index.html", floor: 450 },         // §1.6
 ];
 
