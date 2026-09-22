@@ -34,7 +34,7 @@
     "@type": "Article",
     "headline": "How to Search Log Files Like a Pro",
     "author": { "@type": "Person", "name": "Chris Pardue" },
-    "dateModified": "2026-09-19"
+    "dateModified": "2026-09-22"
   }
   </script>
   <script type="application/ld+json">
@@ -84,28 +84,28 @@
   <main class="content">
     <article>
       <h1>How to Search Log Files Like a Pro</h1>
-      <p>Finding the forty lines that matter inside a forty megabyte log is a skill — and it's a small one. Learn what each part of a line is for, then let <code>AND</code>, <code>OR</code> and <code>NOT</code> do the filtering. This guide is the practical companion to the <a href="../query-syntax/">query syntax reference</a>: it assumes you know the operators (the syntax page takes two minutes if you don't) and shows how an experienced operator actually works a file — orienting with broad terms, narrowing to one failing component, cutting out the noise that buries signal, and following a single request end to end. Every technique below runs in the SimpleLogSearch search box, and every example line is the kind of thing you'll actually find in production logs.</p>
+      <p>Finding the forty lines that matter in a forty megabyte log is a small skill: learn what each part of a line means, then let <code>AND</code>, <code>OR</code> and <code>NOT</code> do the filtering — every technique below runs in the SimpleLogSearch search box.</p>
 
       <h2>What logs actually tell you</h2>
-      <p>Before you type anything, learn to read one line. Almost every log format — syslog, access logs, event exports, JSON lines — packs the same four facts into each entry, and each fact becomes a search target:</p>
+      <p>Almost every log format — syslog, access logs, event exports, JSON lines — packs the same four facts into each entry, and each is a search target:</p>
       <ul>
-        <li><strong>Timestamps.</strong> When the entry happened — and the first thing you should read on any match. A search for <code>error</code> that spans 09:58 to 10:14 tells you the incident window before you've read a single message: the first match is when it started, the last is whether it's still happening.</li>
-        <li><strong>IPs and identities.</strong> Who or what produced the line: a client address, an internal worker, a service account, a scanner. Telling real users apart from health checks and bots is usually a one-argument <code>NOT</code> job — once you can name the noise, excluding it costs nothing. (Substrings bite here too: <code>"192.168.1.1"</code> also matches <code>.10</code>; the <a href="../query-syntax/">syntax page</a> covers the fix.)</li>
-        <li><strong>Levels and status codes.</strong> ERROR, WARN and FATAL in an application log; 500, 404 and 301 in an access log. The coarsest filter you have — and often the right first one: a bare <code>500</code> finds every server-error line of every kind.</li>
-        <li><strong>Correlation IDs.</strong> Request IDs, trace IDs, order numbers — the thread that ties together everything one logical action touched. MID is one example: the canonical query on the syntax page (<code>"MID 123456" and "MID 123654" not "192.168.1.1"</code>) works because two IDs pin down one request chain across services. Find an ID in any match, then search for that ID alone and the whole chain lights up.</li>
+        <li><strong>Timestamps.</strong> When it happened — first match: when it started; last match: whether it's still happening.</li>
+        <li><strong>IPs and identities.</strong> Who produced the line. Telling real traffic from probes and bots is usually a one-argument <code>NOT</code> job (substrings bite: <code>"192.168.1.1"</code> also matches <code>.10</code> — the <a href="../query-syntax/">syntax page</a> covers the fix).</li>
+        <li><strong>Levels and status codes.</strong> ERROR, WARN, FATAL; 500, 404, 301. The coarsest filter — often the right first one: a bare <code>500</code> finds every server-error line.</li>
+        <li><strong>Correlation IDs.</strong> Request, trace or order numbers. Find an ID in a match, search it alone, and the whole chain lights up.</li>
       </ul>
       <h2>The 6-step investigation workflow</h2>
-      <p>Six moves, in order, take you from raw file to explainable answer. Each step is one search — or a refinement of the last — and nothing here requires leaving the browser.</p>
+      <p>Six moves, in order, take you from raw file to explainable answer — each step is one search:</p>
       <ol>
-        <li><strong>Load the file.</strong> Upload it — or pick one of the bundled samples from the <a href="../index.html">home page</a> to practice on. The file never leaves your machine; SimpleLogSearch reads it in the browser, up to 50 MB. Note the line count in the status row: it's your denominator for judging how large a problem any match volume actually is.</li>
-        <li><strong>Orient with broad terms.</strong> Search one wide word — <code>error</code>, <code>timeout</code>, <code>500</code> — then read the first few matches and the last few. First match: when it started. Last match: whether it's still ongoing. A status row saying 412 matches is a different conversation from 41,200.</li>
-        <li><strong>Narrow with AND.</strong> Add the second fact you observed — service plus symptom, endpoint plus status code: <code>"svc=api" AND error</code>, <code>"/api/v1/orders" AND " 500 "</code>. When you mix OR with AND, use parentheses so the engine groups the branches the way you intend.</li>
-        <li><strong>Exclude noise with NOT.</strong> Append <code>not</code> for anything that shouldn't be in the answer: health-check probes, scanner IPs, bot user agents, the sibling service's errors. <code>NOT</code> drops any line on which its argument appears anywhere — almost always exactly what you want.</li>
-        <li><strong>Follow correlation IDs.</strong> Copy an ID out of a match — a trace, request or order number — and search it unquoted. Every line carrying that ID is the same logical action, often across services, in file order: your end-to-end story of what happened to one request.</li>
-        <li><strong>Note line numbers.</strong> The gutter shows each match's original line number from the file. Quote those numbers in tickets and chat so anyone holding the same file jumps straight there — a match list with line numbers is reproducible evidence, not a screenshot.</li>
+        <li><strong>Load the file.</strong> Upload it — or pick a bundled sample from the <a href="../index.html">home page</a>; it never leaves your machine (up to 50 MB).</li>
+        <li><strong>Orient with broad terms.</strong> One wide word — <code>error</code>, <code>timeout</code>, <code>500</code> — then read first and last matches: when it started; whether it's ongoing.</li>
+        <li><strong>Narrow with AND.</strong> Add the second fact — service plus symptom, endpoint plus status: <code>"svc=api" AND error</code>; parentheses when mixing OR with AND.</li>
+        <li><strong>Exclude noise with NOT.</strong> Append <code>not</code> for health-check probes, scanner IPs, bot user agents — <code>NOT</code> drops any line its argument appears on.</li>
+        <li><strong>Follow correlation IDs.</strong> Copy an ID from a match, search it unquoted: every line carrying it is the same action.</li>
+        <li><strong>Note line numbers.</strong> The gutter shows original numbers; quote them in tickets — reproducible evidence, not a screenshot.</li>
       </ol>
       <h2>Worked case study: reconstructing an outage timeline</h2>
-      <p>Here is the workflow end to end on an eight-line web access log from a morning shop outage. Save it as <code>outage.log</code>, upload it, and run every query below — the results are exact.</p>
+      <p>The workflow end to end on an eight-line access log from a shop outage. Save as <code>outage.log</code>, upload it, run every query — results are exact.</p>
       <pre>198.51.100.20 - - [14/Mar/2026:09:58:02 +0000] "GET /home HTTP/1.1" 200 3412 "-" "Mozilla/5.0"
 10.1.1.5 - - [14/Mar/2026:09:58:30 +0000] "GET /healthz HTTP/1.1" 500 96 "-" "kube-probe/1.29"
 172.31.4.9 - - [14/Mar/2026:10:01:14 +0000] "POST /api/v1/orders HTTP/1.1" 500 118 "https://shop.example.com/cart" "Mozilla/5.0 trace=9f3ab2"
@@ -114,12 +114,12 @@
 198.51.100.22 - - [14/Mar/2026:10:04:09 +0000] "POST /api/v1/orders HTTP/1.1" 500 118 "https://shop.example.com/cart" "Mozilla/5.0 trace=71c0de"
 10.1.1.5 - - [14/Mar/2026:10:05:30 +0000] "GET /healthz HTTP/1.1" 500 96 "-" "kube-probe/1.29"
 172.31.4.13 - - [14/Mar/2026:10:09:55 +0000] "POST /api/v1/orders HTTP/1.1" 200 2841 "https://shop.example.com/cart" "Mozilla/5.0"</pre>
-      <p><strong>Step 2 — the broad term.</strong> <code>" 500 "</code> — quoted with its spaces so only the status field can hit — returns six lines: 2, 3, 4, 5, 6 and 7. Something is failing, but three of those are your own canary probe, not customers.</p>
-      <p><strong>Step 4 — cut the noise.</strong> <code>" 500 " not /healthz</code> drops the probe traffic and leaves three real customer errors: lines 3, 5 and 6. All three are order requests hitting <code>/api/v1/orders</code>, between 10:01:14 and 10:04:09.</p>
-      <p><strong>Step 5 — follow an ID.</strong> The first failing line carries <code>trace=9f3ab2</code>. Search <code>9f3ab2</code> and you get lines 3 and 5: the create-order call and the fetch of order 8817 that followed it. One customer's session failing on both endpoints points at a shared upstream, not anything on the client side.</p>
-      <p><strong>Steps 3 and 6 — bound it and cite it.</strong> <code>"10:01" AND " 500 "</code> isolates the first failure (10:01:14, line 3). The last customer-facing 500 lands at 10:04:09 (line 6), the canary's final failing probe at 10:05:30, and the first successful order POST again at 10:09:55 (line 8). The ticket-ready summary: <em>orders API returned 500s from 10:01 to 10:04; three customer requests affected (traces 9f3ab2, 71c0de); recovered by about 10:10</em> — every claim traceable to a line number in an eight-line file.</p>
+      <p><strong>Step 2 — the broad term.</strong> <code>" 500 "</code> — quoted with spaces so only the status field can hit — returns lines 2–7; three are your canary probe, not customers.</p>
+      <p><strong>Step 4 — cut the noise.</strong> <code>" 500 " not /healthz</code> drops the probes: lines 3, 5, 6 — order requests hitting <code>/api/v1/orders</code> between 10:01:14 and 10:04:09.</p>
+      <p><strong>Step 5 — follow an ID.</strong> The first failing line carries <code>trace=9f3ab2</code>: search it — lines 3 and 5, create-order plus the fetch of order 8817. One session failing on both endpoints = shared upstream, not client.</p>
+      <p><strong>Steps 3 and 6 — bound it and cite it.</strong> <code>"10:01" AND " 500 "</code> isolates the first failure (line 3); last customer 500 at 10:04:09 (line 6); first good order POST again at 10:09:55 (line 8). Ticket-ready: <em>orders API returned 500s 10:01–10:04; three customer requests affected (traces 9f3ab2, 71c0de); recovered by ~10:10</em> — every claim traceable to a line number.</p>
       <h2>Log formats you can search</h2>
-      <p>SimpleLogSearch is line-based and format-agnostic: if the data arrives one entry per line, it's searchable. Five shapes you'll meet in practice:</p>
+      <p>Line-based and format-agnostic: one entry per line is all it needs. Five shapes you'll meet in practice:</p>
       <table>
         <thead>
           <tr><th>Format</th><th>Example line</th><th>What to search for</th></tr>
@@ -132,22 +132,22 @@
           <tr><td>Any other line-based text (CSV, XML dumps, custom)</td><td><code>2026-03-14T10:01:14Z,10.2.0.14,checkout,payment_declined</code></td><td>Any token or substring that identifies the row</td></tr>
         </tbody>
       </table>
-      <p>Multi-line entries are fine too — a stack trace is just a run of lines, and any frame carrying your search term will surface alongside its origin (tip 7 below).</p>
+      <p>Multi-line entries are fine too — a stack trace is just a run of lines, and any frame carrying your search term surfaces with its origin (tip 7).</p>
       <h2>Ten pro tips</h2>
       <ol>
-        <li><strong>Quote exact strings.</strong> <code>timeout after 30s</code> without quotes is two terms ANDed — it matches lines with both words in either order, anywhere. With quotes it's the literal sequence. Quote whenever the sequence is the point.</li>
-        <li><strong>Use NOT for noise IPs.</strong> Health-check probes, uptime monitors and scanners produce the same line shapes as real traffic. Name the offender once — <code>not 10.1.1.5</code>, <code>not "kube-probe"</code> — and it disappears from every query you append it to.</li>
-        <li><strong>Quote the time prefix to bound a range.</strong> Timestamps are searchable text: <code>"14/Mar/2026:10"</code> finds the ten-o'clock hour, <code>"10:01"</code> one minute of it. AND that with your error term and you have a time-bounded query with no date math.</li>
-        <li><strong>Combine service + level terms.</strong> <code>"svc=api" AND error</code>, <code>nginx AND "upstream timed out"</code> — one fact narrows, two facts find. Two or three terms is the sweet spot; beyond that, switch to searching one ID instead.</li>
-        <li><strong>Don't fight case.</strong> Matching is case-insensitive everywhere: lowercase <code>error timeout</code> finds ERROR and Timeout alike. Type however you remember it.</li>
-        <li><strong>Mind the substring trap.</strong> No word boundaries means <code>"192.168.1.1"</code> also hits <code>192.168.1.10</code>, and a bare <code>health</code> hits <code>/healthz</code>. Quote one extra character of context — usually a trailing or leading space: <code>"192.168.1.1 "</code>, <code>" /healthz"</code> (worked out on the <a href="../query-syntax/">syntax page</a>).</li>
-        <li><strong>Stack traces are lines too.</strong> Continuation frames rarely repeat the timestamp, but they do repeat class and exception names — search <code>NullPointerException</code> or the top frame's class and the whole trace surfaces with its origin line.</li>
-        <li><strong>Read the last match.</strong> The newest entry tells you whether the problem is ongoing or resolved; comparing first- and last-match timestamps sizes the incident window before you've written a word of the ticket.</li>
-        <li><strong>Deep-link your query.</strong> The app reads a <code>?q=</code> URL parameter into the search box on load — share the page URL with your exact query attached and teammates open it with your filter already waiting in the box (they upload their own file; nothing is shared by accident).</li>
-        <li><strong>Keep a noise list.</strong> Maintain the block you always append — <code>not healthz not "kube-probe" not 203.0.113.99</code> — and paste it onto the end of any investigation query for your environment. Ten seconds of typing saves an hour of scrolling past probes.</li>
+        <li><strong>Quote exact strings.</strong> Unquoted <code>timeout after 30s</code> is two terms ANDed; quoted, it's the literal sequence.</li>
+        <li><strong>Use NOT for noise IPs.</strong> Probes mimic real traffic: name the offender once — <code>not 10.1.1.5</code>, <code>not "kube-probe"</code> — and append it to every query.</li>
+        <li><strong>Quote the time prefix.</strong> <code>"14/Mar/2026:10"</code> finds an hour, <code>"10:01"</code> a minute; AND it with your error term for a time-bounded query.</li>
+        <li><strong>Combine service + level.</strong> <code>"svc=api" AND error</code>, <code>nginx AND "upstream timed out"</code> — two or three terms is the sweet spot.</li>
+        <li><strong>Don't fight case.</strong> Matching is case-insensitive everywhere: lowercase <code>error timeout</code> finds ERROR and Timeout alike.</li>
+        <li><strong>Mind the substring trap.</strong> <code>"192.168.1.1"</code> also hits <code>192.168.1.10</code>; quote one extra context character — <code>"192.168.1.1 "</code>, <code>" /healthz"</code> (worked out on the <a href="../query-syntax/">syntax page</a>).</li>
+        <li><strong>Stack traces are lines.</strong> Frames rarely repeat the timestamp but do repeat class/exception names — search <code>NullPointerException</code> or the top frame's class.</li>
+        <li><strong>Read the last match.</strong> The newest entry says whether the problem is ongoing or resolved; first- and last-match timestamps size the incident window.</li>
+        <li><strong>Deep-link your query.</strong> The app reads <code>?q=</code> on load — share the URL with your query attached; teammates open it prefilled (they upload their own file).</li>
+        <li><strong>Keep a noise list.</strong> Paste your standard block — <code>not healthz not "kube-probe"</code> — onto any environment query.</li>
       </ol>
 
-      <p>That's the whole discipline: read the line, go wide, narrow with AND, cut noise with NOT, follow one ID, and cite line numbers. Load a sample from the <a href="../index.html">home page</a> — or your own file — and run every query on this page; the result window keeps original line numbers, so each hit is traceable straight back into the file. For the full grammar and annotated operator examples, see the <a href="../query-syntax/">query syntax reference</a>; for privacy, browser and file-type questions, see the <a href="../faq/">FAQ</a>.</p>
+      <p>That's the discipline: read the line, go wide, narrow, cut noise, follow one ID, cite line numbers. Load a sample from the <a href="../index.html">home page</a> and run every query above. Full grammar: the <a href="../query-syntax/">syntax reference</a>; privacy questions: the <a href="../faq/">FAQ</a>.</p>
     </article>
   </main>
 
