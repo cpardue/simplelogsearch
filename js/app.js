@@ -197,6 +197,7 @@
     // `loaded` for the same file.
     searchInput.value = "";
     logView.setLines(state.lines);
+    logView.clearHighlight(); // §4/B16 — reset clears the input, so its preview goes with it
     setStatus("status.loaded", { file: state.file.name, lines: state.lines.length });
     clearError();
   }
@@ -236,6 +237,7 @@
     state.lines = lines;
     state.linesLower = lines.map((l) => l.toLowerCase()); // built ONCE (Phase 3 searches over this — query-language §2)
     searchInput.value = "";   // B9 — replace clears any previous query
+    logView.clearHighlight(); // §4/B16 — the preview belonged to the cleared query
     logView.setLines(lines);  // whole file from line 1, scrolled to top (§4)
     results.hidden = false;   // after setLines → ResizeObserver sees the real size (2.1)
     statusRow.hidden = false; // content is present → status row visible
@@ -411,6 +413,10 @@
     const predicate = QueryParser.compile(ast);
     const indexes = QueryParser.run(predicate, state.linesLower);
     logView.showMatches(indexes);
+    // §4/B16 — keep the preview marks in sync with the query that just ran. The WebMCP
+    // path (window.SLS.search) sets the input without firing an 'input' event, so the
+    // rAF listener alone would leave stale marks from a different typed query.
+    logView.setHighlight(QueryParser.positiveAtoms(ast));
     if (indexes.length > 0) {
       setStatus("status.matched", { file: state.file.name, total: state.lines.length, matches: indexes.length, query: query });
     } else {
@@ -436,6 +442,7 @@
       // resets to all lines and scrolls to top per §4), status `loaded`; the
       // input itself is left as-is.
       logView.setLines(state.lines);
+      logView.clearHighlight(); // §4/B16 — back to the whole log; a whitespace query can't carry a preview
       setStatus("status.loaded", { file: state.file.name, lines: state.lines.length });
       clearError();
       return;
@@ -453,6 +460,37 @@
         throw e; // non-parser failure — never swallow it silently
       }
     }
+  });
+
+  // --- Live highlight preview (user request 2026-09-22 — ui-spec §4 / B16) --------------
+  // While the user types (no submit), a file/snippet is loaded, and the trimmed query
+  // is > 3 characters: parse the partial query and hand its positive atoms to
+  // LogView.setHighlight() — visible rows wrap case-insensitive occurrences in
+  // <mark class="hl">. The preview is viewport-only (virtualization — it NEVER scans
+  // the whole file per keystroke) and never runs the search: no showMatches, no
+  // status-row change until Enter (B6/B7 semantics untouched). ≤ 3 chars, no content,
+  // or a mid-typing parse error (unterminated quote / dangling operator — normal while
+  // typing) → marks cleared, so a stale query's highlights never linger.
+
+  let hlQueued = false;
+  function updateHighlightPreview() {
+    hlQueued = false;
+    if (!state.file) { logView.clearHighlight(); return; }
+    const q = searchInput.value.trim();
+    if (q.length <= 3) { logView.clearHighlight(); return; }
+    try {
+      // positiveAtoms returns [] for fully negative queries (e.g. `not "x"`) —
+      // setHighlight([]) clears: a query that only excludes highlights nothing.
+      logView.setHighlight(QueryParser.positiveAtoms(QueryParser.parseQuery(q)));
+    } catch (e) {
+      if (e && e.name === "QueryParseError") logView.clearHighlight();
+      else throw e; // non-parser failure — never swallow it silently
+    }
+  }
+  searchInput.addEventListener("input", function () {
+    if (hlQueued) return;
+    hlQueued = true;
+    requestAnimationFrame(updateHighlightPreview); // coalesce rapid keystrokes to one render each frame
   });
 
   // --- Keyboard (ui-spec §6) --------------------------------------------------------------------
