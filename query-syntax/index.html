@@ -127,6 +127,9 @@
       <p><strong>Key takeaway:</strong> an exclusion applies to the entire line, not just to what the AND matched — appending <code>not "noise"</code> removes every line where it appears.</p>
 
 
+      <h2>When no line contains every term</h2>
+      <p><code>AND</code> matches only lines carrying all of its terms. If no line does, SimpleLogSearch falls back to the lines matching <strong>any</strong> of the query's positive terms — every <code>NOT</code> exclusion still applies — and says so in the status row. On a web access log, <code>GET AND POST NOT healthz</code> has no single line with both methods, so it returns the GET and POST lines without <code>healthz</code>. The fallback only ever fills an empty result: when some line does contain every term, that is what you get.</p>
+
       <h2>Implicit AND</h2>
       <p>Two operands side by side are ANDed — whitespace is itself the operator. Unquoted <code>MID 123456</code> means term <code>MID</code> AND term <code>123456</code>: any line containing both, in either order. Quoted <code>"MID 123456"</code> demands the exact adjacent sequence; on messier files the two can diverge, so quote whenever you mean the literal sequence.</p>
 
