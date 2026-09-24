@@ -25,7 +25,7 @@
 // error (B10 — CHECKLIST 2.5); search submit with a file loaded runs the
 // query through window.QueryParser (CHECKLIST 3.4): parse → compile once →
 // single pass over linesLower → showMatches(0-based) + status
-// matched/noMatches (B6/B7); a parse error shows err.invalidQuery {detail}
+// matched/matchedAny/noMatches (B6/B7; §2 fallback = B17); a parse error shows err.invalidQuery {detail}
 // with the previous view untouched (B11); a ?q= URL param prefills the input
 // on load only — never auto-runs (SearchAction support).
  // Paste box (2026-09-20 user request — ui-spec §4/B14/B15): #results is visible
@@ -293,16 +293,16 @@
 
   const SLS = {
     // get_log_status (§3) — derived from the last rendered status row: a
-    // matched/noMatches row means a search ran since the last load/reset;
+    // matched/matchedAny/noMatches row means a search ran since the last load/reset;
     // loaded/loading rows mean the whole-log view (nothing else is stored).
     status() {
       if (!state.file) {
         return { has_log: false, file_name: null, total_lines: null, has_searched: false, match_count: null };
       }
       const s = state.status;
-      const searched = !!s && (s.key === "status.matched" || s.key === "status.noMatches");
+      const searched = !!s && (s.key === "status.matched" || s.key === "status.matchedAny" || s.key === "status.noMatches");
       let matchCount = null;
-      if (s && s.key === "status.matched") matchCount = s.params.matches;
+      if (s && (s.key === "status.matched" || s.key === "status.matchedAny")) matchCount = s.params.matches;
       else if (s && s.key === "status.noMatches") matchCount = 0; // noMatches row carries no params.matches
       return { has_log: true, file_name: state.file.name, total_lines: state.lines.length, has_searched: searched, match_count: matchCount };
     },
@@ -328,12 +328,18 @@
       }
       searchInput.value = q; // show the agent's query in the box
       try {
-        const indexes = performQuery(q);
+        const result = performQuery(q);
+        const indexes = result.indexes;
         const samples = indexes.slice(0, 10).map((i) => ({
           line_number: i + 1, // original 1-based numbers (query-language §2)
           text: state.lines[i].slice(0, 200), // "…≤200 chars…"
         }));
-        return { ok: true, total_lines: state.lines.length, matched_lines: indexes.length, samples };
+        const response = { ok: true, total_lines: state.lines.length, matched_lines: indexes.length, samples };
+        if (result.fallback) {
+          // §2 zero-hit AND fallback: say so for the agent (webmcp §3 note field).
+          response.note = "No line contained every term of the query, so lines matching any of its positive terms are returned; NOT exclusions still apply.";
+        }
+        return response;
       } catch (e) {
         if (e && e.name === "QueryParseError") {
           return { ok: false, error: e.detail }; // exact §3 detail string
@@ -399,7 +405,9 @@
 
   // --- Search core (CHECKLIST 3.4 + 5.2) -------------------------------------------------
   // The single search path: parse → compile ONCE per search → single pass over
-  // the pre-lowercased lines → 0-based indexes (spec/query-language §2).
+  // the pre-lowercased lines → 0-based indexes (spec/query-language §2). A zero-hit
+  // AND query may fall back to any-of over its positive terms with NOT exclusions
+  // still applied (query-language §2; B17) — performQuery reports that via fallback.
   // LogView shows the matches with ORIGINAL line numbers and scrolls to top
   // (ui-spec §4); status matched/noMatches (B6); a later search updates this
   // same window in place (B7). Called by both the form submit handler
@@ -409,21 +417,25 @@
   // callers decide how to surface it (UI → err.invalidQuery slot, previous
   // view untouched — B11).
   function performQuery(query) {
-    const ast = QueryParser.parseQuery(query); // throws QueryParseError on any §3 error
-    const predicate = QueryParser.compile(ast);
-    const indexes = QueryParser.run(predicate, state.linesLower);
+    const result = QueryParser.searchWithFallback(query, state.linesLower); // throws QueryParseError on any §3 error; strict result first, §2 zero-hit fallback on empty
+    const ast = result.ast;
+    const indexes = result.indexes;
     logView.showMatches(indexes);
     // §4/B16 — keep the preview marks in sync with the query that just ran. The WebMCP
     // path (window.SLS.search) sets the input without firing an 'input' event, so the
     // rAF listener alone would leave stale marks from a different typed query.
     logView.setHighlight(QueryParser.positiveAtoms(ast));
-    if (indexes.length > 0) {
-      setStatus("status.matched", { file: state.file.name, total: state.lines.length, matches: indexes.length, query: query });
-    } else {
+    if (indexes.length === 0) {
       setStatus("status.noMatches", { file: state.file.name, total: state.lines.length, query: query });
+    } else if (result.fallback) {
+      // §2 zero-hit AND fallback (B17): no line contained every term — the shown lines
+      // match any positive term with all NOT exclusions still applied; say so.
+      setStatus("status.matchedAny", { file: state.file.name, total: state.lines.length, matches: indexes.length, query: query });
+    } else {
+      setStatus("status.matched", { file: state.file.name, total: state.lines.length, matches: indexes.length, query: query });
     }
     clearError(); // next successful action clears the error slot (ui-spec §2)
-    return indexes; // 0-based — SLS.search maps them to line_number/text samples
+    return { indexes: indexes, fallback: result.fallback }; // 0-based + fallback flag — SLS.search maps indexes to line_number/text samples and adds its note on fallback
   }
 
   // --- Search submit ------------------------------------------------------------------------
