@@ -33,6 +33,23 @@ Rules:
   narrow by quoting more context (`"192.168.1.1 "` with trailing space).
 - `NOT X` excludes any line where X occurs, regardless of other atoms.
 - AND = all atoms match; OR = at least one branch matches.
+- **Zero-hit AND fallback** (added 2026-09-24 — user bug report: `GET AND POST`
+  on a web access log returned 0 lines although GET and POST each matched plenty
+  of lines, because no single line carries both): the strict result is always
+  computed first and stands whenever it is non-empty. Only when it is **empty**
+  does the search re-run with every AND node evaluated as "at least one positive
+  (non-`NOT`) child matches" AND "every `NOT` child holds" — each AND chain
+  becomes an any-of over its positive terms, all exclusions still applied. An
+  AND node with fewer than two positive children is not loosened (nothing to
+  loosen), and no AND node inside a `NOT` subtree is ever loosened (exclusions
+  keep their strict meaning). The loose result is used only when it is
+  non-empty; otherwise the plain no-match result stands. The UI says so in the
+  status row (`status.matchedAny`, ui-spec §4/B17) and the WebMCP `search_logs`
+  response carries an explanatory `note` (webmcp §3). Cost: at most one extra
+  pass over the pre-lowercased lines, only for queries that would otherwise
+  return nothing. Exposure: `QueryParser.searchWithFallback(query, linesLower)
+  → { ast, indexes, fallback }`; strict `parseQuery/compile/run/search` are
+  unchanged and always strict; `compileLoose(ast)` is the loose predicate.
 - The evaluator compiles the AST once per search, then runs a single pass over
   the pre-lowercased line array (lowercase copies built at load time).
 - Return value: array of **0-based indexes** of matching lines (UI maps index →
@@ -115,6 +132,14 @@ Query: `"MID 123456" and "MID 123654" not "192.168.1.1"`
 | V23 | `"svc=api" AND` | ERROR: operator "AND" is missing a search term |
 | V24 | `AND "svc=api"` | ERROR: operator "AND" is missing a search term |
 | V25 | `OR OR` | ERROR: dangling operator / no search terms (implementation picks one, document it) |
+| V26 | `"backup" AND "deadlock"` | 5,9 *(anyOf)* |
+| V27 | `"status=200" AND backup NOT auth` | 6,9,15 *(anyOf)* |
+| V28 | `"zebra" AND "quokka"` | ∅ (strict empty, loose also empty — no fallback) |
+| V29 | `not "2026" not "svc"` | ∅ (no positive terms to loosen — no fallback) |
+
+Vectors marked *(anyOf)* run through `searchWithFallback` and assert BOTH the
+returned lines and `fallback === true` (their strict result is empty). Every
+unmarked success vector asserts `fallback === false`. ∅ = no lines.
 
 UI-level behaviors tested manually (not node): empty/whitespace query with a
 loaded file → show all lines, no error; invalid query → error slot filled and
