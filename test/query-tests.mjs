@@ -55,7 +55,9 @@ const FIXTURE = [
 ];
 
 // --- Vectors (spec §6 — expected lines are original 1-based numbers) ----------------
-// Success vector: { id, query, expect: [line, ...] }
+// Success vector: { id, query, expect: [line, ...], anyOf?: true } — run through
+//   searchWithFallback; `anyOf: true` additionally asserts fallback === true (strict
+//   result empty); every unmarked success vector asserts fallback === false.
 // Error vector:   { id, query, expectError: <exact §3 detail string> }
 const VECTORS = [
   { id: "V01", query: "\"MID 123456\"", expect: [2, 4, 7, 8, 16, 20, 23] },
@@ -83,6 +85,11 @@ const VECTORS = [
   { id: "V23", query: "\"svc=api\" AND", expectError: 'operator "AND" is missing a search term' },
   { id: "V24", query: "AND \"svc=api\"", expectError: 'operator "AND" is missing a search term' },
   { id: "V25", query: "OR OR", expectError: 'operator "OR" is missing a search term' }, // impl choice per §6 note
+  // --- Zero-hit AND fallback (spec §2; B17) — anyOf vectors assert the fallback flag ---
+  { id: "V26", query: "\"backup\" AND \"deadlock\"", expect: [5, 9], anyOf: true },
+  { id: "V27", query: "\"status=200\" AND backup NOT auth", expect: [6, 9, 15], anyOf: true }, // NOT stays a whole-line exclusion
+  { id: "V28", query: "\"zebra\" AND \"quokka\"", expect: [] }, // both modes empty — no fallback
+  { id: "V29", query: "not \"2026\" not \"svc\"", expect: [] }, // all-negative AND — nothing to loosen
 ];
 
 // --- Highlight-preview atoms (spec/ui-spec.md §4 / B16; QueryParser.positiveAtoms) -----
@@ -162,12 +169,14 @@ for (const v of VECTORS) {
     }
   } else {
     try {
-      const got = QueryParser.search(v.query, linesLower).map((i) => i + 1);
+      const res = QueryParser.searchWithFallback(v.query, linesLower);
+      const got = res.indexes.map((i) => i + 1);
       const same = v.expect.length === got.length && v.expect.every((n, i) => n === got[i]);
-      if (same) {
-        console.log("PASS " + v.id + " " + JSON.stringify(v.query) + " → " + fmt(got));
+      const flagOk = (v.anyOf === true) === (res.fallback === true);
+      if (same && flagOk) {
+        console.log("PASS " + v.id + " " + JSON.stringify(v.query) + (res.fallback ? " → anyOf fallback " : " → ") + fmt(got));
       } else {
-        console.log("FAIL " + v.id + " expected " + fmt(v.expect) + " got " + fmt(got));
+        console.log("FAIL " + v.id + " expected " + fmt(v.expect) + (v.anyOf ? " [anyOf]" : "") + " got " + fmt(got) + (res.fallback ? " [fallback]" : "") + (flagOk ? "" : " (fallback flag mismatch)"));
         vecFailures += 1;
       }
     } catch (err) {
