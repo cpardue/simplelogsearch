@@ -56,8 +56,10 @@
   register("search_logs", {
     description: "Search the currently loaded log file with a boolean query " +
       '(quoted phrases, AND/OR/NOT, parentheses). Returns match count and ' +
-      "up to 10 matching line previews with original line numbers. " +
-      'Example query: "MID 123456" and "MID 123654" not "192.168.1.1"',
+      "up to 10 matching line previews with original line numbers. If no single " +
+      "line contains every term of an AND query, lines matching any of them are " +
+      'returned and a note field explains why. Example query: "MID 123456" and ' +
+      '"MID 123654" not "192.168.1.1"',
     inputSchema: {
       type: "object",
       properties: { query: { type: "string", description: "Boolean log query" } },
