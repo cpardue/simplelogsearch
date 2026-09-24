@@ -77,7 +77,11 @@ Trigger: add class + error message together; remove class on `animationend`.
 ## 4. Result window (`#results`)
 
 - Container: `width:100%;` full browser width (no max-width), margin-top 24px.
-- Status row: 13px `#9aa0a6`, padding 8px 4px; content per i18n status keys;
+- Status row: 13px `#9aa0a6`, padding 8px 4px; content per i18n status keys —
+  `loaded`/`loading` for whole-log views, `matched` for a search with hits,
+  `matchedAny` for the zero-hit AND fallback (query-language §2: no line
+  contained every term, so lines matching any positive term are shown — all
+  NOT exclusions still applied), `noMatches` for an empty result;
   double-clicking it re-focuses the search input. Hidden in the empty state
   (no content loaded).
 - Viewport: `overflow:auto; resize:vertical;` **initial height = 20 rows ≈
@@ -144,6 +148,7 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B14 | empty state | paste or type text into the paste area | commits as a log named `snippet`: whole text from line 1; textarea hidden (placeholder gone); status `loaded` |
 | B15 | snippet loaded | click Reset | back to the empty state: textarea + placeholder shown; search input cleared; no log in state |
 | B16 | content loaded | type in the search box (no submit) | trimmed query > 3 chars AND parses → every visible row highlights case-insensitive occurrences of each positive atom as `<mark class="hl">` (NOT subtrees never highlighted); ≤ 3 chars, no content, or mid-typing parse error → no highlight; the search is NOT run — filtering + status still wait for Enter |
+| B17 | file loaded | submit a query whose strict result is empty but at least one line matches a positive term (zero-hit AND fallback — query-language §2) | lines matching any positive term shown, all `NOT` exclusions still applied; original line numbers; status `matchedAny` ("no line contains all terms" notice); scroll top. When the loose result is also empty → plain B6 no-match view |
 
 ## 6. Keyboard & a11y
 
