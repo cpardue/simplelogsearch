@@ -21,6 +21,17 @@
 //                                              over the pre-lowercased lines runs (§2)
 //   QueryParser.run(predicate, linesLower)  → number[] of 0-based matching indexes (§2)
 //   QueryParser.search(query, linesLower)   → convenience: parseQuery + compile + run
+ //   QueryParser.compileLoose(ast)           → predicate like compile(), but every AND node
+ //                                              OUTSIDE a NOT subtree evaluates as "any of its
+ //                                              positive (non-NOT) children AND all of its NOT
+ //                                              children" — the §2 zero-hit AND fallback; an
+ //                                              AND with < 2 positive children stays strict
+ //   QueryParser.searchWithFallback(query, linesLower)
+ //                                         → { ast, indexes, fallback } — the strict result
+ //                                              first; on an empty result AND a loosenable
+ //                                              AND chain, re-runs the loose predicate and
+ //                                              reports fallback: true (ui-spec B17)
+
 //   QueryParser.positiveAtoms(ast)          → string[] of pre-lowercased atoms with POSITIVE
 //                                              polarity — the live highlight preview's terms
 //                                              (ui-spec §4 / B16). AND/OR inherit the parent
@@ -261,11 +272,114 @@
     return out;
   }
 
+  // --- Zero-hit AND fallback (spec §2; ui-spec B17 — 2026-09-24 user bug report) -------
+  // When no single line carries every term of an AND chain (`GET AND POST` on a web
+  // access log), the strict result is empty even though each term matches plenty of
+  // lines. compileLoose() builds the fallback predicate: every AND node OUTSIDE a NOT
+  // subtree evaluates as "at least one positive (non-NOT) child matches" AND "every
+  // NOT child holds"; NOT subtrees are compiled strictly (exclusions are never
+  // loosened), and an AND node with < 2 positive children is strict (nothing to
+  // loosen). searchWithFallback runs strict first; only on an empty result — and only
+  // when the AST actually contains a loosenable AND chain — does it run the loose
+  // predicate over the same pre-lowercased lines. At most one extra pass, and only
+  // for queries that would otherwise show nothing.
+
+  function buildLoose(node, underNot) {
+    if (underNot) return buildNode(node); // a NOT subtree keeps its strict meaning
+    switch (node.type) {
+      case "ATOM": {
+        var needle = node.value;
+        return function (lineLower) { return lineLower.includes(needle); };
+      }
+      case "AND": {
+        var posParts = [];
+        var negParts = [];
+        for (var i = 0; i < node.children.length; i += 1) {
+          var child = node.children[i];
+          if (child.type === "NOT") negParts.push(buildNode(child)); // strict exclusion
+          else posParts.push(buildLoose(child, false));
+        }
+        if (posParts.length < 2) {
+          // Nothing to loosen: plain all-children AND, same as strict.
+          var allParts = posParts.concat(negParts);
+          return function (lineLower) {
+            for (var j = 0; j < allParts.length; j += 1) if (!allParts[j](lineLower)) return false;
+            return true;
+          };
+        }
+        var anyPos = posParts;
+        var everyNeg = negParts;
+        return function (lineLower) {
+          for (var k = 0; k < anyPos.length; k += 1) {
+            if (anyPos[k](lineLower)) {
+              for (var m = 0; m < everyNeg.length; m += 1) if (!everyNeg[m](lineLower)) return false;
+              return true;
+            }
+          }
+          return false;
+        };
+      }
+      case "OR": {
+        var orParts = node.children.map(function (c) { return buildLoose(c, false); });
+        if (orParts.length === 1) return orParts[0];
+        return function (lineLower) {
+          for (var n = 0; n < orParts.length; n += 1) if (orParts[n](lineLower)) return true;
+          return false;
+        };
+      }
+      case "NOT":
+        var notStrictChild = buildNode(node.child); // child evaluated strictly
+        return function (lineLower) { return !notStrictChild(lineLower); };
+    }
+    throw new Error("query-parser: unknown AST node type"); // unreachable from parseQuery
+  }
+
+  function compileLoose(ast) {
+    return buildLoose(ast, false); // loose predicate for the whole search (§2 fallback)
+  }
+
+  // True when at least one AND node outside a NOT subtree has ≥ 2 positive children —
+  // the only case where the loose predicate can return anything the strict one cannot.
+  function canLoosen(node, underNot) {
+    if (!node || typeof node !== "object" || underNot) return false;
+    switch (node.type) {
+      case "ATOM": return false;
+      case "OR":
+        for (var i = 0; i < node.children.length; i += 1) if (canLoosen(node.children[i], false)) return true;
+        return false;
+      case "NOT": return false; // its subtree is compiled strictly — never loosenable
+      case "AND": {
+        var pos = 0;
+        for (var j = 0; j < node.children.length; j += 1) if (node.children[j].type !== "NOT") pos += 1;
+        if (pos >= 2) return true;
+        for (var k = 0; k < node.children.length; k += 1) {
+          var c = node.children[k];
+          if (canLoosen(c, c.type === "NOT")) return true;
+        }
+        return false;
+      }
+    }
+    return false;
+  }
+
+  function searchWithFallback(query, linesLower) {
+    var ast = parseQuery(query);
+    var indexes = run(compile(ast), linesLower); // strict first — always the primary answer
+    var fallback = false;
+    if (indexes.length === 0 && canLoosen(ast, false)) {
+      var loose = run(compileLoose(ast), linesLower);
+      if (loose.length > 0) { indexes = loose; fallback = true; }
+    }
+    return { ast: ast, indexes: indexes, fallback: fallback };
+  }
+
   var QueryParser = {
     parseQuery: parseQuery,
     compile: compile,
     run: run,
     search: search,
+    compileLoose: compileLoose,
+    searchWithFallback: searchWithFallback,
     positiveAtoms: positiveAtoms,
     QueryParseError: QueryParseError,
   };
