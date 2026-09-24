@@ -86,6 +86,7 @@ has_searched: boolean, match_count: number|null }`
 ### `search_logs` — input: `{ query: string }` (required)
 Runs the same parser/matcher as the UI. Returns:
 - success: `{ ok: true, total_lines: n, matched_lines: m, samples: [ { line_number: 123, text: "…≤200 chars…" } × ≤10 ] }`
+- success with the zero-hit AND fallback active (query-language §2): same shape plus `note: string` — explains that lines matching any positive term were returned (NOT exclusions still applied)
 - no file loaded: `{ ok: false, error: "No log is loaded. Call load_sample_log first or ask the user to upload a file." }`
 - bad query: `{ ok: false, error: "<parser detail from spec/query-language.md §3>" }`
 
