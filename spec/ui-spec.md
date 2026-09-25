@@ -25,7 +25,8 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 <main>    [search bar: 🔍 icon | input | 🔍 submit button]
           [ Reset ]  [ Upload ]        (12px gap, centered)
 <section id="results">                   (always visible; empty state = paste area)
-   [status row: filename • lines • match count]   (hidden until content loads)
+   [view bar: status text left + Word Wrap checkbox right]   (always visible;
+    the status side is hidden until content loads — B18)
    [paste area: textarea, faint placeholder THIS/THAT]  (empty state only)
    [log viewport: gutter + virtualized rows, CSS-resizable]   (content state only)
 </section>
@@ -77,13 +78,28 @@ Trigger: add class + error message together; remove class on `animationend`.
 ## 4. Result window (`#results`)
 
 - Container: `width:100%;` full browser width (no max-width), margin-top 24px.
-- Status row: 13px `#9aa0a6`, padding 8px 4px; content per i18n status keys —
+- View bar + status row (2026-09-25, B18): the row just above the text box is
+  a flex bar (`#viewBar`, 13px `#9aa0a6`, padding 8px 4px) that is ALWAYS
+  visible. Left: the status text (`#statusRow`; content per i18n status keys —
   `loaded`/`loading` for whole-log views, `matched` for a search with hits,
   `matchedAny` for the zero-hit AND fallback (query-language §2: no line
   contained every term, so lines matching any positive term are shown — all
   NOT exclusions still applied), `noMatches` for an empty result;
-  double-clicking it re-focuses the search input. Hidden in the empty state
-  (no content loaded).
+  double-clicking it re-focuses the search input) — hidden in the empty state
+  (no content loaded). Right: the Word Wrap checkbox (next bullet). In the
+  empty state only the checkbox shows.
+- **Word wrap (user request 2026-09-25 — B18)**: a native checkbox labeled
+  "Word Wrap" (i18n `view.wordWrap`) at the inline-end of the view bar. It
+  applies to the rendered log view only — the paste box stays no-wrap.
+  Checked → `.lc` switches to `white-space:pre-wrap` with long space-less
+  tokens breaking mid-token (`overflow-wrap:anywhere`); rows take variable
+  height (visual lines × 16px, gutter number on the first visual line only);
+  the spacer carries the sum of row heights — virtualization stays intact
+  (per-line heights computed arithmetically from the monospace advance, then
+  corrected per visible row by measured offsetHeight). Unchecked → the fixed
+  16px no-wrap rendering above. Default unchecked; never persisted (always
+  off on load). Toggling scrolls to line 1 (row offsets change). Original
+  line numbers are unchanged in both modes.
 - Viewport: `overflow:auto; resize:vertical;` **initial height = 20 rows ≈
   344px** (20 × 16px + padding); `min-height:80px; max-height:90vh;`
   bottom-right corner grip rendered as a CSS gradient triangle (decorative —
@@ -149,6 +165,7 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B15 | snippet loaded | click Reset | back to the empty state: textarea + placeholder shown; search input cleared; no log in state |
 | B16 | content loaded | type in the search box (no submit) | trimmed query > 3 chars AND parses → every visible row highlights case-insensitive occurrences of each positive atom as `<mark class="hl">` (NOT subtrees never highlighted); ≤ 3 chars, no content, or mid-typing parse error → no highlight; the search is NOT run — filtering + status still wait for Enter |
 | B17 | file loaded | submit a query whose strict result is empty but at least one line matches a positive term (zero-hit AND fallback — query-language §2) | lines matching any positive term shown, all `NOT` exclusions still applied; original line numbers; status `matchedAny` ("no line contains all terms" notice); scroll top. When the loose result is also empty → plain B6 no-match view |
+| B18 | content loaded (or empty state) | toggle the Word Wrap checkbox | the checkbox is always visible at the inline-end of the view bar (empty state: it is the only thing shown). With content: checked → `.lc` wraps at the viewport width, rows variable height (visual lines × 16px), gutter number on the first visual line only, spacer = sum of row heights, no horizontal overflow; unchecked → fixed 16px no-wrap restored. Toggling scrolls to line 1; original line numbers never renumbered; default off on load, never persisted |
 
 ## 6. Keyboard & a11y
 
