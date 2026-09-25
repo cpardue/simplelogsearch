@@ -49,6 +49,7 @@
   const searchInput = document.querySelector("input.search-input");
   const resetBtn = document.getElementById("resetBtn");
   const uploadBtn = document.getElementById("uploadBtn");
+  const exportBtn = document.getElementById("exportBtn"); // B19 — Export Snippet (match views only)
   const fileInput = document.getElementById("fileInput");
   const results = document.getElementById("results");
   const statusRow = document.getElementById("statusRow");
@@ -78,6 +79,7 @@
     lines: null,      // string[] — original text lines
     linesLower: null, // string[] — lowercase copy, built ONCE per load
     status: null,     // { key, params } of the last rendered status row
+    matchIndexes: null, // 0-based indexes of the CURRENT match view — B19 export source; null in whole-log/empty views
   };
 
   // --- Error slot (ui-spec §2) --------------------------------------------------
@@ -110,6 +112,17 @@
   function setStatus(key, params) {
     state.status = { key: key, params: params || {} };
     renderStatus();
+    syncExportBtn(); // B19 — Export Snippet visibility tracks the rendered status row
+  }
+
+  // B19 (ui-spec §4) — the Export Snippet button is visible exactly in match
+  // views (status matched / matchedAny — the zero-hit AND fallback view exports
+  // exactly what it shows); whole-log, loading, no-match and empty-state rows keep
+  // it hidden. Driven from setStatus so every view change (B6/B7/B8/B9/B10/B15,
+  // SLS paths) re-syncs it in one place.
+  function syncExportBtn() {
+    const s = state.status;
+    exportBtn.hidden = !(s && (s.key === "status.matched" || s.key === "status.matchedAny"));
   }
 
   function renderStatus() {
@@ -168,8 +181,10 @@
     state.lines = null;
     state.linesLower = null;
     state.status = null;
+    state.matchIndexes = null; // B19 — no match view in the empty state
     statusRow.textContent = "";
     statusRow.hidden = true;
+    syncExportBtn(); // B19 — hide (state.status is now null)
     logView.setLines([]); // empty view — 0px spacer, no rows
     logViewportEl.hidden = true;
     pasteArea.value = "";
@@ -205,6 +220,7 @@
     // (setLines resets the view and scrolls to top per ui-spec §4), status
     // `loaded` for the same file.
     searchInput.value = "";
+    state.matchIndexes = null; // B19 — back to the whole-log view
     logView.setLines(state.lines);
     logView.clearHighlight(); // §4/B16 — reset clears the input, so its preview goes with it
     setStatus("status.loaded", { file: state.file.name, lines: state.lines.length });
@@ -245,6 +261,7 @@
     }
     state.lines = lines;
     state.linesLower = lines.map((l) => l.toLowerCase()); // built ONCE (Phase 3 searches over this — query-language §2)
+    state.matchIndexes = null;   // B19 — a fresh load shows the whole log, not a match view
     searchInput.value = "";   // B9 — replace clears any previous query
     logView.clearHighlight(); // §4/B16 — the preview belonged to the cleared query
     logView.setLines(lines);  // whole file from line 1, scrolled to top (§4)
@@ -331,6 +348,7 @@
         // every line "matches", no previews.
         searchInput.value = "";
         logView.setLines(state.lines);
+        state.matchIndexes = null; // B19 — SLS.search("") shows the whole log
         setStatus("status.loaded", { file: state.file.name, lines: state.lines.length });
         clearError();
         return { ok: true, total_lines: state.lines.length, matched_lines: state.lines.length, samples: [] };
@@ -429,6 +447,7 @@
     const result = QueryParser.searchWithFallback(query, state.linesLower); // throws QueryParseError on any §3 error; strict result first, §2 zero-hit fallback on empty
     const ast = result.ast;
     const indexes = result.indexes;
+    state.matchIndexes = indexes; // B19 — the export button downloads exactly this set
     logView.showMatches(indexes);
     // §4/B16 — keep the preview marks in sync with the query that just ran. The WebMCP
     // path (window.SLS.search) sets the input without firing an 'input' event, so the
@@ -462,6 +481,7 @@
       // entire log again, no error — the same view as B8's reset (setLines
       // resets to all lines and scrolls to top per §4), status `loaded`; the
       // input itself is left as-is.
+      state.matchIndexes = null; // B19 — B10 shows the whole log, not matches
       logView.setLines(state.lines);
       logView.clearHighlight(); // §4/B16 — back to the whole log; a whitespace query can't carry a preview
       setStatus("status.loaded", { file: state.file.name, lines: state.lines.length });
@@ -513,6 +533,38 @@
     hlQueued = true;
     requestAnimationFrame(updateHighlightPreview); // coalesce rapid keystrokes to one render each frame
   });
+
+  // --- Export Snippet (user request 2026-09-25 — ui-spec §4 / B19) -------------------
+  // Downloads the CURRENT match view as a plain-text file: the matched lines exactly
+  // as they appear in the file — no line numbers, no header — joined with newlines
+  // and terminated by a final newline. Built entirely from in-memory state
+  // (state.lines + state.matchIndexes) → no server involved; nothing leaves the
+  // device. Download name = <source-base>-matches.txt (last extension stripped;
+  // characters unsafe in file names replaced by "_"; a pasted snippet exports as
+  // snippet-matches.txt). UTF-8 text/plain via Blob + object URL + a[download];
+  // the object URL is revoked after the click.
+  function exportFilename(name) {
+    const base = String(name).replace(/\.[^./\\]+$/, ""); // strip the last extension
+    return (base.replace(/[\\/:*?"<>|]/g, "_") || "log") + "-matches.txt";
+  }
+
+  function exportSnippet() {
+    const indexes = state.matchIndexes;
+    if (!state.file || !indexes || indexes.length === 0) return; // defensive — the button is hidden outside a match view
+    const parts = new Array(indexes.length);
+    for (let i = 0; i < indexes.length; i++) parts[i] = state.lines[indexes[i]];
+    const blob = new Blob([parts.join("\n") + "\n"], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = exportFilename(state.file.name);
+    document.body.appendChild(a); // Firefox requires the anchor in the DOM
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 0);
+  }
+
+  exportBtn.addEventListener("click", exportSnippet);
 
   // --- Keyboard (ui-spec §6) --------------------------------------------------------------------
   // `/` focuses search when focus is not already in an editable; Esc clears
