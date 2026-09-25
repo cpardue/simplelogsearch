@@ -28,7 +28,7 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 <section id="results">                   (always visible; empty state = paste area)
    [view bar: status text left + Word Wrap checkbox right]   (always visible;
     the status side is hidden until content loads — B18)
-   [paste area: textarea, faint placeholder THIS/THAT]  (empty state only)
+   [paste area: textarea, faint placeholder "Paste logs or upload log file..."]  (empty state only)
    [log viewport: gutter + virtualized rows, CSS-resizable]   (content state only)
 </section>
 <footer>  nav links (6 pages) + footer.note
@@ -150,9 +150,9 @@ Trigger: add class + error message together; remove class on `animationend`.
 - **Paste area (empty state, user request 2026-09-20)**: from first paint
   `#results` is visible; with no content loaded it shows `<textarea id="pasteArea">`
   styled like the viewport (bg #1d1f22, 13px/16px mono, initial height 344px,
-  min 80px / max 90vh) while the viewport is hidden. Placeholder = two faint
-  lines `THIS` / `THAT` in `#9aa0a6` (same token as input placeholders; i18n
-  `log.placeholder` — literal demo data, identical in every locale). Pasted or
+  min 80px / max 90vh) while the viewport is hidden. Placeholder = "Paste logs
+  or upload log file..." in `#9aa0a6` (same token as input placeholders; i18n
+  `log.placeholder` — translated per locale since 2026-09-25). Pasted or
   typed text commits on the paste event or a ~500 ms typing pause: loaded
   exactly like an upload named `snippet` (first line = line 1; trailing-newline
   rule as for files), textarea hidden + cleared, viewport shown from line 1,
