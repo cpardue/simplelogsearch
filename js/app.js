@@ -29,8 +29,8 @@
 // with the previous view untouched (B11); a ?q= URL param prefills the input
 // on load only — never auto-runs (SearchAction support).
  // Paste box (2026-09-20 user request — ui-spec §4/B14/B15): #results is visible
- // from first paint; the empty state shows #pasteArea (faint two-line THIS/THAT
- // demo placeholder, i18n log.placeholder) with the viewport hidden. Pasted or
+ // from first paint; the empty state shows #pasteArea (faint instructional
+ // placeholder "Paste logs or upload log file...", i18n log.placeholder) with the viewport hidden. Pasted or
  // typed text commits as a log named "snippet" through the shared commitLoad
  // path (paste event immediately, ~500 ms after a typing pause); Reset with a
  // snippet returns to the empty state (B15); an upload or sample load replaces
@@ -145,8 +145,8 @@
   }
 
   // --- Paste box (ui-spec §4 — empty state; B14/B15, 2026-09-20 user request) -----
-  // The empty state shows #pasteArea with a faint two-line demo placeholder
-  // ("THIS" / "THAT", i18n log.placeholder). Any pasted or typed text commits the
+  // The empty state shows #pasteArea with a faint instructional placeholder
+  // ("Paste logs or upload log file...", i18n log.placeholder, translated per locale). Any pasted or typed text commits the
   // textarea's content as a log named "snippet" through the shared commitLoad
   // path — on the paste event immediately, or ~500 ms after a typing pause.
   // Whitespace-only text never commits (the placeholder stays). Committing hides
