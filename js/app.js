@@ -54,9 +54,18 @@
   const statusRow = document.getElementById("statusRow");
   const pasteArea = document.getElementById("pasteArea"); // empty-state paste box (ui-spec §4)
   const logViewportEl = document.getElementById("logViewport");
+  const wrapToggle = document.getElementById("wrapToggle"); // B18 — Word Wrap checkbox (view bar)
 
   // Result-window view (CHECKLIST 2.1): drives #logViewport from here on.
   const logView = LogView.create(document.getElementById("logViewport"));
+
+  // --- Word wrap toggle (user request 2026-09-25 — ui-spec §4 / B18) -------------
+  // The view-bar checkbox wraps the rendered log view only (the paste box stays
+  // no-wrap). Rows gain variable height inside LogView; default unchecked and
+  // never persisted (always off on load).
+  wrapToggle.addEventListener("change", function () {
+    logView.setWrap(wrapToggle.checked);
+  });
 
   // --- State ------------------------------------------------------------------
   // file/lines/linesLower: the currently loaded log (CHECKLIST 2.2) — the
