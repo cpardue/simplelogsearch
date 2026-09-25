@@ -31,7 +31,7 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
    [paste area: textarea, faint placeholder THIS/THAT]  (empty state only)
    [log viewport: gutter + virtualized rows, CSS-resizable]   (content state only)
 </section>
-<footer>  nav links (6 pages) + footer.note
+<footer>  nav links (6 pages) + footer.bookmark + footer.note
 ```
 
 - Header: full-width row (720px exception, like #results — user request
