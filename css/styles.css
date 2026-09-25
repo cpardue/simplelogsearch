@@ -9,6 +9,8 @@
      main            <form class="search-bar"> (.search-icon, .search-input,
                     .search-submit) + .btn-row (.btn × Reset/Upload)
      #errorSlot      role=alert; hidden except when active (JS toggles)
+     #viewBar        view bar above the text box: #statusRow (left) + Word
+                     Wrap checkbox (right) — always visible; B18 detail below
      #pasteArea      empty-state paste box (faint THIS/THAT placeholder); §4 below
      footer          nav (6 links) + .footer-note
      .skip-link      a11y.skipToResults (ui-spec §6)
@@ -58,11 +60,39 @@ header, #errorSlot, main, footer {
    the DOM. Gutter .ln is sticky so original line numbers stay visible
    during horizontal scroll of long lines; its width = max-digits × 1ch
    + 12px inline padding, set per file by log-view.js on setLines. */
-#statusRow {
+/* View bar (ui-spec §4 / B18, 2026-09-25 word-wrap toggle): the row just
+   above the text box — status text (#statusRow, left) + Word Wrap checkbox
+   (right). Always visible; in the empty state #statusRow is hidden and only
+   the checkbox shows. The font/padding formerly on #statusRow live here so
+   the bar keeps its height when the status side is empty. */
+#viewBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 13px;
   color: var(--text-dim);       /* #9aa0a6 — content per i18n status keys */
   padding-block: 8px;
   padding-inline: 4px;
+}
+#statusRow { flex: 1 1 auto; min-width: 0; }   /* left side; app.js toggles hidden as before */
+
+/* Word Wrap checkbox (B18) — compact native control, dim label, accent tick. */
+.wrap-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.wrap-toggle input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 #logViewport {
@@ -170,6 +200,16 @@ header, #errorSlot, main, footer {
   color: inherit;
   border-radius: 2px;
 }
+
+/* Word wrap mode (ui-spec §4 / B18) — .wrap on #logViewport, set by app.js
+   from the Word Wrap checkbox. .lc wraps at the row width (long space-less
+   tokens break mid-token via overflow-wrap); rows take variable height
+   (inline style = visual lines × 16px, set per row by log-view.js) so the
+   gutter number sits on the first visual line only; spacer height = the sum
+   of row heights (virtualization intact). Without .wrap the fixed-16px
+   no-wrap rules above apply untouched. */
+#logViewport.wrap .log-row { width: 100%; }
+#logViewport.wrap .log-row .lc { white-space: pre-wrap; overflow-wrap: anywhere; }
 
 /* ===== header: full-width row — wordmark centered above the search bar;
    Language pinned to the far top-right corner of the screen (2026-09-20) ===== */
