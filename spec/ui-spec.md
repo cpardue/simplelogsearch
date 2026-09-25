@@ -27,8 +27,8 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
           ¹hidden except in a match view — B19)
 <section id="results">                   (always visible; empty state = paste area)
    [view bar: status text left + Word Wrap checkbox right]   (always visible;
-    the status side is hidden until content loads — B18)
-   [paste area: textarea, faint placeholder "Paste logs or upload log file..."]  (empty state only)
+    empty state: "Paste logs or upload log file..." above the paste box — B20)
+   [paste area: textarea, faint placeholder THIS/THAT]  (empty state only)
    [log viewport: gutter + virtualized rows, CSS-resizable]   (content state only)
 </section>
 <footer>  nav links (6 pages) + footer.note
@@ -86,9 +86,10 @@ Trigger: add class + error message together; remove class on `animationend`.
   `matchedAny` for the zero-hit AND fallback (query-language §2: no line
   contained every term, so lines matching any positive term are shown — all
   NOT exclusions still applied), `noMatches` for an empty result;
-  double-clicking it re-focuses the search input) — hidden in the empty state
-  (no content loaded). Right: the Word Wrap checkbox (next bullet). In the
-  empty state only the checkbox shows.
+  double-clicking it re-focuses the search input) — and in the empty state
+  (no content loaded) it shows the paste instruction "Paste logs or upload
+  log file..." (i18n `status.noFile` — B20). Right: the Word Wrap checkbox
+  (next bullet).
 - **Word wrap (user request 2026-09-25 — B18)**: a native checkbox labeled
   "Word Wrap" (i18n `view.wordWrap`) at the inline-end of the view bar. It
   applies to the rendered log view only — the paste box stays no-wrap.
@@ -150,9 +151,9 @@ Trigger: add class + error message together; remove class on `animationend`.
 - **Paste area (empty state, user request 2026-09-20)**: from first paint
   `#results` is visible; with no content loaded it shows `<textarea id="pasteArea">`
   styled like the viewport (bg #1d1f22, 13px/16px mono, initial height 344px,
-  min 80px / max 90vh) while the viewport is hidden. Placeholder = "Paste logs
-  or upload log file..." in `#9aa0a6` (same token as input placeholders; i18n
-  `log.placeholder` — translated per locale since 2026-09-25). Pasted or
+  min 80px / max 90vh) while the viewport is hidden. Placeholder = two faint
+  lines `THIS` / `THAT` in `#9aa0a6` (same token as input placeholders; i18n
+  `log.placeholder` — literal demo data, identical in every locale). Pasted or
   typed text commits on the paste event or a ~500 ms typing pause: loaded
   exactly like an upload named `snippet` (first line = line 1; trailing-newline
   rule as for files), textarea hidden + cleared, viewport shown from line 1,
@@ -180,8 +181,9 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B15 | snippet loaded | click Reset | back to the empty state: textarea + placeholder shown; search input cleared; no log in state |
 | B16 | content loaded | type in the search box (no submit) | trimmed query > 3 chars AND parses → every visible row highlights case-insensitive occurrences of each positive atom as `<mark class="hl">` (NOT subtrees never highlighted); ≤ 3 chars, no content, or mid-typing parse error → no highlight; the search is NOT run — filtering + status still wait for Enter |
 | B17 | file loaded | submit a query whose strict result is empty but at least one line matches a positive term (zero-hit AND fallback — query-language §2) | lines matching any positive term shown, all `NOT` exclusions still applied; original line numbers; status `matchedAny` ("no line contains all terms" notice); scroll top. When the loose result is also empty → plain B6 no-match view |
-| B18 | content loaded (or empty state) | toggle the Word Wrap checkbox | the checkbox is always visible at the inline-end of the view bar (empty state: it is the only thing shown). With content: checked → `.lc` wraps at the viewport width, rows variable height (visual lines × 16px), gutter number on the first visual line only, spacer = sum of row heights, no horizontal overflow; unchecked → fixed 16px no-wrap restored. Toggling scrolls to line 1; original line numbers never renumbered; default off on load, never persisted |
+| B18 | content loaded (or empty state) | toggle the Word Wrap checkbox | the checkbox is always visible at the inline-end of the view bar (empty state: next to the paste-instruction status text). With content: checked → `.lc` wraps at the viewport width, rows variable height (visual lines × 16px), gutter number on the first visual line only, spacer = sum of row heights, no horizontal overflow; unchecked → fixed 16px no-wrap restored. Toggling scrolls to line 1; original line numbers never renumbered; default off on load, never persisted |
 | B19 | match view (status matched/matchedAny) | click Export Snippet | a text file download of the matched lines exactly as they appear in the file (no line numbers, no header; newline-joined + trailing newline; UTF-8 `text/plain`); name `<source-base>-matches.txt`. Button hidden in every non-match view and re-hides on reset / new load / 0-match search |
+| B20 | empty state (no content loaded) | page load, or Reset from a snippet (B15) | the status side of the view bar shows "Paste logs or upload log file..." above the paste area (i18n `status.noFile`, translated per locale); loading any content replaces it with the normal status row; B15 reset brings it back |
 
 ## 6. Keyboard & a11y
 
