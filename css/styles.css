@@ -7,7 +7,7 @@
    Component map (index.html, item 1.2):
      header          app-header row: .wordmark + .lang-field (#langSelect)
      main            <form class="search-bar"> (.search-icon, .search-input,
-                    .search-submit) + .btn-row (.btn × Reset/Upload)
+                    .search-submit) + .btn-row (.btn × Reset/Upload/Export Snippet*)
      #errorSlot      role=alert; hidden except when active (JS toggles)
      #viewBar        view bar above the text box: #statusRow (left) + Word
                      Wrap checkbox (right) — always visible; B18 detail below
@@ -315,7 +315,7 @@ header {
   padding: 0;
 }
 
-/* ===== buttons row: [ Reset ] [ Upload ] — 12px gap, centered (§2) ===== */
+/* ===== buttons row: [ Reset ] [ Upload ] [ Export Snippet* ] — 12px gap, centered (§2; *hidden except in a match view — B19) ===== */
 .btn-row {
   display: flex;
   justify-content: center;
