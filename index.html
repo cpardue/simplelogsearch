@@ -134,7 +134,14 @@
   </main>
 
   <section id="results">
-    <div id="statusRow" aria-live="polite" hidden></div>
+    <!-- View bar (ui-spec §4 / B18, 2026-09-25 word-wrap toggle): status text
+         left + Word Wrap checkbox right — the row just above the text box,
+         always visible. #statusRow keeps the hidden/text semantics owned by
+         app.js; in the empty state only the checkbox shows. -->
+    <div id="viewBar">
+      <div id="statusRow" aria-live="polite" hidden></div>
+      <label class="wrap-toggle"><input type="checkbox" id="wrapToggle"><span data-i18n="view.wordWrap">Word Wrap</span></label>
+    </div>
     <!-- Empty-state paste box (ui-spec §4): faint two-line THIS/THAT demo
          placeholder (i18n log.placeholder); commits as a "snippet" log on paste
          or a typing pause. -->
