@@ -29,8 +29,8 @@
 // with the previous view untouched (B11); a ?q= URL param prefills the input
 // on load only — never auto-runs (SearchAction support).
  // Paste box (2026-09-20 user request — ui-spec §4/B14/B15): #results is visible
- // from first paint; the empty state shows #pasteArea (faint instructional
- // placeholder "Paste logs or upload log file...", i18n log.placeholder) with the viewport hidden. Pasted or
+ // from first paint; the empty state shows #pasteArea (faint two-line THIS/THAT
+ // demo placeholder, i18n log.placeholder) with the viewport hidden. Pasted or
  // typed text commits as a log named "snippet" through the shared commitLoad
  // path (paste event immediately, ~500 ms after a typing pause); Reset with a
  // snippet returns to the empty state (B15); an upload or sample load replaces
@@ -106,7 +106,9 @@
 
   // --- Status row (ui-spec §4; spec/i18n status.* keys) -------------------------
   // index.html gives #statusRow data-i18n="status.noFile" for pre-app paint;
-  // once a file is loaded the app owns the text and I18N.apply() would clobber
+  // B20 (2026-09-25): in the empty state that status.noFile paste instruction
+  // stays visible above the pane; language changes re-apply it. Once a file is
+  // loaded the app owns the text and I18N.apply() would clobber
   // it back to noFile on every language change — renderStatus() re-renders the
   // current status right after each apply (see the langSelect listener).
   function setStatus(key, params) {
@@ -145,8 +147,8 @@
   }
 
   // --- Paste box (ui-spec §4 — empty state; B14/B15, 2026-09-20 user request) -----
-  // The empty state shows #pasteArea with a faint instructional placeholder
-  // ("Paste logs or upload log file...", i18n log.placeholder, translated per locale). Any pasted or typed text commits the
+  // The empty state shows #pasteArea with a faint two-line demo placeholder
+  // ("THIS" / "THAT", i18n log.placeholder). Any pasted or typed text commits the
   // textarea's content as a log named "snippet" through the shared commitLoad
   // path — on the paste event immediately, or ~500 ms after a typing pause.
   // Whitespace-only text never commits (the placeholder stays). Committing hides
@@ -182,8 +184,8 @@
     state.linesLower = null;
     state.status = null;
     state.matchIndexes = null; // B19 — no match view in the empty state
-    statusRow.textContent = "";
-    statusRow.hidden = true;
+    statusRow.textContent = I18N.t(I18N.locale(), "status.noFile"); // B20 — empty-state instruction above the pane
+    statusRow.hidden = false;
     syncExportBtn(); // B19 — hide (state.status is now null)
     logView.setLines([]); // empty view — 0px spacer, no rows
     logViewportEl.hidden = true;
