@@ -11,7 +11,7 @@
 //     element, <html lang|dir> (ar/ur → rtl, all others ltr), and persistence
 //     to localStorage["sls-lang"].
 //   - Default locale "en"; unknown/stale stored values normalize to "en".
-//   - Full 26-key dictionaries for all 20 non-EN locales (Phase 4,
+//   - Full 27-key dictionaries for all 20 non-EN locales (Phase 4,
 //     CHECKLIST 4.1; spec/i18n §3: {slot}s preserved exactly, err.* prefixed
 //     with ✕, "SimpleLogSearch"/AND-OR-NOT/filenames/{detail} never
 //     translated). lookup() keeps the EN fallback as last resort.
@@ -30,7 +30,7 @@
   // §1 — ar/ur → rtl; all others ltr.
   const RTL = { ar: true, ur: true };
 
-  // spec/i18n §2 — EN catalog (source of truth, exact values; 26 keys).
+  // spec/i18n §2 — EN catalog (source of truth, exact values; 27 keys).
   const EN = {
     "lang.label": "Language",
     "search.placeholder": "\"THIS\" AND \"THAT\" NOT \"THIS OTHER\"",
@@ -57,6 +57,7 @@
     "nav.privacy": "Privacy Policy",
     "a11y.skipToResults": "Skip to results",
     "a11y.logView": "Log content",
+    "view.wordWrap": "Word Wrap",
     "footer.note": "SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.",
   };
 
@@ -91,6 +92,7 @@
       "nav.privacy": "隐私政策",
       "a11y.skipToResults": "跳到结果",
       "a11y.logView": "日志内容",
+      "view.wordWrap": "自动换行",
       "footer.note": "SimpleLogSearch — 免费的浏览器端日志搜索。文件在您的浏览器中处理，绝不上传。",
     },
     "es-ES": {
@@ -119,6 +121,7 @@
       "nav.privacy": "Política de privacidad",
       "a11y.skipToResults": "Saltar a los resultados",
       "a11y.logView": "Contenido del registro",
+      "view.wordWrap": "Ajustar palabras",
       "footer.note": "SimpleLogSearch — búsqueda de registros gratuita en el cliente. Los archivos se procesan en tu navegador y nunca se suben.",
     },
     "hi-IN": {
@@ -147,6 +150,7 @@
       "nav.privacy": "गोपनीयता नीति",
       "a11y.skipToResults": "परिणामों पर जाएँ",
       "a11y.logView": "लॉग सामग्री",
+      "view.wordWrap": "वर्ड रैप",
       "footer.note": "SimpleLogSearch — मुफ़्त, क्लाइंट-साइड लॉग खोज। फ़ाइलें आपके ब्राउज़र में प्रोसेस होती हैं और कभी अपलोड नहीं होतीं।",
     },
     "ar": {
@@ -175,6 +179,7 @@
       "nav.privacy": "سياسة الخصوصية",
       "a11y.skipToResults": "تخطٍّ إلى النتائج",
       "a11y.logView": "محتوى السجل",
+      "view.wordWrap": "التفاف الكلمات",
       "footer.note": "SimpleLogSearch — بحث مجاني في السجلات على جانب العميل. يتم معالجة الملفات في متصفحك ولا يتم رفعها أبدًا.",
     },
     "bn": {
@@ -203,6 +208,7 @@
       "nav.privacy": "গোপনীয়তা নীতি",
       "a11y.skipToResults": "ফলাফলে যান",
       "a11y.logView": "লগ বিষয়বস্তু",
+      "view.wordWrap": "ওয়ার্ড র‍্যাপ",
       "footer.note": "SimpleLogSearch — নিখরচায়, ক্লায়েন্ট-সাইড লগ অনুসন্ধান। ফাইলগুলো আপনার ব্রাউজারেই প্রক্রিয়া করা হয় এবং কখনও আপলোড হয় না।",
     },
     "pt-BR": {
@@ -231,6 +237,7 @@
       "nav.privacy": "Política de privacidade",
       "a11y.skipToResults": "Pular para os resultados",
       "a11y.logView": "Conteúdo do log",
+      "view.wordWrap": "Quebra de palavras",
       "footer.note": "SimpleLogSearch — pesquisa de logs gratuita, no cliente. Os arquivos são processados no seu navegador e nunca enviados.",
     },
     "ru": {
@@ -259,6 +266,7 @@
       "nav.privacy": "Политика конфиденциальности",
       "a11y.skipToResults": "Перейти к результатам",
       "a11y.logView": "Содержимое журнала",
+      "view.wordWrap": "Перенос строк",
       "footer.note": "SimpleLogSearch — бесплатный поиск по журналам на стороне клиента. Файлы обрабатываются в вашем браузере и никуда не загружаются.",
     },
     "ja": {
@@ -287,6 +295,7 @@
       "nav.privacy": "プライバシーポリシー",
       "a11y.skipToResults": "結果へスキップ",
       "a11y.logView": "ログの内容",
+      "view.wordWrap": "単語の改行",
       "footer.note": "SimpleLogSearch — 無料のブラウザ内ログ検索。ファイルはブラウザ内で処理され、アップロードされることはありません。",
     },
     "de": {
@@ -315,6 +324,7 @@
       "nav.privacy": "Datenschutzerklärung",
       "a11y.skipToResults": "Zum Ergebnis springen",
       "a11y.logView": "Loginhalt",
+      "view.wordWrap": "Zeilenumbruch",
       "footer.note": "SimpleLogSearch — kostenlose clientseitige Logsuche. Dateien werden in deinem Browser verarbeitet und nie hochgeladen.",
     },
     "fr": {
@@ -343,6 +353,7 @@
       "nav.privacy": "Politique de confidentialité",
       "a11y.skipToResults": "Aller aux résultats",
       "a11y.logView": "Contenu du log",
+      "view.wordWrap": "Retour à la ligne",
       "footer.note": "SimpleLogSearch — recherche de logs gratuite côté client. Les fichiers sont traités dans votre navigateur et ne sont jamais envoyés.",
     },
     "ko": {
@@ -371,6 +382,7 @@
       "nav.privacy": "개인정보 처리방침",
       "a11y.skipToResults": "결과로 이동",
       "a11y.logView": "로그 내용",
+      "view.wordWrap": "줄 바꿈",
       "footer.note": "SimpleLogSearch — 무료, 클라이언트 측 로그 검색. 파일은 브라우저에서 처리되며 절대 업로드되지 않습니다.",
     },
     "tr": {
@@ -399,6 +411,7 @@
       "nav.privacy": "Gizlilik Politikası",
       "a11y.skipToResults": "Sonuçlara geç",
       "a11y.logView": "Günlük içeriği",
+      "view.wordWrap": "Satır Sarımı",
       "footer.note": "SimpleLogSearch — ücretsiz, istemci taraflı günlük araması. Dosyalar tarayıcınızda işlenir ve asla yüklenmez.",
     },
     "vi": {
@@ -427,6 +440,7 @@
       "nav.privacy": "Chính sách riêng tư",
       "a11y.skipToResults": "Bỏ qua đến kết quả",
       "a11y.logView": "Nội dung log",
+      "view.wordWrap": "Xuống dòng từ",
       "footer.note": "SimpleLogSearch — tìm kiếm log miễn phí phía client. Tệp được xử lý trong trình duyệt của bạn và không bao giờ được tải lên.",
     },
     "id": {
@@ -455,6 +469,7 @@
       "nav.privacy": "Kebijakan Privasi",
       "a11y.skipToResults": "Langsung ke hasil",
       "a11y.logView": "Konten log",
+      "view.wordWrap": "Balut kata",
       "footer.note": "SimpleLogSearch — pencarian log gratis di sisi klien. File diproses di browser Anda dan tidak pernah diunggah.",
     },
     "th": {
@@ -483,6 +498,7 @@
       "nav.privacy": "นโยบายความเป็นส่วนตัว",
       "a11y.skipToResults": "ไปยังผลลัพธ์",
       "a11y.logView": "เนื้อหาไฟล์บันทึก",
+      "view.wordWrap": "ห่อคำ",
       "footer.note": "SimpleLogSearch — ค้นหาไฟล์บันทึก ฟรี แบบ client-side ไฟล์ถูกประมวลผลในเบราว์เซอร์ของคุณและไม่ถูกอัปโหลดโดยเด็ดขาด",
     },
     "pl": {
@@ -511,6 +527,7 @@
       "nav.privacy": "Polityka prywatności",
       "a11y.skipToResults": "Przejdź do wyników",
       "a11y.logView": "Treść dziennika",
+      "view.wordWrap": "Zawijanie wyrazów",
       "footer.note": "SimpleLogSearch — bezpłatne wyszukiwanie w dziennikach po stronie klienckiej. Pliki są przetwarzane w Twojej przeglądarce i nigdy nie są wysyłane.",
     },
     "ur": {
@@ -539,6 +556,7 @@
       "nav.privacy": "پرائیویسی پالیسی",
       "a11y.skipToResults": "نتائج پر جائیں",
       "a11y.logView": "لاگ مواد",
+      "view.wordWrap": "ورڈ ر‍یپ",
       "footer.note": "SimpleLogSearch — مفت، کلائنٹ سائیڈ لاگ تلاش۔ فائلیں آپ کے براؤزر میں پروسیس ہوتی ہیں اور کبھی اپ لوڈ نہیں ہوتیں۔",
     },
     "nl": {
@@ -567,6 +585,7 @@
       "nav.privacy": "Privacybeleid",
       "a11y.skipToResults": "Naar de resultaten gaan",
       "a11y.logView": "Loginhoud",
+      "view.wordWrap": "Woordafbreking",
       "footer.note": "SimpleLogSearch — gratis logzoekfunctie op clientzijde. Bestanden worden in je browser verwerkt en nooit geüpload.",
     },
     "it": {
@@ -595,6 +614,7 @@
       "nav.privacy": "Informativa sulla privacy",
       "a11y.skipToResults": "Vai ai risultati",
       "a11y.logView": "Contenuto del log",
+      "view.wordWrap": "A capo automatico",
       "footer.note": "SimpleLogSearch — ricerca di log gratuita, lato client. I file vengono elaborati nel tuo browser e non vengono mai caricati.",
     },
     "uk": {
@@ -623,6 +643,7 @@
       "nav.privacy": "Політика конфіденційності",
       "a11y.skipToResults": "Перейти до результатів",
       "a11y.logView": "Зміст журналу",
+      "view.wordWrap": "Перенесення рядків",
       "footer.note": "SimpleLogSearch — безкоштовний пошук по журналах на стороні клієнта. Файли обробляються у вашому браузері і ніколи не завантажуються.",
     },
   };
