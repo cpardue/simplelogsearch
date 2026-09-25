@@ -23,7 +23,8 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
           Language pinned to the far top-right corner of the screen (RTL mirror)
 <div id="errorSlot" role="alert" aria-live="polite">          (only when active)
 <main>    [search bar: 🔍 icon | input | 🔍 submit button]
-          [ Reset ]  [ Upload ]        (12px gap, centered)
+          [ Reset ]  [ Upload ]  [ Export Snippet¹ ]   (12px gap, centered;
+          ¹hidden except in a match view — B19)
 <section id="results">                   (always visible; empty state = paste area)
    [view bar: status text left + Word Wrap checkbox right]   (always visible;
     the status side is hidden until content loads — B18)
@@ -56,7 +57,7 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
   rgba(32,33,36,.6)` + border `#8ab4f8`. Hover without focus: same shadow.
 - **Buttons**: `height:36px; padding:0 16px; border-radius:4px;
   background:#303134; color:#e8eaed; font-size:14px; border:1px solid #303134;`
-  hover `background:#3c4043`; active translateY(1px). Order: Reset, then Upload.
+  hover `background:#3c4043`; active translateY(1px). Order: Reset, then Upload, then Export Snippet (hidden except in a match view — B19).
 - **Error slot**: between header and search bar; `color:#f28b82; font-size:14px;
   margin-bottom:8px;` one line max (truncates). Auto-dismiss after 6 s or on
   next successful action; Esc also clears it.
@@ -100,6 +101,20 @@ Trigger: add class + error message together; remove class on `animationend`.
   16px no-wrap rendering above. Default unchecked; never persisted (always
   off on load). Toggling scrolls to line 1 (row offsets change). Original
   line numbers are unchanged in both modes.
+- **Export Snippet (user request 2026-09-25 — B19)**: a `.btn` in the button
+  row (i18n `btn.export`) that downloads the CURRENT match view as a text file —
+  the matched lines exactly as they appear in the file: no line numbers, no
+  header; lines joined with newlines and the file ends with a trailing newline.
+  Visible only while the status row is a match view (`matched` / `matchedAny` —
+  the zero-hit AND fallback view exports exactly what it shows); whole-log,
+  loading, no-match and empty-state views keep it hidden (it re-hides on reset /
+  new load / a 0-match search). Content is built from in-memory state (the same
+  arrays the search runs over) — no server involved, nothing leaves the device.
+  Download name = `<source-base>-matches.txt` (last extension stripped;
+  characters unsafe in file names replaced by `_`; a pasted snippet exports as
+  `snippet-matches.txt`). UTF-8 `text/plain` via Blob + object URL +
+  `a[download]`; the object URL is revoked after the click.
+
 - Viewport: `overflow:auto; resize:vertical;` **initial height = 20 rows ≈
   344px** (20 × 16px + padding); `min-height:80px; max-height:90vh;`
   bottom-right corner grip rendered as a CSS gradient triangle (decorative —
@@ -166,6 +181,7 @@ Trigger: add class + error message together; remove class on `animationend`.
 | B16 | content loaded | type in the search box (no submit) | trimmed query > 3 chars AND parses → every visible row highlights case-insensitive occurrences of each positive atom as `<mark class="hl">` (NOT subtrees never highlighted); ≤ 3 chars, no content, or mid-typing parse error → no highlight; the search is NOT run — filtering + status still wait for Enter |
 | B17 | file loaded | submit a query whose strict result is empty but at least one line matches a positive term (zero-hit AND fallback — query-language §2) | lines matching any positive term shown, all `NOT` exclusions still applied; original line numbers; status `matchedAny` ("no line contains all terms" notice); scroll top. When the loose result is also empty → plain B6 no-match view |
 | B18 | content loaded (or empty state) | toggle the Word Wrap checkbox | the checkbox is always visible at the inline-end of the view bar (empty state: it is the only thing shown). With content: checked → `.lc` wraps at the viewport width, rows variable height (visual lines × 16px), gutter number on the first visual line only, spacer = sum of row heights, no horizontal overflow; unchecked → fixed 16px no-wrap restored. Toggling scrolls to line 1; original line numbers never renumbered; default off on load, never persisted |
+| B19 | match view (status matched/matchedAny) | click Export Snippet | a text file download of the matched lines exactly as they appear in the file (no line numbers, no header; newline-joined + trailing newline; UTF-8 `text/plain`); name `<source-base>-matches.txt`. Button hidden in every non-match view and re-hides on reset / new load / 0-match search |
 
 ## 6. Keyboard & a11y
 
