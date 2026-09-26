@@ -60,7 +60,7 @@
     "a11y.logView": "Log content",
     "view.wordWrap": "Word Wrap",
     "footer.note": "SimpleLogSearch — free, client-side log search. Files are processed in your browser and never uploaded.",
-    "footer.bookmark": "Press Ctrl + D to Bookmark.",
+    "footer.bookmark": "Press Ctrl + D to Bookmark | Agent-Ready with WebMCP",
   };
 
   // spec/i18n §2–§3 — full catalogs for the 20 non-EN locales (CHECKLIST 4.1,
@@ -97,7 +97,7 @@
       "a11y.logView": "日志内容",
       "view.wordWrap": "自动换行",
       "footer.note": "SimpleLogSearch — 免费的浏览器端日志搜索。文件在您的浏览器中处理，绝不上传。",
-      "footer.bookmark": "按 Ctrl + D 加入书签。",
+      "footer.bookmark": "按 Ctrl + D 加入书签 | WebMCP 智能体就绪",
     },
     "es-ES": {
       "lang.label": "Idioma",
@@ -128,7 +128,7 @@
       "a11y.logView": "Contenido del registro",
       "view.wordWrap": "Ajustar palabras",
       "footer.note": "SimpleLogSearch — búsqueda de registros gratuita en el cliente. Los archivos se procesan en tu navegador y nunca se suben.",
-      "footer.bookmark": "Pulsa Ctrl + D para marcar la página.",
+      "footer.bookmark": "Pulsa Ctrl + D para marcar la página | Listo para agentes con WebMCP",
     },
     "hi-IN": {
       "lang.label": "भाषा",
@@ -159,7 +159,7 @@
       "a11y.logView": "लॉग सामग्री",
       "view.wordWrap": "वर्ड रैप",
       "footer.note": "SimpleLogSearch — मुफ़्त, क्लाइंट-साइड लॉग खोज। फ़ाइलें आपके ब्राउज़र में प्रोसेस होती हैं और कभी अपलोड नहीं होतीं।",
-      "footer.bookmark": "बुकमार्क करने के लिए Ctrl + D दबाएँ।",
+      "footer.bookmark": "बुकमार्क करने के लिए Ctrl + D दबाएँ | WebMCP के साथ एजेंट-रेडी",
     },
     "ar": {
       "lang.label": "اللغة",
@@ -190,7 +190,7 @@
       "a11y.logView": "محتوى السجل",
       "view.wordWrap": "التفاف الكلمات",
       "footer.note": "SimpleLogSearch — بحث مجاني في السجلات على جانب العميل. يتم معالجة الملفات في متصفحك ولا يتم رفعها أبدًا.",
-      "footer.bookmark": "اضغط Ctrl + D للإشارة المرجعية.",
+      "footer.bookmark": "اضغط Ctrl + D للإشارة المرجعية | جاهز للوكلاء عبر WebMCP",
     },
     "bn": {
       "lang.label": "ভাষা",
@@ -221,7 +221,7 @@
       "a11y.logView": "লগ বিষয়বস্তু",
       "view.wordWrap": "ওয়ার্ড র‍্যাপ",
       "footer.note": "SimpleLogSearch — নিখরচায়, ক্লায়েন্ট-সাইড লগ অনুসন্ধান। ফাইলগুলো আপনার ব্রাউজারেই প্রক্রিয়া করা হয় এবং কখনও আপলোড হয় না।",
-      "footer.bookmark": "বুকমার্ক করতে Ctrl + D চাপুন।",
+      "footer.bookmark": "বুকমার্ক করতে Ctrl + D চাপুন | WebMCP-এর সাথে এজেন্ট-রেডি",
     },
     "pt-BR": {
       "lang.label": "Idioma",
@@ -252,7 +252,7 @@
       "a11y.logView": "Conteúdo do log",
       "view.wordWrap": "Quebra de palavras",
       "footer.note": "SimpleLogSearch — pesquisa de logs gratuita, no cliente. Os arquivos são processados no seu navegador e nunca enviados.",
-      "footer.bookmark": "Pressione Ctrl + D para adicionar aos favoritos.",
+      "footer.bookmark": "Pressione Ctrl + D para adicionar aos favoritos | Pronto para agentes com WebMCP",
     },
     "ru": {
       "lang.label": "Язык",
@@ -283,7 +283,7 @@
       "a11y.logView": "Содержимое журнала",
       "view.wordWrap": "Перенос строк",
       "footer.note": "SimpleLogSearch — бесплатный поиск по журналам на стороне клиента. Файлы обрабатываются в вашем браузере и никуда не загружаются.",
-      "footer.bookmark": "Нажмите Ctrl + D, чтобы добавить в закладки.",
+      "footer.bookmark": "Нажмите Ctrl + D, чтобы добавить в закладки | Готов к агентам через WebMCP",
     },
     "ja": {
       "lang.label": "言語",
@@ -314,7 +314,7 @@
       "a11y.logView": "ログの内容",
       "view.wordWrap": "単語の改行",
       "footer.note": "SimpleLogSearch — 無料のブラウザ内ログ検索。ファイルはブラウザ内で処理され、アップロードされることはありません。",
-      "footer.bookmark": "ブックマークするには Ctrl + D を押してください。",
+      "footer.bookmark": "ブックマークするには Ctrl + D を押してください | WebMCP でエージェント対応",
     },
     "de": {
       "lang.label": "Sprache",
@@ -345,7 +345,7 @@
       "a11y.logView": "Loginhalt",
       "view.wordWrap": "Zeilenumbruch",
       "footer.note": "SimpleLogSearch — kostenlose clientseitige Logsuche. Dateien werden in deinem Browser verarbeitet und nie hochgeladen.",
-      "footer.bookmark": "Drücken Sie Strg + D zum Lesezeichen setzen.",
+      "footer.bookmark": "Drücken Sie Strg + D zum Lesezeichen setzen | Agentenfähig mit WebMCP",
     },
     "fr": {
       "lang.label": "Langue",
@@ -376,7 +376,7 @@
       "a11y.logView": "Contenu du log",
       "view.wordWrap": "Retour à la ligne",
       "footer.note": "SimpleLogSearch — recherche de logs gratuite côté client. Les fichiers sont traités dans votre navigateur et ne sont jamais envoyés.",
-      "footer.bookmark": "Appuyez sur Ctrl + D pour mettre un signet.",
+      "footer.bookmark": "Appuyez sur Ctrl + D pour mettre un signet | Prêt pour les agents grâce à WebMCP",
     },
     "ko": {
       "lang.label": "언어",
@@ -407,7 +407,7 @@
       "a11y.logView": "로그 내용",
       "view.wordWrap": "줄 바꿈",
       "footer.note": "SimpleLogSearch — 무료, 클라이언트 측 로그 검색. 파일은 브라우저에서 처리되며 절대 업로드되지 않습니다.",
-      "footer.bookmark": "북마크하려면 Ctrl + D를 누르세요.",
+      "footer.bookmark": "북마크하려면 Ctrl + D를 누르세요 | WebMCP로 에이전트 대응",
     },
     "tr": {
       "lang.label": "Dil",
@@ -438,7 +438,7 @@
       "a11y.logView": "Günlük içeriği",
       "view.wordWrap": "Satır Sarımı",
       "footer.note": "SimpleLogSearch — ücretsiz, istemci taraflı günlük araması. Dosyalar tarayıcınızda işlenir ve asla yüklenmez.",
-      "footer.bookmark": "Yer imi eklemek için Ctrl + D'ye basın.",
+      "footer.bookmark": "Yer imi eklemek için Ctrl + D'ye basın | WebMCP ile ajanlara hazır",
     },
     "vi": {
       "lang.label": "Ngôn ngữ",
@@ -469,7 +469,7 @@
       "a11y.logView": "Nội dung log",
       "view.wordWrap": "Xuống dòng từ",
       "footer.note": "SimpleLogSearch — tìm kiếm log miễn phí phía client. Tệp được xử lý trong trình duyệt của bạn và không bao giờ được tải lên.",
-      "footer.bookmark": "Nhấn Ctrl + D để đánh dấu trang.",
+      "footer.bookmark": "Nhấn Ctrl + D để đánh dấu trang | Sẵn sàng cho agent với WebMCP",
     },
     "id": {
       "lang.label": "Bahasa",
@@ -500,7 +500,7 @@
       "a11y.logView": "Konten log",
       "view.wordWrap": "Balut kata",
       "footer.note": "SimpleLogSearch — pencarian log gratis di sisi klien. File diproses di browser Anda dan tidak pernah diunggah.",
-      "footer.bookmark": "Tekan Ctrl + D untuk menambahkan tanda buku.",
+      "footer.bookmark": "Tekan Ctrl + D untuk menambahkan tanda buku | Siap untuk agen dengan WebMCP",
     },
     "th": {
       "lang.label": "ภาษา",
@@ -531,7 +531,7 @@
       "a11y.logView": "เนื้อหาไฟล์บันทึก",
       "view.wordWrap": "ห่อคำ",
       "footer.note": "SimpleLogSearch — ค้นหาไฟล์บันทึก ฟรี แบบ client-side ไฟล์ถูกประมวลผลในเบราว์เซอร์ของคุณและไม่ถูกอัปโหลดโดยเด็ดขาด",
-      "footer.bookmark": "กด Ctrl + D เพื่อทำเครื่องหมายคั่นหน้า",
+      "footer.bookmark": "กด Ctrl + D เพื่อทำเครื่องหมายคั่นหน้า | พร้อมสำหรับเอเจนต์ด้วย WebMCP",
     },
     "pl": {
       "lang.label": "Język",
@@ -562,7 +562,7 @@
       "a11y.logView": "Treść dziennika",
       "view.wordWrap": "Zawijanie wyrazów",
       "footer.note": "SimpleLogSearch — bezpłatne wyszukiwanie w dziennikach po stronie klienckiej. Pliki są przetwarzane w Twojej przeglądarce i nigdy nie są wysyłane.",
-      "footer.bookmark": "Naciśnij Ctrl + D, aby dodać do zakładek.",
+      "footer.bookmark": "Naciśnij Ctrl + D, aby dodać do zakładek | Gotowy dla agentów dzięki WebMCP",
     },
     "ur": {
       "lang.label": "زبان",
@@ -593,7 +593,7 @@
       "a11y.logView": "لاگ مواد",
       "view.wordWrap": "ورڈ ر‍یپ",
       "footer.note": "SimpleLogSearch — مفت، کلائنٹ سائیڈ لاگ تلاش۔ فائلیں آپ کے براؤزر میں پروسیس ہوتی ہیں اور کبھی اپ لوڈ نہیں ہوتیں۔",
-      "footer.bookmark": "بک مارک کرنے کے لیے Ctrl + D دبائیں۔",
+      "footer.bookmark": "بک مارک کرنے کے لیے Ctrl + D دبائیں | WebMCP کے ساتھ ایجنٹ ریڈی",
     },
     "nl": {
       "lang.label": "Taal",
@@ -624,7 +624,7 @@
       "a11y.logView": "Loginhoud",
       "view.wordWrap": "Woordafbreking",
       "footer.note": "SimpleLogSearch — gratis logzoekfunctie op clientzijde. Bestanden worden in je browser verwerkt en nooit geüpload.",
-      "footer.bookmark": "Druk op Ctrl + D om een bladwijzer toe te voegen.",
+      "footer.bookmark": "Druk op Ctrl + D om een bladwijzer toe te voegen | Klaar voor agenten met WebMCP",
     },
     "it": {
       "lang.label": "Lingua",
@@ -655,7 +655,7 @@
       "a11y.logView": "Contenuto del log",
       "view.wordWrap": "A capo automatico",
       "footer.note": "SimpleLogSearch — ricerca di log gratuita, lato client. I file vengono elaborati nel tuo browser e non vengono mai caricati.",
-      "footer.bookmark": "Premi Ctrl + D per fare il segnalibro.",
+      "footer.bookmark": "Premi Ctrl + D per fare il segnalibro | Pronto per gli agenti con WebMCP",
     },
     "uk": {
       "lang.label": "Мова",
@@ -686,7 +686,7 @@
       "a11y.logView": "Зміст журналу",
       "view.wordWrap": "Перенесення рядків",
       "footer.note": "SimpleLogSearch — безкоштовний пошук по журналах на стороні клієнта. Файли обробляються у вашому браузері і ніколи не завантажуються.",
-      "footer.bookmark": "Натисніть Ctrl + D, щоб додати закладку.",
+      "footer.bookmark": "Натисніть Ctrl + D, щоб додати закладку | Готовий до агентів через WebMCP",
     },
   };
 
