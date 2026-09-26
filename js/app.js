@@ -49,7 +49,7 @@
   const searchInput = document.querySelector("input.search-input");
   const resetBtn = document.getElementById("resetBtn");
   const uploadBtn = document.getElementById("uploadBtn");
-  const exportBtn = document.getElementById("exportBtn"); // B19 — Export Snippet (match views only)
+  const exportBtn = document.getElementById("exportBtn"); // B19 — Export Snippet (always shown; disabled outside match views)
   const fileInput = document.getElementById("fileInput");
   const results = document.getElementById("results");
   const statusRow = document.getElementById("statusRow");
@@ -114,17 +114,17 @@
   function setStatus(key, params) {
     state.status = { key: key, params: params || {} };
     renderStatus();
-    syncExportBtn(); // B19 — Export Snippet visibility tracks the rendered status row
+    syncExportBtn(); // B19 — Export Snippet enabled state tracks the rendered status row
   }
 
-  // B19 (ui-spec §4) — the Export Snippet button is visible exactly in match
-  // views (status matched / matchedAny — the zero-hit AND fallback view exports
-  // exactly what it shows); whole-log, loading, no-match and empty-state rows keep
-  // it hidden. Driven from setStatus so every view change (B6/B7/B8/B9/B10/B15,
-  // SLS paths) re-syncs it in one place.
+  // B19 (ui-spec §4) — the Export Snippet button is always shown but enabled
+  // exactly in match views (status matched / matchedAny — the zero-hit AND
+  // fallback view exports exactly what it shows); whole-log, loading, no-match
+  // and empty-state rows keep it disabled (grayed out). Driven from setStatus so
+  // every view change (B6/B7/B8/B9/B10/B15, SLS paths) re-syncs it in one place.
   function syncExportBtn() {
     const s = state.status;
-    exportBtn.hidden = !(s && (s.key === "status.matched" || s.key === "status.matchedAny"));
+    exportBtn.disabled = !(s && (s.key === "status.matched" || s.key === "status.matchedAny"));
   }
 
   function renderStatus() {
@@ -186,7 +186,7 @@
     state.matchIndexes = null; // B19 — no match view in the empty state
     statusRow.textContent = I18N.t(I18N.locale(), "status.noFile"); // B20 — empty-state instruction above the pane
     statusRow.hidden = false;
-    syncExportBtn(); // B19 — hide (state.status is now null)
+    syncExportBtn(); // B19 — disable (state.status is now null)
     logView.setLines([]); // empty view — 0px spacer, no rows
     logViewportEl.hidden = true;
     pasteArea.value = "";
