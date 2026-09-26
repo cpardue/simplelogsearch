@@ -6,8 +6,8 @@
 
    Component map (index.html, item 1.2):
      header          app-header row: .wordmark + .lang-field (#langSelect)
-     main            <form class="search-bar"> (.search-icon, .search-input,
-                    .search-submit) + .btn-row (.btn × Reset/Upload/Export Snippet*)
+     main            <form class="search-bar"> (.search-input,
+                    .search-submit) + .btn-row (.btn × Reset Queries/Upload Log/Export Snippet*)
      #errorSlot      role=alert; hidden except when active (JS toggles)
      #viewBar        view bar above the text box: #statusRow (left) + Word
                      Wrap checkbox (right) — always visible; B18 detail below
@@ -263,7 +263,7 @@ header {
   padding: 6px 8px;            /* spec/ui-spec §2 literal (symmetric) */
 }
 
-/* ===== search bar: [magnifier icon | input | magnifier submit] (§2) ===== */
+/* ===== search bar: [input | magnifier submit] (§2; leading icon removed 2026-09-25) ===== */
 .search-bar {
   display: flex;
   align-items: center;
@@ -285,8 +285,6 @@ header {
   fill: var(--text-dim);               /* #9aa0a6 */
   flex: none;
 }
-.search-icon { margin-inline-start: 12px; }
-
 .search-input {
   flex: 1;
   min-width: 0;
@@ -296,7 +294,8 @@ header {
   color: var(--text);
   font-family: inherit;
   font-size: 16px;
-  padding-inline: 8px;                 /* icon/submit spacing (not spec'd) */
+  padding-inline: 8px;                 /* submit-side spacing (not spec'd) */
+  padding-inline-start: 16px;          /* leading room where the magnifier used to sit (removed 2026-09-25) */
 }
 .search-input::placeholder { color: #9aa0a6; }
 
