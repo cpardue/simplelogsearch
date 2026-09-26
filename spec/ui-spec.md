@@ -22,8 +22,8 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
 <header>  full-width row: wordmark CENTERED above the search bar (≤ 92px tall);
           Language pinned to the far top-right corner of the screen (RTL mirror)
 <div id="errorSlot" role="alert" aria-live="polite">          (only when active)
-<main>    [search bar: 🔍 icon | input | 🔍 submit button]
-          [ Reset ]  [ Upload ]  [ Export Snippet¹ ]   (12px gap, centered;
+<main>    [search bar: input | 🔍 submit button]
+          [ Reset Queries ]  [ Upload Log ]  [ Export Snippet¹ ]   (12px gap, centered;
           ¹hidden except in a match view — B19)
 <section id="results">                   (always visible; empty state = paste area)
    [view bar: status text left + Word Wrap checkbox right]   (always visible;
@@ -51,13 +51,14 @@ No frameworks. Dark theme is the only theme (no light toggle in v1).
   mirrors to the top-left in ar/ur). On < 720px it stacks as its own row above
   the centered logo.
 - **Search bar**: `height:46px; border-radius:24px; background:#303134;
-  display:flex; align-items:center;` left magnifier SVG 20px `#9aa0a6`, margin
-  start 12px; input transparent, 16px, `::placeholder #9aa0a6`; right submit
+  display:flex; align-items:center;` leading magnifier icon removed
+  (2026-09-25); input transparent, 16px, `::placeholder #9aa0a6`,
+  padding-inline-start 16px; right submit
   button (magnifier, 40×40 hit area). Focus-within: `box-shadow:0 1px 6px
   rgba(32,33,36,.6)` + border `#8ab4f8`. Hover without focus: same shadow.
 - **Buttons**: `height:36px; padding:0 16px; border-radius:4px;
   background:#303134; color:#e8eaed; font-size:14px; border:1px solid #303134;`
-  hover `background:#3c4043`; active translateY(1px). Order: Reset, then Upload, then Export Snippet (hidden except in a match view — B19).
+  hover `background:#3c4043`; active translateY(1px). Labels: "Reset Queries", "Upload Log" (i18n btn.*). Order: Reset, then Upload, then Export Snippet (hidden except in a match view — B19).
 - **Error slot**: between header and search bar; `color:#f28b82; font-size:14px;
   margin-bottom:8px;` one line max (truncates). Auto-dismiss after 6 s or on
   next successful action; Esc also clears it.
