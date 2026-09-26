@@ -314,7 +314,7 @@ header {
   padding: 0;
 }
 
-/* ===== buttons row: [ Reset ] [ Upload ] [ Export Snippet* ] — 12px gap, centered (§2; *hidden except in a match view — B19) ===== */
+/* ===== buttons row: [ Reset Queries ] [ Upload Log ] [ Export Snippet* ] — 12px gap, centered (§2; *always shown, disabled (grayed out) in non-match views — B19) ===== */
 .btn-row {
   display: flex;
   justify-content: center;
@@ -332,8 +332,10 @@ header {
   border: 1px solid #303134;
   cursor: pointer;
 }
-.btn:hover { background: #3c4043; }
-.btn:active { transform: translateY(1px); }
+.btn:hover:not([disabled]) { background: #3c4043; }
+.btn:active:not([disabled]) { transform: translateY(1px); }
+/* B19 — Export Snippet (ui-spec §4): always shown, grayed out while disabled */
+.btn[disabled] { color: var(--text-dim); cursor: not-allowed; }
 
 /* ===== error slot — between header and search bar. No `display` here so the
    [hidden] attribute (JS) keeps working; auto-dismiss is JS (item 1.4). ===== */
